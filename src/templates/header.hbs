@@ -1,30 +1,31 @@
 <header class="header">
 
-  <div class="container">
+  <div class="header-content-wrapper container">
 
-    <div class="nav">
+    <div class="header-nav">
 
-      <svg class="logo-svg" width="24" height="24">
+      {{!-- <svg class="logo-svg" width="24" height="24">
         <use href=""></use>
-      </svg>
+      </svg> --}}
+      <div style="background-color: white;  width:24px; height: 24px">
+      </div>
 
-      <ul>
-        <li>Home</li>
-        <li>My library</li>
+      <ul class="header-list">
+        <li class="header-list-item">Home</li>
+        <li class="header-list-item">My library</li>
       </ul>
-
-      <svg class="search-svg" width="12" height="12">
-        <use href=""></use>
-      </svg>
 
     </div>
 
-    <form action="#">
+    <form class="header-form" action="#">
       <label for="query"></label>
-      <input id="query" type="search" size="40" placeholder="Поиск фильмов" />
+      <input id="query" class="header-input" type="search" size="40"
+        placeholder="Поиск фильмов" />
+      <svg class="search-svg" width="12" height="12">
+        <use href=""></use>
+      </svg>
     </form>
 
   </div>
 
 </header>
-;
