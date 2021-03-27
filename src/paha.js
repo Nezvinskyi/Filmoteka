@@ -1,4 +1,4 @@
-setTimeout(() => {
+gitsetTimeout(() => {
     console.log('🚀 let`s try to do this one more time dude 🚀');
 } , 1000)
 
