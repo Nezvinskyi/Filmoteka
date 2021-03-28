@@ -1,7 +1,17 @@
-<li>
-  <img src="" alt="">
-  <h2></h2>
-  <p></p>
-  <p></p>
-  <p></p>
+{{#each results}}
+
+<li class="card-film">
+  <img class="card-img" src="https://image.tmdb.org/t/p/w400/{{poster_path}}" alt="poster of film">
+  <h2 class="card-title">{{original_title}}</h2>
+  <div class="card-info">
+    <p class="genre-id">{{id}}</p>
+    <p class="card-symb">|</p>
+    <p class="film-date">{{release_date}}</p>
+    <div class="card-raiting">
+      <p class="film-raiting">{{vote_average}}</p>
+    </div>
+
+  </div>
+
 </li>
+{{/each}}
