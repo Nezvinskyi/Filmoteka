@@ -68,6 +68,13 @@
     stroke: #818181;
   }
 
+  &-search-svg {
+    position: absolute;
+    right: 1px;
+    stroke-width: 1px;
+    stroke: #818181;
+  }
+
   &-logo-title {
     display: none;
     margin-left: 10px;
@@ -100,7 +107,9 @@
   }
 
   &-form {
-    display: block;
+    position: relative;
+    display: inline-block;
+
     margin-top: 41px;
   }
 
