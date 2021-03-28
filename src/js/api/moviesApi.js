@@ -8,6 +8,11 @@ export default class ApiMovie {
         this.movieId = '';
         this.page = 1;
         this.genres = [];
+        this.init();
+    }
+
+    init() {
+      this.getGenre()
     }
 
     async fetchUrl(urlValue) {
@@ -16,29 +21,33 @@ export default class ApiMovie {
         return await response.json();
     };
   
-    getGenre() {
+    async getGenre() {
         const url = `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`;
-        return this.fetchUrl(url);
+        const { genres } = await this.fetchUrl(url);
+        this.genres = genres;
     }
-
-    getPopular() {
+  
+    async getPopular() {
         const url = `${BASE_URL}/trending/${this.mediaType}/${this.timeWindow}?api_key=${API_KEY}&page=${this.page}`;
         if (this.page === 0) return;
-        return this.fetchUrl(url);
+        const data = await this.fetchUrl(url)
+        return data;
     }
   
-    getById(valueId) {
-        this.movieId = valueId;
+    async getById(id) {
+        this.movieId = id;
         const url = `${BASE_URL}/movie/${this.movieId}?api_key=${API_KEY}&language=en-US&page=${this.page}`;
-        if (this.movieId === '') return;
-        return this.fetchUrl(url);
+        /*  if (this.movieId === '') return; */
+        const movie = await this.fetchUrl(url)
+        return movie;
     }
   
-    getQuery(valueQuery) {
-        this.query = valueQuery;
-        const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.query}&page=${this.page}&include_adult=false`;
-        if (this.query === '') return;
-        return this.fetchUrl(url);
+    async getMoviesByQuery(query) {
+        this.searchQuery = query;
+        const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.searchQuery}&page=${this.page}&include_adult=false`;
+        /* if (this.searchQuery === '') return; */
+        const movies = await this.fetchUrl(url);
+        return movies;
     }
 
     renderGalery() { }
@@ -62,7 +71,7 @@ export default class ApiMovie {
         this.page = 1;
     }
 
-    init() { }
+    
 
     get query() {
       return this.searchQuery;
