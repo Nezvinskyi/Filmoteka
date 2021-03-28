@@ -2,11 +2,11 @@
 
 // base styles
 
+@import './utils/mixins';
+@import './utils/variables';
 @import './common/base-reset';
 @import './common/container';
 @import './common/visually-hidden';
-@import './utils/mixins';
-@import './utils/variables';
 
 // components
 @import './components/btn';
