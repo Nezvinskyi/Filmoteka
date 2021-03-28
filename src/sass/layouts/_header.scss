@@ -24,6 +24,7 @@
   height: 230px;
   padding-top: 43px;
   padding-bottom: 41px;
+  text-align: center;
 
   background-position: center;
   background-size: contain;
@@ -56,6 +57,22 @@
     margin-bottom: 41px;
   }
 
+  &-logo-wrapper {
+    display: flex;
+    align-items: baseline;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
+  }
+
+  &-logo-title {
+    display: none;
+    margin-left: 10px;
+    @media screen and (min-width: 768px) {
+      display: inline-block;
+    }
+  }
+
   &-list {
     display: flex;
 
@@ -82,8 +99,14 @@
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;
+
+    @media screen and (min-width: 768px) {
+      width: 336px;
+    }
   }
 }
 
-// .header-content-wrapper {
-// }
+.header-content-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+}
