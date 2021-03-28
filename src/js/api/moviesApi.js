@@ -2,7 +2,7 @@ import settings from './settings'
 const { API_KEY, BASE_URL } = settings;
 export default class ApiMovie {
     constructor() {
-        this.query = '';
+        this.searchQuery = '';
         this.mediaType = 'movie';
         this.timeWindow = 'day';
         this.movieId = '';
@@ -10,8 +10,6 @@ export default class ApiMovie {
         this.genres = [];
     }
 
-
-  
     async fetchUrl(urlValue) {
         const response = await fetch(urlValue);
         if (!response.ok) throw response.status;
@@ -23,8 +21,6 @@ export default class ApiMovie {
         return this.fetchUrl(url);
     }
 
-  
-  
     getPopular() {
         const url = `${BASE_URL}/trending/${this.mediaType}/${this.timeWindow}?api_key=${API_KEY}&page=${this.page}`;
         if (this.page === 0) return;
@@ -64,5 +60,15 @@ export default class ApiMovie {
 
     resetPage() {
         this.page = 1;
+    }
+
+    init() { }
+
+    get query() {
+      return this.searchQuery;
+    }
+    
+    set query(newQuery) {
+      this.searchQuery = newQuery;
     }
 }
