@@ -1,25 +1,3 @@
-.container {
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 100%;
-
-  @media screen and (min-width: 320px) {
-    max-width: 320px;
-  }
-
-  @media screen and (min-width: 768px) {
-    max-width: 768px;
-    padding-left: 76px;
-    padding-right: 76px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    max-width: 1024px;
-    padding-left: 71px;
-    padding-right: 71px;
-  }
-}
-
 .header {
   height: 230px;
   padding-top: 43px;
@@ -34,7 +12,7 @@
   font-family: Roboto;
   font-style: normal;
   color: $secondary-color;
-
+  background-image: url('../../src/images/home/mobile/header-bg-home-mobile.jpg');
   // background-image: $header-shadow, url('');
 
   @media screen and (min-width: 320px) and (max-width: 767px) {
