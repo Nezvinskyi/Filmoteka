@@ -5,6 +5,7 @@
     <div class="header-nav">
 
       <div class="header-logo-wrapper">
+
         <svg class="header-logo-svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
           width="24" height="24" viewBox="0 0 32 32">
           <title>film</title>
@@ -12,56 +13,63 @@
             stroke-miterlimit="4" stroke-width="2.6667" stroke="#818181"
             d="M26.427 2.667h-20.853c-1.605 0-2.907 1.301-2.907 2.907v20.853c0 1.605 1.301 2.907 2.907 2.907h20.853c1.605 0 2.907-1.301 2.907-2.907v-20.853c0-1.605-1.301-2.907-2.907-2.907z">
           </path>
-          <path fill=1" stroke-linejoin="round" stroke-linecap="round"
+          <path fill="none" stroke-linejoin="round" stroke-linecap="round"
             stroke-miterlimit="4" stroke-width="2.6667" stroke="#818181"
             d="M9.333 2.667v26.667"></path>
-          <path fill="" stroke-linejoin="round" stroke-linecap="round"
+          <path fill="none" stroke-linejoin="round" stroke-linecap="round"
             stroke-miterlimit="4" stroke-width="2.6667" stroke="#818181"
             d="M22.667 2.667v26.667"></path>
-          <path fill="" stroke-linejoin="round" stroke-linecap="round"
+          <path fill="none" stroke-linejoin="round" stroke-linecap="round"
             stroke-miterlimit="4" stroke-width="2.6667" stroke="#818181"
             d="M2.667 16h26.667"></path>
-          <path fill="" stroke-linejoin="round" stroke-linecap="round"
+          <path fill="none" stroke-linejoin="round" stroke-linecap="round"
             stroke-miterlimit="4" stroke-width="2.6667" stroke="#818181"
             d="M2.667 9.333h6.667"></path>
-          <path fill="" stroke-linejoin="round" stroke-linecap="round"
+          <path fill=none" stroke-linejoin="round" stroke-linecap="round"
             stroke-miterlimit="4" stroke-width="2.6667" stroke="#818181"
             d="M2.667 22.667h6.667"></path>
-          <path fill="" stroke-linejoin="round" stroke-linecap="round"
+          <path fill="none" stroke-linejoin="round" stroke-linecap="round"
             stroke-miterlimit="4" stroke-width="2.6667" stroke="#818181"
             d="M22.667 22.667h6.667"></path>
-          <path fill="" stroke-linejoin="round" stroke-linecap="round"
+          <path fill="none" stroke-linejoin="round" stroke-linecap="round"
             stroke-miterlimit="4" stroke-width="2.6667" stroke="#818181"
             d="M22.667 9.333h6.667"></path>
         </svg>
 
-        {{!-- <svg class="header-logo-svg" width="24" height="24">
+        {{!-- <svg class="header-logo-svg" xmlns="http://www.w3.org/2000/svg width="24" height="24">
           <use href="/src/images/icon-svg/film.svg"></use>
         </svg> --}}
         {{!-- <div style="background-color: white;  width:24px; height: 24px">
         </div> --}}
         <span class="header-logo-title">Filmoteka</span>
+
       </div>
       <ul class="header-list">
-        <li class="header-list-item">Home</li>
+        <li class="header-list-item current-page current-page-js">Home</li>
         <li class="header-list-item">My library</li>
       </ul>
 
     </div>
 
-    <label class="header-form" for="query">
-      <input id="query" class="header-input" type="search" placeholder="Поиск фильмов" />
-      <svg class="search-svg" version="1.1" xmlns="http://www.w3.org/2000/svg" width="12"
-        height="12" viewBox="0 0 32 32">
-        <title>search</title>
-        <path fill="none" stroke-linejoin="round" stroke-linecap="round"
-          stroke-miterlimit="4" stroke-width="2.6667" stroke=" #ffffff"
-          d="M14.667 25.333c5.891 0 10.667-4.776 10.667-10.667s-4.776-10.667-10.667-10.667c-5.891 0-10.667 4.776-10.667 10.667s4.776 10.667 10.667 10.667z">
-        </path>
-        <path fill="none" stroke-linejoin="round" stroke-linecap="round"
-          stroke-miterlimit="4" stroke-width="2.6667" stroke=" #ffffff"
-          d="M28 28.001l-5.8-5.8"></path>
-      </svg>
+    <form class="search-form" id="search-form">
+      <label class="header-form" for="query">
+
+        <input id="query" class="header-input" type="search"
+          placeholder="Поиск фильмов" /></form>
+
+
+
+    <svg class="header-search-svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
+      width="12" height="12" viewBox="0 0 32 32">
+      <title>search</title>
+      <path fill="none" stroke-linejoin="round" stroke-linecap="round"
+        stroke-miterlimit="4" stroke-width="2.6667" stroke=" #ffffff"
+        d="M14.667 25.333c5.891 0 10.667-4.776 10.667-10.667s-4.776-10.667-10.667-10.667c-5.891 0-10.667 4.776-10.667 10.667s4.776 10.667 10.667 10.667z">
+      </path>
+      <path fill="none" stroke-linejoin="round" stroke-linecap="round"
+        stroke-miterlimit="4" stroke-width="2.6667" stroke=" #ffffff"
+        d="M28 28.001l-5.8-5.8"></path>
+    </svg>
 
     </label>
 

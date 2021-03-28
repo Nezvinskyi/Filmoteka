@@ -1,33 +1,13 @@
-.container {
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 100%;
-
-  @media screen and (min-width: 320px) {
-    max-width: 320px;
-  }
-
-  @media screen and (min-width: 768px) {
-    max-width: 768px;
-    padding-left: 76px;
-    padding-right: 76px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    max-width: 1024px;
-    padding-left: 71px;
-    padding-right: 71px;
-  }
-}
-
 .header {
   height: 230px;
   padding-top: 43px;
   padding-bottom: 41px;
   text-align: center;
 
+  background-image: $header-shadow,
+    url('../images/home/mobile/header-bg-home-mobile.jpg');
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-color: $primary-color;
 
@@ -35,18 +15,58 @@
   font-style: normal;
   color: $secondary-color;
 
-  // background-image: $header-shadow, url('');
-
   @media screen and (min-width: 320px) and (max-width: 767px) {
-    // background-image: url('../src/images/home/mobile/header-bg-home-mobile.webp');
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      background-image: $header-shadow,
+        url('../images/home/mobile/header-bg-home-mobile-2x.jpg');
+    }
+
+    @media screen and (min-device-pixel-ratio: 3),
+      screen and (min-resolution: 384dpi),
+      screen and (min-resolution: 3dppx) {
+      background-image: $header-shadow,
+        url('../images/home/mobile/header-bg-home-mobile-3x.jpg');
+    }
   }
 
   @media screen and (min-width: 768px) and (max-width: 1023px) {
-    // background-image: url();
+    background-image: $header-shadow,
+      url('../images/home/tablet/header-bg-home-tablet.jpg');
+
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      background-image: $header-shadow,
+        url('../images/home/tablet/header-bg-home-tablet-2x.jpg');
+    }
+
+    @media screen and (min-device-pixel-ratio: 3),
+      screen and (min-resolution: 384dpi),
+      screen and (min-resolution: 3dppx) {
+      background-image: $header-shadow,
+        url('../images/home/tablet/header-bg-home-tablet-3x.jpg');
+    }
   }
 
   @media screen and (min-width: 1024px) {
-    // background-image: url();
+    background-image: $header-shadow,
+      url('../images/home/desktop/header-bg-home-desktop.jpg');
+
+    @media screen and (min-device-pixel-ratio: 2),
+      screen and (min-resolution: 192dpi),
+      screen and (min-resolution: 2dppx) {
+      background-image: $header-shadow,
+        url('../images/home/desktop/header-bg-home-desktop-2x.jpg');
+    }
+
+    @media screen and (min-device-pixel-ratio: 3),
+      screen and (min-resolution: 384dpi),
+      screen and (min-resolution: 3dppx) {
+      background-image: $header-shadow,
+        url('../images/home/desktop/header-bg-home-desktop-3x.jpg');
+    }
   }
 
   &-nav {
@@ -57,13 +77,22 @@
 
   &-logo-wrapper {
     display: flex;
+
     align-items: baseline;
     font-weight: 500;
     font-size: 30px;
     line-height: 35px;
+    cursor: pointer;
   }
 
   &-logo-svg {
+    stroke-width: 1px;
+    stroke: #818181;
+  }
+
+  &-search-svg {
+    position: absolute;
+    right: 1px;
     stroke-width: 1px;
     stroke: #818181;
   }
@@ -84,23 +113,19 @@
     line-height: 14px;
     text-transform: uppercase;
 
-    &-item:first-child {
-      margin-right: 39px;
+    &-item {
+      cursor: pointer;
     }
 
-    &-item:first-child::after {
-      content: '';
-      display: block;
-
-      width: 100%;
-      height: 3px;
-
-      background-color: $accent-color;
+    &-item:first-child {
+      margin-right: 39px;
     }
   }
 
   &-form {
-    display: block;
+    position: relative;
+    display: inline-block;
+
     margin-top: 41px;
   }
 
@@ -141,4 +166,14 @@
 .header-content-wrapper {
   margin-left: auto;
   margin-right: auto;
+}
+
+.current-page::after {
+  content: '';
+  display: block;
+
+  width: 100%;
+  height: 3px;
+
+  background-color: $accent-color;
 }

@@ -1,10 +1,12 @@
 import headerTplt from '../templates/header.hbs';
+import getRefs from '../js/get-refs';
+
+const refs = getRefs();
 
 function addHeader() {
-  const bodyRef = document.querySelector('body');
   const markup = headerTplt();
 
-  bodyRef.insertAdjacentHTML('afterbegin', markup);
+  refs.bodyRef.insertAdjacentHTML('afterbegin', markup);
 }
 
 addHeader();
