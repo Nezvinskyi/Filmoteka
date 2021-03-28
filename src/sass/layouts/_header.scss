@@ -1,0 +1,112 @@
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 100%;
+
+  @media screen and (min-width: 320px) {
+    max-width: 320px;
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 768px;
+    padding-left: 76px;
+    padding-right: 76px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    max-width: 1024px;
+    padding-left: 71px;
+    padding-right: 71px;
+  }
+}
+
+.header {
+  height: 230px;
+  padding-top: 43px;
+  padding-bottom: 41px;
+  text-align: center;
+
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: $primary-color;
+
+  font-family: Roboto;
+  font-style: normal;
+  color: $secondary-color;
+
+  // background-image: $header-shadow, url('');
+
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    // background-image: url();
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    // background-image: url();
+  }
+
+  @media screen and (min-width: 1024px) {
+    // background-image: url();
+  }
+
+  &-nav {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+
+    margin-bottom: 41px;
+  }
+
+  &-logo-wrapper {
+    display: flex;
+    align-items: baseline;
+    font-weight: 500;
+    font-size: 30px;
+    line-height: 35px;
+  }
+
+  &-logo-title {
+    display: none;
+    margin-left: 10px;
+    @media screen and (min-width: 768px) {
+      display: inline-block;
+    }
+  }
+
+  &-list {
+    display: flex;
+
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    text-transform: uppercase;
+
+    &-item:first-child {
+      margin-right: 39px;
+    }
+  }
+
+  &-input {
+    width: 100%;
+    margin-bottom: 22px;
+
+    outline: 0px;
+    background-color: transparent;
+    border: 0.5px solid transparent;
+    border-bottom: 0.5px solid $secondary-color;
+    border-radius: 0;
+
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+
+    @media screen and (min-width: 768px) {
+      width: 336px;
+    }
+  }
+}
+
+.header-content-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+}
