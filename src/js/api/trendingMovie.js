@@ -1,6 +1,5 @@
 import settings from './settings'
-// galleryRef - нужно значение что бы определить куда добавлять разметку карточек
-// cardMovie - файл hbs
+
 const { API_KEY, BASE_URL } = settings;
 export default class ApiTrendingMovie{
   constructor() {
@@ -34,23 +33,4 @@ export default class ApiTrendingMovie{
     this.page -= 1;
     return this.fetchReguest();
   }  
-
-}
-
-const apiTrendingMovie = new ApiTrendingMovie();
-
-apiTrendingMovie
-    .fetchReguest()
-    .then(({ results }) => {
-        console.log(results);
-        renderCardMovie(results, galleryRef);
-    })
-    .catch(err => console.log(err))
-
-function renderCardMovie(arr, selector) {
-  return selector.insertAdjacentHTML('beforeend', createMarkupCardMovie(arr));
-}
-
-function createMarkupCardMovie(element) {
-  return cardMovie(element);
 }
