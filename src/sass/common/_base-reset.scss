@@ -13,16 +13,15 @@ img {
 }
 
 body {
-  // font-family: $primary-font;
+  font-family: $primary-font;
   font-style: normal;
   // color: $primary-color;
 }
 
-.list {
+ul {
   list-style: none;
   padding: 0px;
   margin: 0px;
-  list-style: none;
 }
 
 .link {
