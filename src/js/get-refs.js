@@ -1,6 +1,6 @@
 export default function getRefs() {
   return {
-    bodyRef: document.getElementById('body'),
+    bodyRef: document.querySelector('body'),
     // searchForm: document.getElementById('search-form'),
     // gallery: document.querySelector('.gallery'),
   };
