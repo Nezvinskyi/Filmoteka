@@ -12,7 +12,7 @@
   font-family: Roboto;
   font-style: normal;
   color: $secondary-color;
-  background-image: url('../../src/images/home/mobile/header-bg-home-mobile.jpg');
+  // background-image: url($assetsPath + 'images/home/mobile/header-bg-home-mobile.jpg');
   // background-image: $header-shadow, url('');
 
   @media screen and (min-width: 320px) and (max-width: 767px) {
@@ -72,16 +72,6 @@
     &-item:first-child {
       margin-right: 39px;
     }
-
-    &-item:first-child::after {
-      content: '';
-      display: block;
-
-      width: 100%;
-      height: 3px;
-
-      background-color: $accent-color;
-    }
   }
 
   &-form {
@@ -128,4 +118,14 @@
 .header-content-wrapper {
   margin-left: auto;
   margin-right: auto;
+}
+
+.current-page::after {
+  content: '';
+  display: block;
+
+  width: 100%;
+  height: 3px;
+
+  background-color: $accent-color;
 }
