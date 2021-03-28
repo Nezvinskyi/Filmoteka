@@ -1,0 +1,61 @@
+.card-info {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 4px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: $accent-color;
+}
+
+.card-img {
+  display: block;
+  border-radius: 5px;
+  @media screen and (max-width: 767px) {
+    width: 280px;
+    height: 398px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    width: 294px;
+    height: 398px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 274px;
+    height: 398px;
+  }
+}
+
+.card-title {
+  margin-top: 10px;
+  font-family: $primary-font;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: $primary-color;
+}
+
+.genre-id {
+  margin-right: 4px;
+}
+
+.card-symb {
+  margin-right: 4px;
+}
+
+.film-date {
+  margin-right: 10px;
+}
+
+.card-raiting {
+  background: $btn-color;
+  border-radius: 5px;
+}
+
+.film-raiting {
+  margin: 1px 6px 1px 6px;
+  line-height: 14px;
+  color: $secondary-color;
+}
