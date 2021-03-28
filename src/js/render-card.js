@@ -23,10 +23,10 @@ export default moviesApi;
 // apiMovie.getMoviesByQuery();
 
 // // получить данные для рендера модалки
-async function getDate() {
-  moviesApi.movieId = 67;
-  const { title, release_date } = await moviesApi.getById();
-  console.log(moviesApi.genres);
-  console.log(title, release_date);
-}
-getDate();
+// async function getDate() {
+//   moviesApi.movieId = 67;
+//   const { title, release_date } = await moviesApi.getById();
+//   console.log(moviesApi.genres);
+//   console.log(title, release_date);
+// }
+// getDate();
