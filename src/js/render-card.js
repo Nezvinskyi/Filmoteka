@@ -50,7 +50,7 @@ apiMovie
     .getById(791373)
     .then(({ original_title,homepage, vote_average, vote_count, popularity, genres, overview}) => {
         console.log(original_title, homepage, vote_average, vote_count, popularity, genres, overview);
-        renderCard(results, galleryRef); 
+        
     })
     .catch(err => console.log(err))
 
@@ -61,7 +61,7 @@ apiMovie
     .getQuery('soul')
     .then(({ results }) => {
         console.log(results);
-        renderCard(results, galleryRef); 
+        
 
     })
     .catch(err => console.log(err))
