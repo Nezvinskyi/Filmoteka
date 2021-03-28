@@ -1,35 +1,32 @@
-import ApiMovie from './api/moviesApi'
-const apiMovie = new ApiMovie();
-/* console.log(apiMovie); */
+import MoviesApi from './api/moviesApi';
+const moviesApi = new MoviesApi();
 
-//------------------------------------------------------------------------------------
-/* getGenre() -Жанры. Возвращает массив объектов */
-/* console.log(apiMovie.genres);
-async function fu() {
-  await apiMovie.getGenre();
-  console.log(apiMovie.genres);
+export default moviesApi;
+
+// // примеры использования
+// // импорт: import moviesApi from './js/render-card';
+// // (внимание: относительный путь)
+
+// // получить массив жанров
+// apiMovie.getGenres();
+
+// // получить полулярные на сегодня
+// apiMovie.getPopularMovies();
+
+// // получить фильм по id
+// apiMovie.movieId = 67;
+// apiMovie.getById();
+
+// // поиск по ключевому слову
+// const queryFromInput = 'Odessa';
+// apiMovie.searchQuery = queryFromInput;
+// apiMovie.getMoviesByQuery();
+
+// // получить данные для рендера модалки
+async function getDate() {
+  moviesApi.movieId = 67;
+  const { title, release_date } = await moviesApi.getById();
+  console.log(moviesApi.genres);
+  console.log(title, release_date);
 }
-fu () */
-
-//------------------------------------------------------------------------------------
-//getPopular()-возвращает популярные на сегодня
-/* console.log(apiMovie.getPopular());
-async function foo() {
-  await apiMovie.getPopular()
-  .then(({ results }) => {
-      console.log(results);
-    
-      function Callback (entries ) {
-        entries .forEach(entry => {
-          if (entry.release_date) {
-            const d = new Date(entry.release_date);
-            const year = d.getFullYear()
-            console.log(year);
-          }
-        });
-      }
-      Callback (results)
-    })
-
-}
-foo() */
+getDate();

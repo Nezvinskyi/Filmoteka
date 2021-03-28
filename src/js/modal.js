@@ -1,1 +1,1 @@
-import '../templates/modal.hbs'
+import '../templates/modal.hbs';
