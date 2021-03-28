@@ -1,20 +1,35 @@
-import ApiTrendingMovie from './api/trendingMovie'
-// galleryRef - нужно значение что бы определить куда добавлять разметку карточек
-// cardMovie - шаблон файл hbs
-const apiTrendingMovie = new ApiTrendingMovie();
+import ApiMovie from './api/moviesApi'
+const apiMovie = new ApiMovie();
+/* console.log(apiMovie); */
 
-apiTrendingMovie
-  .fetchReguest()
+//------------------------------------------------------------------------------------
+/* getGenre() -Жанры. Возвращает массив объектов */
+/* console.log(apiMovie.genres);
+async function fu() {
+  await apiMovie.getGenre();
+  console.log(apiMovie.genres);
+}
+fu () */
+
+//------------------------------------------------------------------------------------
+//getPopular()-возвращает популярные на сегодня
+/* console.log(apiMovie.getPopular());
+async function foo() {
+  await apiMovie.getPopular()
   .then(({ results }) => {
       console.log(results);
-      /* renderCardMovie(results, galleryRef); */
-  })
-  .catch(err => console.log(err))
+    
+      function Callback (entries ) {
+        entries .forEach(entry => {
+          if (entry.release_date) {
+            const d = new Date(entry.release_date);
+            const year = d.getFullYear()
+            console.log(year);
+          }
+        });
+      }
+      Callback (results)
+    })
 
-/* function renderCardMovie(arr, selector) {
-  return selector.insertAdjacentHTML('beforeend', createMarkupCardMovie(arr));
 }
-
-function createMarkupCardMovie(element) {
-  return cardMovie(element);
-} */
+foo() */
