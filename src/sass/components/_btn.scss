@@ -13,7 +13,7 @@
   border-radius: 5px;
   background: rgba(0, 0, 0, 0);
 
-  font-family: Roboto;
+  font-family: $primary-font;
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -31,8 +31,8 @@
   &-header {
     width: 130px;
     height: 44px;
-    color: #ffffff;
-    border: 1px solid #ffffff;
+    color: $secondary-color;
+    border: 1px solid $secondary-color;
 
     @media screen and (min-width: 768px) {
       width: 136px;
@@ -42,8 +42,8 @@
   &-modal {
     width: 112px;
     height: 44px;
-    color: #000000;
-    border: 1px solid #000000;
+    color: $primary-color;
+    border: 1px solid $primary-color;
     @media screen and (min-width: 768px) {
       width: 124px;
     }
@@ -53,8 +53,8 @@
   }
 
   &-active-page {
-    background: $accent-color;
-    border: 1px solid $accent-color;
-    color: #ffffff;
+    background: $btn-color;
+    border: 1px solid $btn-color;
+    color: $secondary-color;
   }
 }
