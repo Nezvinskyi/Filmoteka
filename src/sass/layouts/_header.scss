@@ -38,7 +38,7 @@
   // background-image: $header-shadow, url('');
 
   @media screen and (min-width: 320px) and (max-width: 767px) {
-    // background-image: url();
+    // background-image: url('../../images/home/mobile/header-bg-home-mobile.webp');
   }
 
   @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -65,6 +65,12 @@
     line-height: 35px;
   }
 
+  &-logo-svg {
+    fill: #818181;
+    stroke-width: 1px;
+    stroke: #818181;
+  }
+
   &-logo-title {
     display: none;
     margin-left: 10px;
@@ -84,6 +90,20 @@
     &-item:first-child {
       margin-right: 39px;
     }
+
+    &-item:first-child::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 3px;
+
+      color: $accent-color;
+    }
+  }
+
+  &-form {
+    display: block;
   }
 
   &-input {
@@ -103,6 +123,20 @@
     @media screen and (min-width: 768px) {
       width: 336px;
     }
+
+    &:focus {
+      border-bottom: 1px solid $accent-color;
+    }
+
+    // &::placeholder {
+    // }
+  }
+
+  &-notification {
+    display: inline-block;
+    margin-bottom: 22px;
+    color: #ff001b;
+    text-align: left;
   }
 }
 
