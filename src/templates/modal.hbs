@@ -1,0 +1,33 @@
+<div class="modal">
+    <div class="container">
+        {{#each query}}
+        <div class="modal-wrapper">
+            <img src="{{poster_path}}" alt="movie poster" class="modal_img">
+            <div class="modal-content">
+                <h2 class="modal-content_title">{{original_title}}</h2>
+                <div class="modal-content-list_wrapper">
+                    <ul class="modal-card_list_left">
+                        <li><span class="modal-list_item">Vote / Votes</span></li>
+                        <li><span class="modal-list_item">Popularity</span></li>
+                        <li><span class="modal-list_item">Original Title</span></li>
+                        <li><span class="modal-list_item">Genre</span></li>
+                    </ul>
+                    <ul class="modal-card_list_right">
+                        <li class="modal-list_item"><span class="vote-avarage">{{vote_average}}</span><span>/{{vote_count}}</span></li>
+                        <li class="modal-list_item"><span>{{popularity}}</span></li>
+                        <li class="modal-list_item"><span>{{original_title}}</span></li>
+                        <li class="modal-list_item"><span>{{genre_ids}}</span></li>
+                            <!-- <<!need to put correct id>>  -->
+                    </ul>
+                </div>
+                <h3 class="modal-title_about">ABOUT</h3>
+                <p class="modal-card_text">{{overview}}</p>
+            </div>
+        </div>
+        {{/each}}
+        <div class="modal-btn-container">
+            <button class="modal-btn" type="button" id="watched">ADD TO WATCHED</button>
+            <button class="modal-btn" type="button" id="queue">ADD TO QUEUE</button>
+        </div>
+    </div>
+</div>
