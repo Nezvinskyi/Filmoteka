@@ -9,16 +9,15 @@ export default class ApiTrendingMovie{
   }
     
   async fetchReguest() {
+    const url = `${BASE_URL}/trending/${this.mediaType}/${this.timeWindow}?api_key=${API_KEY}&page=${this.page}`;
     if (this.page === 0) return;
-    const response = await fetch(this.createRequest());
+    const response = await fetch(url);
     if (!response.ok) throw response.status;
     return await response.json();
-  }  
-
-  createRequest() {
-    return `${BASE_URL}/trending/${this.mediaType}/${this.timeWindow}?api_key=${API_KEY}&page=${this.page}`;
   }
-    
+  
+  //`https://api.themoviedb.org/3/genre/movie/list?api_key=<<api_key>>&language=en-US`-жанры
+
   currentPage(value) {
     this.page = value;
     return this.fetchReguest();

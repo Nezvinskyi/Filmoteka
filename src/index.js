@@ -1,4 +1,6 @@
 import './sass/main.scss';
 import './js/header';
-import './js/render-card-denys';
 import './js/footer';
+
+import './js/render-card'
+
