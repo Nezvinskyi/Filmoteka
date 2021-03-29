@@ -4,10 +4,10 @@
 
     <div class="header-nav">
 
-      <div class="header-logo-wrapper">
+      <div class="header-logo-wrapper" data-home="home">
 
-        <svg class="header-logo-svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
-          width="24" height="24" viewBox="0 0 32 32">
+        <svg class="header-logo-svg" data-home="home" version="1.1"
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32">
           <title>film</title>
           <path fill="" stroke-linejoin="round" stroke-linecap="round"
             stroke-miterlimit="4" stroke-width="2.6667" stroke="#818181"
@@ -40,13 +40,15 @@
           <use href="/src/images/icon-svg/film.svg"></use>
         </svg> --}}
 
-        <span class="header-logo-title">Filmoteka</span>
+        <span class="header-logo-title" data-home="home">Filmoteka</span>
 
       </div>
 
       <ul class="header-list">
-        <li class="header-list-item current-page home-page-js">Home</li>
-        <li class="header-list-item  library-page-js">My library</li>
+        <li class="header-list-item current-page  home-page-js" data-home="home">Home
+        </li>
+        <li class="header-list-item  library-page-js" data-library="library">My library
+        </li>
       </ul>
 
     </div>

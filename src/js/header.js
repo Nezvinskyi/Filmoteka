@@ -18,7 +18,14 @@ pagesNav.addEventListener('click', onNavClick);
 searchFormRef.addEventListener('submit', onSearch);
 
 function onNavClick(event) {
-  console.log(event.target);
+  const home = event.target.dataset.home;
+  const library = event.target.dataset.library;
+  if (home) {
+    console.log('home');
+  }
+  if (library) {
+    console.log('library');
+  }
 }
 
 function onSearch(event) {
