@@ -21,7 +21,8 @@ pagesNav.addEventListener('click', onNavClick);
 searchFormRef.addEventListener('submit', onSearch);
 
 function onNavClick(event) {
-  if (event.target.dataset.action === 'home') {
+  console.log(event.target);
+  if (event.target.dataset.action === 'home' || event.target.closest('svg')) {
     libNavRef.classList.remove('current-page');
     homeNavRef.classList.add('current-page');
 

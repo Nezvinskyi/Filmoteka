@@ -136,11 +136,15 @@
     }
   }
 
-  &-form {
+  &-search-form {
     position: relative;
-    display: inline-block;
 
+    display: inline-flex;
     margin-top: 41px;
+  }
+
+  &-form {
+    display: inline-block;
   }
 
   &-input {
