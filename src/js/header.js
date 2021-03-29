@@ -40,5 +40,4 @@ function onSearch(event) {
   event.preventDefault();
 
   const inputValue = event.currentTarget.elements.query.value;
-  console.log('Текст запроса ====>', inputValue);
 }
