@@ -4,10 +4,10 @@
 
     <div class="header-nav">
 
-      <div class="header-logo-wrapper">
+      <div class="header-logo-wrapper" data-action="home">
 
-        <svg class="header-logo-svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
-          width="24" height="24" viewBox="0 0 32 32">
+        <svg class="header-logo-svg" data-action="home" version="1.1"
+          xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32">
           <title>film</title>
           <path fill="" stroke-linejoin="round" stroke-linecap="round"
             stroke-miterlimit="4" stroke-width="2.6667" stroke="#818181"
@@ -36,17 +36,15 @@
             d="M22.667 9.333h6.667"></path>
         </svg>
 
-        {{!-- <svg class="header-logo-svg" xmlns="http://www.w3.org/2000/svg width="24" height="24">
-          <use href="/src/images/icon-svg/film.svg"></use>
-        </svg> --}}
-        {{!-- <div style="background-color: white;  width:24px; height: 24px">
-        </div> --}}
-        <span class="header-logo-title">Filmoteka</span>
+        <span class="header-logo-title" data-action="home">Filmoteka</span>
 
       </div>
+
       <ul class="header-list">
-        <li class="header-list-item current-page current-page-js">Home</li>
-        <li class="header-list-item">My library</li>
+        <li class="header-list-item current-page  home-page-js" data-action="home">Home
+        </li>
+        <li class="header-list-item  library-page-js" data-action="library">My library
+        </li>
       </ul>
 
     </div>
@@ -54,24 +52,25 @@
     <form class="search-form" id="search-form">
       <label class="header-form" for="query">
 
-        <input id="query" class="header-input" type="search"
-          placeholder="Поиск фильмов" /></form>
+        <input id="query" class="header-input" autocomplete="off"
+          placeholder="Поиск фильмов" />
+      </label>
+    </form>
 
+    <button class="header-search-button" type="submit">
+      <svg class="header-search-svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
+        width="12" height="12" viewBox="0 0 32 32">
+        <title>search</title>
+        <path fill="none" stroke-linejoin="round" stroke-linecap="round"
+          stroke-miterlimit="4" stroke-width="2.6667" stroke=" #ffffff"
+          d="M14.667 25.333c5.891 0 10.667-4.776 10.667-10.667s-4.776-10.667-10.667-10.667c-5.891 0-10.667 4.776-10.667 10.667s4.776 10.667 10.667 10.667z">
+        </path>
+        <path fill="none" stroke-linejoin="round" stroke-linecap="round"
+          stroke-miterlimit="4" stroke-width="2.6667" stroke=" #ffffff"
+          d="M28 28.001l-5.8-5.8"></path>
+      </svg>
+    </button>
 
-
-    <svg class="header-search-svg" version="1.1" xmlns="http://www.w3.org/2000/svg"
-      width="12" height="12" viewBox="0 0 32 32">
-      <title>search</title>
-      <path fill="none" stroke-linejoin="round" stroke-linecap="round"
-        stroke-miterlimit="4" stroke-width="2.6667" stroke=" #ffffff"
-        d="M14.667 25.333c5.891 0 10.667-4.776 10.667-10.667s-4.776-10.667-10.667-10.667c-5.891 0-10.667 4.776-10.667 10.667s4.776 10.667 10.667 10.667z">
-      </path>
-      <path fill="none" stroke-linejoin="round" stroke-linecap="round"
-        stroke-miterlimit="4" stroke-width="2.6667" stroke=" #ffffff"
-        d="M28 28.001l-5.8-5.8"></path>
-    </svg>
-
-    </label>
 
     <div class="wrapper-btn-header">
       <button class="btn btn-header btn-active-page" type="button">
