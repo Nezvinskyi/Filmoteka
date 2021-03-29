@@ -10,3 +10,20 @@ function addHeader() {
 }
 
 addHeader();
+
+const searchFormRef = document.getElementById('search-form');
+const pagesNav = document.querySelector('.header-nav');
+
+pagesNav.addEventListener('click', onNavClick);
+searchFormRef.addEventListener('submit', onSearch);
+
+function onNavClick(event) {
+  console.log(event.target);
+}
+
+function onSearch(event) {
+  event.preventDefault();
+
+  const inputValue = event.currentTarget.elements.query.value;
+  console.log('Текст запроса ====>', inputValue);
+}
