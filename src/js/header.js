@@ -30,7 +30,7 @@ function onNavClick(event) {
     moviesApi.getPopularMovies().then(({ results }) => {
       const movieDataList = results.map(item => movieAdapter(item));
 
-      moviesApi.getRefs().gallery.innerHTML = cardList(movieDataList);
+      moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
     });
   }
 
