@@ -8,7 +8,7 @@ const convertYear = date => {
   return d.getFullYear();
 };
 
-async function getGenreName()
+async function getGenreName() {}
 
 export const movieAdapter = ({
   poster_path,
