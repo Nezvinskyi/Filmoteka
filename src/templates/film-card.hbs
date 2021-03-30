@@ -1,15 +1,15 @@
-{{#each this}}<li class="card-film" data-id="{{id}}>
+{{#each this}}<li class="card-film" data-id="{{id}}">
 
-  <img class="card-img" src="{{imgSrc}}" alt="poster of film">
-  <h2 class="card-title">{{title}}</h2>
-  <div class="card-info">
-    <p class="genre-id">{{searchOne}}</p>
-    <p class="card-symb">|</p>
-    <p class="film-date">{{releaseDate}}</p>
-    <div class="card-raiting">
-      <p class="film-raiting">{{voteAverage}}</p>
-    </div>
+	<img class="card-img" src="{{imgSrc}}" alt="poster of film">
+	<h2 class="card-title">{{title}}</h2>
+	<div class="card-info">
+		<p class="genre-id">{{searchOne}}</p>
+		<p class="card-symb">|</p>
+		<p class="film-date">{{releaseDate}}</p>
+		<div class="card-raiting">
+			<p class="film-raiting">{{voteAverage}}</p>
+		</div>
 
-  </div>
+	</div>
 
 </li>{{/each}}
