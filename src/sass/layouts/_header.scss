@@ -118,13 +118,13 @@
     outline-style: none;
 
     cursor: pointer;
+    @extend %transition;
   }
 
-  &-search-svg {
-    // position: absolute;
-    // right: 1px;
-    stroke-width: 1px;
-    stroke: #818181;
+  &-search-svg:hover,
+  &-search-svg:focus {
+    transform: scale(1.5);
+    @extend %transition;
   }
 
   &-list {
@@ -179,12 +179,10 @@
       width: 336px;
     }
 
+    &:hover,
     &:focus {
       border-bottom: 1px solid $accent-color;
     }
-
-    // &::placeholder {
-    // }
   }
 
   &-notification {
