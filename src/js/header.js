@@ -1,5 +1,8 @@
 import headerTplt from '../templates/header.hbs';
 import getRefs from '../js/get-refs';
+import { movieAdapter } from './helpers/index';
+import cardList from '../templates/film-list.hbs';
+import moviesApi from './render-card';
 
 let refs = getRefs();
 
@@ -12,13 +15,6 @@ function addHeader() {
 addHeader();
 refs = getRefs();
 
-// const headerRef = document.querySelector('.header');
-// const pagesNav = document.querySelector('.header-nav');
-// const homeNavRef = document.querySelector('.home-page-js');
-// const libNavRef = document.querySelector('.library-page-js');
-// const searchFormRef = document.getElementById('search-form');
-// const btnWrapperRef = document.querySelector('.wrapper-btn-header');
-
 refs.pagesNav.addEventListener('click', onNavClick);
 refs.searchForm.addEventListener('submit', onSearch);
 
@@ -29,6 +25,12 @@ function onNavClick(event) {
     refs.header.classList.remove('library-header');
     refs.searchForm.classList.remove('visually-hidden');
     refs.headerBtnWrapper.classList.add('visually-hidden');
+
+    moviesApi.getPopularMovies().then(({ results }) => {
+      const movieDataList = results.map(item => movieAdapter(item));
+
+      refs.header.insertAdjacentHTML('afterend', cardList(movieDataList));
+    });
   }
 
   if (event.target.dataset.action === 'library') {
@@ -43,5 +45,17 @@ function onNavClick(event) {
 function onSearch(event) {
   event.preventDefault();
 
-  const inputValue = event.currentTarget.elements.query.value;
+  moviesApi.query = event.currentTarget.elements.query.value;
+
+  moviesApi.getMoviesByQuery().then(({ results }) => {
+    const movieDataList = results.map(item => movieAdapter(item));
+
+    refs.header.insertAdjacentHTML('afterend', cardList(movieDataList));
+  });
+
+  clearInput(event);
+}
+
+function clearInput(event) {
+  event.currentTarget.elements.query.value = '';
 }
