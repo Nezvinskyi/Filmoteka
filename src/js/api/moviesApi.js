@@ -32,9 +32,17 @@ export default class MoviesApi {
     this.getGenres();
   }
 
+  //тестирование динамических рефов
+  getRefs() {
+    const refs = {};
+    refs.gallery = document.querySelector('.gallery-js');
+
+    return refs;
+  }
+
   async fetch(url) {
     const response = await fetch(url);
-    if (!response.ok) throw response.status;
+
     return await response.json();
   }
 
