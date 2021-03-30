@@ -10,3 +10,6 @@ import './js/render-card';
 import './js/gallery';
 import './js/helpers/index';
 // Яна, а надо ли сюда импортировать хелперы?
+
+//localStorrage
+import './js/api/storage';
