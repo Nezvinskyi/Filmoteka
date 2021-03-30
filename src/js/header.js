@@ -2,6 +2,7 @@ import headerTplt from '../templates/header.hbs';
 import getRefs from '../js/get-refs';
 import { movieAdapter } from './helpers/index';
 import cardList from '../templates/film-list.hbs';
+import filmCard from '../templates/film-card.hbs';
 import moviesApi from './render-card';
 
 let refs = getRefs();
@@ -29,7 +30,7 @@ function onNavClick(event) {
     moviesApi.getPopularMovies().then(({ results }) => {
       const movieDataList = results.map(item => movieAdapter(item));
 
-      refs.header.insertAdjacentHTML('afterend', cardList(movieDataList));
+      moviesApi.getRefs().gallery.innerHTML = cardList(movieDataList);
     });
   }
 
@@ -44,13 +45,13 @@ function onNavClick(event) {
 
 function onSearch(event) {
   event.preventDefault();
-
+  moviesApi.getRefs().gallery;
   moviesApi.query = event.currentTarget.elements.query.value;
 
   moviesApi.getMoviesByQuery().then(({ results }) => {
     const movieDataList = results.map(item => movieAdapter(item));
 
-    refs.header.insertAdjacentHTML('afterend', cardList(movieDataList));
+    moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
   });
 
   clearInput(event);
