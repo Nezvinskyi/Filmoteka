@@ -4,4 +4,4 @@ import './js/header';
 import './js/footer';
 
 import './js/render-card';
-import './js/modal'
+// import './js/modal'
