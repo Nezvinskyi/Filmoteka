@@ -59,3 +59,34 @@
   line-height: 14px;
   color: $secondary-color;
 }
+
+.container-film {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  @media screen and (min-width: 1024px) {
+    padding: 60px 0 50px 0;
+  }
+}
+
+.card-film {
+  @media screen and (max-width: 767px) {
+    margin-bottom: 20px;
+  }
+  @media screen and (min-width: 768px) {
+    margin-bottom: 30px;
+  }
+}
+
+.card-film:not(:nth-child(2n)) {
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    margin-right: 30px;
+  }
+}
+
+.card-film:not(:nth-child(3n)) {
+  @media screen and (min-width: 1024px) {
+    margin-right: 30px;
+  }
+}
