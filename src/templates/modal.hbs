@@ -1,33 +1,61 @@
-<div class="modal">
-    <div class="container">
-        {{#each query}}
-        <div class="modal-wrapper">
-            <img src="{{poster_path}}" alt="movie poster" class="modal_img">
-            <div class="modal-content">
-                <h2 class="modal-content_title">{{original_title}}</h2>
-                <div class="modal-content-list_wrapper">
-                    <ul class="modal-card_list_left">
-                        <li><span class="modal-list_item">Vote / Votes</span></li>
-                        <li><span class="modal-list_item">Popularity</span></li>
-                        <li><span class="modal-list_item">Original Title</span></li>
-                        <li><span class="modal-list_item">Genre</span></li>
-                    </ul>
-                    <ul class="modal-card_list_right">
-                        <li class="modal-list_item"><span class="vote-avarage">{{vote_average}}</span><span>/{{vote_count}}</span></li>
-                        <li class="modal-list_item"><span>{{popularity}}</span></li>
-                        <li class="modal-list_item"><span>{{original_title}}</span></li>
-                        <li class="modal-list_item"><span>{{genre_ids}}</span></li>
-                            <!-- <<!need to put correct id>>  -->
-                    </ul>
-                </div>
-                <h3 class="modal-title_about">ABOUT</h3>
-                <p class="modal-card_text">{{overview}}</p>
+<div class="backdrop-open">
+    <div class="modal">
+        <button class="modal-btn-close" type="button">
+            <svg class="close-svg" width="100%" height="100%" viewBox="0 0 30 30" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 8L22 22" stroke="black" stroke-width="2" />
+                <path d="M8 22L22 8" stroke="black" stroke-width="2" />
+            </svg>
+        </button>
+        <div class="modal-container">
+            {{!-- {{#each query}} --}}
+            <div class="modal-img">
+                <img src="{{poster_path}}" alt="movie poster">
             </div>
-        </div>
-        {{/each}}
-        <div class="modal-btn-container">
-            <button class="modal-btn" type="button" id="watched">ADD TO WATCHED</button>
-            <button class="modal-btn" type="button" id="queue">ADD TO QUEUE</button>
+
+            <div class="modal-wrapper">
+                <div class="modal-content">
+                    <h2 class="modal-content_title">original title{{original_title}}</h2>
+                    <div class="modal-content-list_wrapper">
+                        <ul class="modal-card_list_left">
+                            <li class="modal-list_item"><span>Vote / Votes</span></li>
+                            <li class="modal-list_item"><span>Popularity</span></li>
+                            <li class="modal-list_item"><span>Original Title</span></li>
+                            <li class="modal-list_item"><span>Genre</span></li>
+                        </ul>
+                        <ul class="modal-card_list_right">
+                            <li class="modal-list_item "><span
+                                    class="vote-avarage">vote_av/popul{{vote_average}}</span><span>/{{vote_count}}</span>
+                            </li>
+                            <li class="modal-list_item"><span>popularity{{popularity}}</span></li>
+                            <li class="modal-list_item modal-list_title"><span>original_title{{original_title}}</span>
+                            </li>
+                            <li class="modal-list_item modal-list_genre"><span>genre_ids{{genre_ids}}</span></li>
+                            <!-- <<!need to put correct id>>  -->
+                        </ul>
+                    </div>
+
+                    <h3 class="modal-title_about">about</h3>
+                    <p class="modal-card_text">Four of the West’s most infamous outlaws assemble to steal a huge stash
+                        of
+                        gold from the most corrupt settlement of the
+                        gold rush towns. But not all goes to plan one is killed and the other three escapes with bags of
+                        gold hide out in the
+                        abandoned gold mine where they happen across another gang of three – who themselves were
+                        planning to
+                        hit the very same
+                        bank! As tensions rise, things go from bad to worse as they realise the bags of gold are filled
+                        with
+                        lead... they’ve
+                        been double crossed – but by who and how?{{overview}}</p>
+                </div>
+                <div class="modal-btn-container">
+                    <button class="btn btn-modal btn-active-page" type="button" id="watched">add to
+                        watched</button>
+                    <button class="btn btn-modal" type="button" id="queue">add to queue</button>
+                </div>
+            </div>
+            {{!-- {{/each}} --}}
         </div>
     </div>
 </div>
