@@ -35,6 +35,14 @@ export default class MoviesApi {
     /* this.renderGalery() */
   }
 
+  //тестирование динамических рефов
+  getRefs() {
+    const refs = {};
+    refs.gallery = document.querySelector('.gallery-js');
+
+    return refs;
+  }
+
   async fetch(url) {
     try
     {const response = await fetch(url);
