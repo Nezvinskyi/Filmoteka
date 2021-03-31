@@ -18,6 +18,13 @@ export function getGenreNames(genre_ids) {
   return genreNames.join(', ');
 }
 
+function getGenreNamesModal(genres) {
+  console.log(genres);
+  const genreNames = [];
+  genres.forEach(genre => genreNames.push(genre.name));
+  return genreNames.join(', ');
+}
+
 export const movieAdapter = ({
   poster_path,
   original_title,
@@ -40,4 +47,22 @@ export const movieAdapter = ({
   overview: overview,
   id: id,
   genres: getGenreNames(genre_ids),
+});
+
+export const movieAdapterModal = ({
+  poster_path,
+  original_title,
+  vote_average,
+  vote_count,
+  popularity,
+  genres,
+  overview,
+}) => ({
+  imgSrc: generatePosterPath(poster_path),
+  title: original_title,
+  voteAverage: vote_average,
+  voteCount: vote_count,
+  popularity: popularity,
+  genres: getGenreNamesModal(genres),
+  overview: overview,
 });

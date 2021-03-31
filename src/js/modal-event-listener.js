@@ -1,6 +1,6 @@
 import moviesApi from './render-card';
 import addModal from './modal';
-import { movieAdapter } from './helpers/index';
+import { movieAdapterModal } from './helpers/index';
 
 export function addEventListenerToGallery() {
   moviesApi.getRefs().gallery.addEventListener('click', clickFilmCardHandler);
@@ -14,5 +14,5 @@ function clickFilmCardHandler(event) {
 }
 
 function renderModal(movie) {
-  addModal(movieAdapter(movie));
+  addModal(movieAdapterModal(movie));
 }
