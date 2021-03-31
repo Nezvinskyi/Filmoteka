@@ -8,7 +8,7 @@ const refs = getRefs();
 
 moviesApi.getPopularMovies().then(({ results }) => {
   const movieDataList = results.map(item => {
-    console.log(movieAdapter(item));
+    // console.log(movieAdapter(item));
     return movieAdapter(item);
   });
 
