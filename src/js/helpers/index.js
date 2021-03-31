@@ -30,6 +30,17 @@ function getGenreNamesModal(genres) {
   return genreNames.join(', ');
 }
 
+function cutTitle(original_title) {
+  const arrTitle = original_title.split('');
+  if (arrTitle.length > 39) {
+    const newTitle = arrTitle.splice(0, 40);
+
+    return newTitle.join('') + '...';
+  } else {
+    return arrTitle.join('');
+  }
+}
+
 export const movieAdapter = ({
   poster_path,
   original_title,
@@ -43,7 +54,7 @@ export const movieAdapter = ({
   genre_ids,
 }) => ({
   imgSrc: generatePosterPath(poster_path),
-  title: original_title,
+  title: cutTitle(original_title),
   releaseDate: convertYear(release_date),
   voteAverage: vote_average,
   homepage: homepage,
