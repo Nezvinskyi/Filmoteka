@@ -1,14 +1,24 @@
 // для генерации правильного пути к картинке, даты и жанров
 import imgPoster from '../api/settings';
+import moviesApi from '../render-card';
 
 const { POSTER_URL } = imgPoster;
-const generatePosterPath = imageName => `${POSTER_URL}/${imageName}`;
+export const generatePosterPath = imageName => `${POSTER_URL}/${imageName}`;
 const convertYear = date => {
-  const d = new Date(date);
-  return d.getFullYear();
+  return new Date(date).getFullYear();
 };
 
-async function getGenreName() {}
+async function getGenreNames(genre_ids) {
+  const genreNames = [];
+  const data = await moviesApi.getGenres();
+  genre_ids.forEach(genre_id => {
+    const item = data.find(item => item.id === genre_id);
+    genreNames.push(item.name);
+  });
+  console.log(genreNames);
+  return genreNames.join(', ');
+}
+getGenreNames([18, 12]);
 
 export const movieAdapter = ({
   poster_path,
@@ -19,6 +29,7 @@ export const movieAdapter = ({
   vote_count,
   popularity,
   overview,
+  genre_ids,
 }) => ({
   imgSrc: generatePosterPath(poster_path),
   title: original_title,
@@ -28,4 +39,5 @@ export const movieAdapter = ({
   voteCount: vote_count,
   popularity: popularity,
   overview: overview,
+  genres: getGenreNames(genre_ids),
 });
