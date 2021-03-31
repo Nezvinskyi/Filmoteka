@@ -2,7 +2,7 @@
 import imgPoster from '../api/settings';
 
 const { POSTER_URL } = imgPoster;
-const generatePosterPath = imageName => `${POSTER_URL}/${imageName}`;
+export const generatePosterPath = imageName => `${POSTER_URL}/${imageName}`;
 
 export const movieAdapter = ({
   poster_path,
