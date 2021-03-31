@@ -1,9 +1,14 @@
 // для генерации правильного пути к картинке, даты и жанров
 import imgPoster from '../api/settings';
+import imgNoPoster from '../api/settings';
 import moviesApi from '../render-card';
 
 const { POSTER_URL } = imgPoster;
+const { NOPOSTER_URL } = imgNoPoster;
+
 export const generatePosterPath = imageName => `${POSTER_URL}/${imageName}`;
+export const generatePoster = () => `${NOPOSTER_URL}`;
+
 const convertYear = date => {
   return new Date(date).getFullYear();
 };
@@ -47,6 +52,7 @@ export const movieAdapter = ({
   overview: overview,
   id: id,
   genres: getGenreNames(genre_ids),
+  noPoster: generatePoster(),
 });
 
 export const movieAdapterModal = ({
