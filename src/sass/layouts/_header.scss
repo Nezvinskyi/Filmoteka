@@ -161,7 +161,7 @@
   }
 
   &-input {
-    width: 100%;
+    min-width: 280px;
     margin-bottom: 22px;
 
     outline: 0px;
@@ -175,13 +175,13 @@
     font-size: 14px;
     line-height: 16px;
 
-    @media screen and (min-width: 768px) {
-      width: 336px;
-    }
-
     &:hover,
     &:focus {
       border-bottom: 1px solid $accent-color;
+
+      @media screen and (min-width: 768px) {
+        width: 336px;
+      }
     }
   }
 
