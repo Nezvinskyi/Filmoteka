@@ -8,46 +8,33 @@
             </svg>
         </button>
         <div class="modal-container">
-            {{!-- {{#each query}} --}}
             <div class="modal-img">
-                <img src="{{poster_path}}" alt="movie poster">
+                <img src="{{imgSrc}}" alt="poster of film">
             </div>
 
             <div class="modal-wrapper">
                 <div class="modal-content">
-                    <h2 class="modal-content_title">original title{{original_title}}</h2>
+                    <h2 class="modal-content_title">{{title}}</h2>
                     <div class="modal-content-list_wrapper">
                         <ul class="modal-card_list_left">
-                            <li class="modal-list_item"><span>Vote / Votes</span></li>
+                            <li class="modal-list_item"><span>Vote/Votes</span></li>
                             <li class="modal-list_item"><span>Popularity</span></li>
                             <li class="modal-list_item"><span>Original Title</span></li>
                             <li class="modal-list_item"><span>Genre</span></li>
                         </ul>
                         <ul class="modal-card_list_right">
-                            <li class="modal-list_item "><span
-                                    class="vote-avarage">vote_av/popul{{vote_average}}</span><span>/{{vote_count}}</span>
+                            <li class="modal-list_item ">
+                                <span class="vote-avarage">{{voteAverage}}</span><span>/ {{voteCount}}</span>
                             </li>
-                            <li class="modal-list_item"><span>popularity{{popularity}}</span></li>
-                            <li class="modal-list_item modal-list_title"><span>original_title{{original_title}}</span>
+                            <li class="modal-list_item"><span>{{popularity}}</span></li>
+                            <li class="modal-list_item modal-list_title"><span>{{title}}</span>
                             </li>
-                            <li class="modal-list_item modal-list_genre"><span>genre_ids{{genre_ids}}</span></li>
-                            <!-- <<!need to put correct id>>  -->
+                            <li class="modal-list_item modal-list_genre"><span>{{genres}}</span></li>
                         </ul>
                     </div>
 
                     <h3 class="modal-title_about">about</h3>
-                    <p class="modal-card_text">Four of the West’s most infamous outlaws assemble to steal a huge stash
-                        of
-                        gold from the most corrupt settlement of the
-                        gold rush towns. But not all goes to plan one is killed and the other three escapes with bags of
-                        gold hide out in the
-                        abandoned gold mine where they happen across another gang of three – who themselves were
-                        planning to
-                        hit the very same
-                        bank! As tensions rise, things go from bad to worse as they realise the bags of gold are filled
-                        with
-                        lead... they’ve
-                        been double crossed – but by who and how?{{overview}}</p>
+                    <p class="modal-card_text">{{overview}}</p>
                 </div>
                 <div class="modal-btn-container">
                     <button class="btn btn-modal btn-active-page" type="button" id="watched">add to
@@ -55,7 +42,6 @@
                     <button class="btn btn-modal" type="button" id="queue">add to queue</button>
                 </div>
             </div>
-            {{!-- {{/each}} --}}
         </div>
     </div>
 </div>
