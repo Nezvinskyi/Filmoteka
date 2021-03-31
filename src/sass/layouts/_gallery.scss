@@ -12,6 +12,7 @@
 .card-img {
   display: block;
   border-radius: 5px;
+  cursor: pointer;
   @media screen and (max-width: 767px) {
     width: 280px;
     height: 398px;

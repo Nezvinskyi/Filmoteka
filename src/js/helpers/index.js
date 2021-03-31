@@ -13,6 +13,7 @@ export const movieAdapter = ({
   vote_count,
   popularity,
   overview,
+  id,
 }) => ({
   imgSrc: generatePosterPath(poster_path),
   title: original_title,
@@ -22,4 +23,5 @@ export const movieAdapter = ({
   voteCount: vote_count,
   popularity: popularity,
   overview: overview,
+  id: id,
 });
