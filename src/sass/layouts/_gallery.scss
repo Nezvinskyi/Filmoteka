@@ -62,11 +62,13 @@
 }
 
 .container-film {
-  @media screen and (min-width: 768px) {
-    display: flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  @media screen and (max-width: 767px) {
+    padding: 20px 0 40px 0;
   }
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 768px) {
     padding: 60px 0 50px 0;
   }
 }

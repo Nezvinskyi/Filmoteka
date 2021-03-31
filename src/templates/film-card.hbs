@@ -1,6 +1,9 @@
-
 {{#each this}}<li class="card-film" data-id="{{id}}">
-	<img class="card-img" src="{{imgSrc}}" alt="poster of film">
+	<picture></picture>
+	<source src="../images/no-poster-img.jpg" type="image/webp">
+	<img class="card-img" src="{{imgSrc}}" alt="{{title}}">
+
+
 	<h2 class="card-title">{{title}}</h2>
 	<div class="card-info">
 		<p class="genre-id">{{genres}}</p>
