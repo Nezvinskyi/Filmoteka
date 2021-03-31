@@ -1,85 +1,89 @@
 import MoviesApi from './moviesApi';
 const moviesApi = new MoviesApi();
 
-const btnWatchedRef = document.querySelector('.js-watched');
-btnWatchedRef.addEventListener('click', () => {
-  onClick(67); //Brazil
-
-  const promise = moviesApi.getById();
-
-  promise.then(film => {
-    toLocalStor1(film);
-  });
-});
-
-const btnQueueRef = document.querySelector('.js-queue');
-btnQueueRef.addEventListener('click', () => {
-  onClick(68); //Brazi
-
-  const promise = moviesApi.getById();
-
-  promise.then(film => {
-    toLocalStor2(film);
-  });
-});
-
+import MoviesApi from './moviesApi';
+const moviesApi = new MoviesApi();
 // получить фильм по id
 function onClick(movie) {
   moviesApi.movieId = movie;
+  return movie;
 }
 
-// onClick(68); //Brazil
-// onClick(69); //Walk the line
-// onClick(67); // Paradise Now
-// onClick(71); // Billy Elliot
-// onClick(73); // American history X
+const movie1Ref = document.querySelector('.js-1');
+movie1Ref.addEventListener('click', getNewFilm);
+const movie2Ref = document.querySelector('.js-2');
+movie2Ref.addEventListener('click', getNewFilm1);
+const movie3Ref = document.querySelector('.js-3');
+movie3Ref.addEventListener('click', getNewFilm2);
+const watchedRef = document.querySelector('.js-watched');
+watchedRef.addEventListener('click', getWatched);
 
-const storageItem1 = [];
-
-function toLocalStor1(item) {
-  //add one obj to an array
-  storageItem1.push(item.original_title);
-
-  // --- --- transform 'arr of obj-s' to a string
-  const stringFromObj = JSON.stringify(storageItem1);
-
-  const savedStorage = localStorage.getItem('watched');
-  // console.log('savedStorage: ', savedStorage);
-
-  // setItem
-  localStorage.setItem('watched', stringFromObj);
-  const f = localStorage.getItem('watched');
-
-  const storageAll = savedStorage + ',' + f;
-  // console.log('storageAll: ', storageAll);
-
-  return storageItem;
+function getWatched() {
+  console.log(JSON.parse(localStorage.getItem('watchLater')));
+  return localStorage.getItem('watchLater');
 }
 
-// способ 2
-// let keys = Object.keys(localStorage);
-// for (let key of keys) {
-//   console.log(`${key}: ${localStorage.getItem(key)}`);
-// }
-
-const storageItem2 = [];
-
-function toLocalStor2(item) {
-  //add one obj to an array
-  storageItem2.push(item.original_title);
-
-  // --- --- transform 'arr of obj-s' to a string
-  const stringFromObj = JSON.stringify(storageItem2);
-
-  const savedStorage = localStorage.getItem('queue');
-  // console.log('savedStorage: ', savedStorage);
-
-  // setItem
-  localStorage.setItem('queue', stringFromObj);
-  const f = localStorage.getItem('queue');
-
-  const storageAll = savedStorage + ',' + f;
-  // console.log('storageAll: ', storageAll);
-
-  return storageItem;
+function getNewFilm() {
+  onClick(68); // Brazil
+  const promise = moviesApi.getById();
+  promise.then(film => {
+    toLocalStor(film);
+  });
 }
+
+function getNewFilm1() {
+  onClick(73); //Brazil
+  const promise = moviesApi.getById();
+  promise.then(film => {
+    toLocalStor(film);
+  });
+}
+
+function getNewFilm2() {
+  onClick(67); //Paradise Now
+  const promise = moviesApi.getById();
+  promise.then(film => {
+    toLocalStor(film);
+  });
+}
+
+let storage = [];
+function toLocalStor(item) {
+  // const locStor = JSON.parse(localStorage.getItem('watchLater'));
+  // console.log('Checking locStor: >>parsed to array ', locStor);
+  // if (locStor !== null) {
+  //   locStor.forEach(item1 => {
+  //     locStor.indexOf(item1);
+  //   });
+  // }
+
+  const { id, title } = item;
+  // console.log(id + title);
+
+  const string = JSON.stringify({ id, title });
+  const parsedString = JSON.parse(string);
+  console.log(parsedString);
+
+  const index = storage.indexOf(string);
+  console.log(index);
+  if (index > -1) {
+    storage.splice(index, 1);
+  } else {
+    storage.push(string);
+  }
+
+  // console.log('Item added to storage: >>', storage);
+  const stringFromObj = JSON.stringify(storage);
+  localStorage.setItem('watchLater', stringFromObj);
+  console.log('parsedstorage: >>', JSON.parse(stringFromObj));
+  let endStorage = JSON.parse(stringFromObj);
+  return endStorage;
+}
+
+// console.log(endStorage);
+
+// const scores = [1, 2, 3, 4, 5];
+
+// const deletedScores = scores.splice(3, 1);
+// console.log(scores);
+// console.log(deletedScores);
