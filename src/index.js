@@ -5,7 +5,7 @@ import './js/footer';
 
 import './js/render-card';
 
-// import './js/modal'
+import './js/modal'
 
 import './js/gallery';
 import './js/helpers/index';
