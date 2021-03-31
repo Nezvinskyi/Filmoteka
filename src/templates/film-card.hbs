@@ -1,4 +1,8 @@
 {{#each this}}<li class="card-film">
+	<picture>
+		<source srcset="{{imgSrc}}" type="image/jpg">
+		<img class="card-img" src="{{noPoster}}" alt="poster of {{title}} film" data-id="{{id}}">
+	</picture>
 
 	<img class="card-img" src="{{imgSrc}}" alt="poster of {{title}} film" data-id="{{id}}">
 	<h2 class="card-title">{{title}}</h2>

@@ -4,8 +4,11 @@ import { movieAdapter } from './helpers/index';
 import cardList from '../templates/film-list.hbs';
 import filmCard from '../templates/film-card.hbs';
 import moviesApi from './render-card';
+import loaderTmplt from '../templates/loader.hbs';
 
 let refs = getRefs();
+
+const loader = loaderTmplt();
 
 function addHeader() {
   const markup = headerTplt();
@@ -40,12 +43,13 @@ function onNavClick(event) {
     refs.header.classList.add('library-header');
     refs.searchForm.classList.add('visually-hidden');
     refs.headerBtnWrapper.classList.remove('visually-hidden');
+
+    moviesApi.getRefs().gallery.innerHTML = loader;
   }
 }
 
 function onSearch(event) {
   event.preventDefault();
-  moviesApi.getRefs().gallery;
   moviesApi.query = event.currentTarget.elements.query.value;
 
   moviesApi.getMoviesByQuery().then(({ results }) => {
