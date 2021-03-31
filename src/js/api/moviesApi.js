@@ -28,10 +28,9 @@ export default class MoviesApi {
   }
 
   async init() {
-    console.log('Стартовая загрузка');
-    this.getGenres();
-    const data = await this.getPopularMovies();
-    console.log(data);
+    //'Стартовая загрузка'
+    await this.getGenres();
+
     /* this.renderGalery() */
   }
 

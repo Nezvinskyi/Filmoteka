@@ -8,17 +8,15 @@ const convertYear = date => {
   return new Date(date).getFullYear();
 };
 
-async function getGenreNames(genre_ids) {
+export function getGenreNames(genre_ids) {
   const genreNames = [];
-  const data = await moviesApi.getGenres();
+
   genre_ids.forEach(genre_id => {
-    const item = data.find(item => item.id === genre_id);
+    const item = moviesApi.genres.find(item => item.id === genre_id);
     genreNames.push(item.name);
   });
-  console.log(genreNames.join(', '));
   return genreNames.join(', ');
 }
-getGenreNames([18, 12]);
 
 export const movieAdapter = ({
   poster_path,
