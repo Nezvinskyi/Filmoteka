@@ -20,7 +20,7 @@ export function getGenreNames(genre_ids) {
     const item = moviesApi.genres.find(item => item.id === genre_id);
     genreNames.push(item.name);
   });
-  return genreNames.join(', ');
+  return genreNames.slice(0, 3).join(', ');
 }
 
 function getGenreNamesModal(genres) {
