@@ -29,6 +29,7 @@ export const movieAdapter = ({
   vote_count,
   popularity,
   overview,
+  id,
   genre_ids,
 }) => ({
   imgSrc: generatePosterPath(poster_path),
@@ -39,5 +40,6 @@ export const movieAdapter = ({
   voteCount: vote_count,
   popularity: popularity,
   overview: overview,
+  id: id,
   genres: getGenreNames(genre_ids),
 });

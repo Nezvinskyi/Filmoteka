@@ -44,11 +44,13 @@ export default class MoviesApi {
   }
 
   async fetch(url) {
-    try
-    {const response = await fetch(url);
-    if (!response.ok) throw response.status;
-    return await response.json()}
-    catch (error){console.log('error', error)};
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw response.status;
+      return await response.json();
+    } catch (error) {
+      console.log('error', error);
+    }
   }
 
   async getGenres() {
@@ -63,7 +65,7 @@ export default class MoviesApi {
     const url = `${BASE_URL}/trending/${this.mediaType}/${this.timeWindow}?api_key=${API_KEY}&page=${this.page}`;
     if (this.page === 0) return;
     const popularMovies = await this.fetch(url);
-   /*  console.log('возвращает массив популярных фильмов', popularMovies); */
+    /*  console.log('возвращает массив популярных фильмов', popularMovies); */
     return popularMovies;
   }
 
@@ -79,7 +81,7 @@ export default class MoviesApi {
     const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.searchQuery}&page=${this.page}&include_adult=false`;
     /* if (this.searchQuery === '') return; */
     const movies = await this.fetch(url);
-   /*  console.log('возвращает массив фильмов по поиску', movies); */
+    /*  console.log('возвращает массив фильмов по поиску', movies); */
     return movies;
   }
 
