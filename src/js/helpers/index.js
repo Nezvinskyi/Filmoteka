@@ -15,7 +15,7 @@ async function getGenreNames(genre_ids) {
     const item = data.find(item => item.id === genre_id);
     genreNames.push(item.name);
   });
-  console.log(genreNames);
+  console.log(genreNames.join(', '));
   return genreNames.join(', ');
 }
 getGenreNames([18, 12]);
