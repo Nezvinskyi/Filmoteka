@@ -27,22 +27,38 @@ export default class MoviesApi {
     this._movieId = newId;
   }
 
-  init() {
-    // console.log('Стартовая загрузка');
-    this.getGenres();
+  async init() {
+    //'Стартовая загрузка'
+    await this.getGenres();
+
+    /* this.renderGalery() */
+  }
+
+  //тестирование динамических рефов
+  getRefs() {
+    const refs = {};
+    refs.gallery = document.querySelector('.gallery-js');
+
+    return refs;
   }
 
   async fetch(url) {
-    const response = await fetch(url);
-    if (!response.ok) throw response.status;
-    return await response.json();
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw response.status;
+      return await response.json();
+    } catch (error) {
+      console.log('error', error);
+    }
   }
 
   async getGenres() {
     const url = `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`;
     const { genres } = await this.fetch(url);
     this.genres = genres;
+
     // console.log('возращает массив жанров', genres);
+
     return genres;
   }
 
@@ -50,7 +66,9 @@ export default class MoviesApi {
     const url = `${BASE_URL}/trending/${this.mediaType}/${this.timeWindow}?api_key=${API_KEY}&page=${this.page}`;
     if (this.page === 0) return;
     const popularMovies = await this.fetch(url);
+
     // console.log('возвращает массив популярных фильмов', popularMovies);
+
     return popularMovies;
   }
 
@@ -58,6 +76,7 @@ export default class MoviesApi {
     const url = `${BASE_URL}/movie/${this._movieId}?api_key=${API_KEY}&language=en-US&page=${this.page}`;
     const movie = await this.fetch(url);
     // console.log('возвращает объект фильма по id', movie);
+
     return movie;
   }
 
@@ -67,10 +86,13 @@ export default class MoviesApi {
     /* if (this.searchQuery === '') return; */
     const movies = await this.fetch(url);
     // console.log('возвращает массив фильмов по поиску', movies);
+
     return movies;
   }
 
-  renderGalery() {}
+  renderGalery(markup, selector) {
+    selector.insertAdjacentHTML('beforeend', markup);
+  }
 
   renderModal() {}
 

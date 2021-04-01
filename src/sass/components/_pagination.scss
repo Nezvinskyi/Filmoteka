@@ -4,10 +4,15 @@
 }
 .page-btn {
   // margin-right: 10px;
+  width: 40px;
+  height: 40px;
   padding-left: 13px;
   padding-top: 13px;
   padding-right: 13px;
   padding-bottom: 11px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   font-family: Roboto, sans-serif;
   font-weight: 500;
   font-size: 12px;
