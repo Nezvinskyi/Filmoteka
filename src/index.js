@@ -16,7 +16,7 @@ import './js/helpers/index';
 import './js/api/storage';
 
 import './js/components/pagination';
-
+import './js/team-modal';
 //пример рефы
 import './js/refs-example';
 
