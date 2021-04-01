@@ -8,6 +8,7 @@ export default function getRefs() {
     searchForm: document.getElementById('search-form'),
     headerBtnWrapper: document.querySelector('.wrapper-btn-header'),
     teamModal:document.querySelector('.modal-team-js'),
-
+    // btnAddToWatched: document.querySelector('.js-addToWatched'),
+    // btnAddToQueue: document.querySelector('.js-addToQueue'),
   };
 }
