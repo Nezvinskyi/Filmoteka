@@ -7,4 +7,10 @@ export default function addModal(movie) {
   const markup = modalTemplate(movie);
 
   refs.bodyRef.insertAdjacentHTML('afterbegin', markup);
+
+  toLocalStor(movie);
 }
+
+
+addModal();
+

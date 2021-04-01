@@ -7,5 +7,7 @@ export default function getRefs() {
     libNav: document.querySelector('.library-page-js'),
     searchForm: document.getElementById('search-form'),
     headerBtnWrapper: document.querySelector('.wrapper-btn-header'),
+    // btnAddToWatched: document.querySelector('.js-addToWatched'),
+    // btnAddToQueue: document.querySelector('.js-addToQueue'),
   };
 }
