@@ -7,8 +7,8 @@ function addModal() {
   const markup = modalTemplate();
 
   refs.bodyRef.insertAdjacentHTML('afterbegin', markup);
+
+  toLocalStor(movie);
 }
 
 addModal();
-
-
