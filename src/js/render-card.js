@@ -14,8 +14,9 @@ export default moviesApi;
 // apiMovie.getPopularMovies();
 
 // // получить фильм по id
-// apiMovie.movieId = 67;
-// apiMovie.getById();
+/* moviesApi.movieId = 67;
+
+console.log(moviesApi.getById()); */
 
 // // поиск по ключевому слову
 // const queryFromInput = 'Odessa';
@@ -30,3 +31,10 @@ export default moviesApi;
 //   console.log(title, release_date);
 // }
 // getDate();
+
+//получить данные по жанру и году
+/* async function foo () {
+  await moviesApi.getSearchYear(1972);
+  await moviesApi.getSearchGenres('12, 28');
+}
+foo () */
