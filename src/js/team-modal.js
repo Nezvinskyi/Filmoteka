@@ -1,4 +1,4 @@
-import teamModalTpl from '../templates/modal-team.hbs';
+import teamModalTpl from '../templates/team-modal.hbs';
 import getRefs from '../js/get-refs';
 
 
