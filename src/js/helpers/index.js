@@ -6,7 +6,13 @@ import moviesApi from '../render-card';
 const { POSTER_URL } = imgPoster;
 const { NOPOSTER_URL } = imgNoPoster;
 
-export const generatePosterPath = imageName => `${POSTER_URL}/${imageName}`;
+export const generatePosterPath = imageName => {
+  if (imageName === null) {
+    return `${NOPOSTER_URL}`;
+  } else {
+    return `${POSTER_URL}/${imageName}`;
+  }
+};
 export const generatePoster = () => `${NOPOSTER_URL}`;
 
 const convertYear = date => {
