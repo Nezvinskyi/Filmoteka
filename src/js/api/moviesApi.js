@@ -9,6 +9,8 @@ export default class MoviesApi {
     this.page = 1;
     this.genres = [];
     this.init();
+    this.searchYear = null;
+    this.searchGenres = '';
   }
 
   get query() {
@@ -51,6 +53,24 @@ export default class MoviesApi {
       console.log('error', error);
     }
   }
+
+  //----------------------------------
+  async getSearcYear(valueSearcYear) {
+    this.searchYear = valueSearcYear;
+    const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&year=${this.searchYear}`;
+    //&with_genres=14 --жанры по ID
+    //&year=2020-- фильмы выпущеные в конкретном году
+    const searcYear = await this.fetch(url);
+    return console.log(searcYear);//-поиск по году выпуска
+  }
+
+  async getSearcGenres(valueSearcGenres) {
+    this.searchGenres = valueSearcGenres;
+    const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&with_genres=${this.searchGenres}`;
+    const searchGenres = await this.fetch(url);
+    return console.log(searchGenres);//-поиск по жанру
+  }
+  //----------------------------------
 
   async getGenres() {
     const url = `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`;
@@ -96,8 +116,8 @@ export default class MoviesApi {
 
   renderModal() {}
 
-  getPage(valuePage) {
-    this.page = valuePage;
+  getPage(markup, selector) {
+    selector.insertAdjacentHTML('beforeend', markup);
   }
 
   incrementPage() {
