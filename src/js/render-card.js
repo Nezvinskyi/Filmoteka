@@ -14,8 +14,9 @@ export default moviesApi;
 // apiMovie.getPopularMovies();
 
 // // получить фильм по id
-// apiMovie.movieId = 67;
-// apiMovie.getById();
+/* moviesApi.movieId = 67;
+
+console.log(moviesApi.getById()); */
 
 // // поиск по ключевому слову
 // const queryFromInput = 'Odessa';
