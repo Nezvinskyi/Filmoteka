@@ -12,6 +12,6 @@ import './js/helpers/index';
 // Яна, а надо ли сюда импортировать хелперы?
 
 import './js/components/pagination';
-
+import './js/modal-team';
 //пример рефы
 import './js/refs-example';
