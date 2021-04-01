@@ -38,8 +38,8 @@ function getGenreNamesModal(genres) {
 
 function cutTitle(original_title) {
   const arrTitle = original_title.split('');
-  if (arrTitle.length > 39) {
-    const newTitle = arrTitle.splice(0, 40);
+  if (arrTitle.length > 33) {
+    const newTitle = arrTitle.splice(0, 34);
 
     return newTitle.join('') + '...';
   } else {
@@ -49,7 +49,7 @@ function cutTitle(original_title) {
 
 export const movieAdapter = ({
   poster_path,
-  original_title,
+  title,
   release_date,
   vote_average,
   homepage,
@@ -60,7 +60,7 @@ export const movieAdapter = ({
   genre_ids,
 }) => ({
   imgSrc: generatePosterPath(poster_path),
-  title: cutTitle(original_title),
+  title: cutTitle(title),
   releaseDate: convertYear(release_date),
   voteAverage: vote_average,
   homepage: homepage,
@@ -74,7 +74,7 @@ export const movieAdapter = ({
 
 export const movieAdapterModal = ({
   poster_path,
-  original_title,
+  title,
   vote_average,
   vote_count,
   popularity,
@@ -82,7 +82,7 @@ export const movieAdapterModal = ({
   overview,
 }) => ({
   imgSrc: generatePosterPath(poster_path),
-  title: original_title,
+  title: title,
   voteAverage: vote_average,
   voteCount: vote_count,
   popularity: popularity,
