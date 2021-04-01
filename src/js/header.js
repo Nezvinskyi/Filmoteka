@@ -5,6 +5,7 @@ import cardList from '../templates/film-list.hbs';
 import filmCard from '../templates/film-card.hbs';
 import moviesApi from './render-card';
 import loaderTmplt from '../templates/loader.hbs';
+import { hideLoader, showLoader } from './loader';
 
 let refs = getRefs();
 
@@ -24,17 +25,21 @@ refs.searchForm.addEventListener('submit', onSearch);
 
 function onNavClick(event) {
   if (event.target.dataset.action === 'home' || event.target.closest('svg')) {
+    showLoader();
     refs.libNav.classList.remove('current-page');
     refs.homeNav.classList.add('current-page');
     refs.header.classList.remove('library-header');
     refs.searchForm.classList.remove('visually-hidden');
     refs.headerBtnWrapper.classList.add('visually-hidden');
 
-    moviesApi.getPopularMovies().then(({ results }) => {
-      const movieDataList = results.map(item => movieAdapter(item));
+    moviesApi
+      .getPopularMovies()
+      .then(({ results }) => {
+        const movieDataList = results.map(item => movieAdapter(item));
 
-      moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
-    });
+        moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
+      })
+      .then(hideLoader);
   }
 
   if (event.target.dataset.action === 'library') {
@@ -50,13 +55,18 @@ function onNavClick(event) {
 
 function onSearch(event) {
   event.preventDefault();
+  showLoader();
+  refs.loader.classList.remove('visually-hidden');
   moviesApi.query = event.currentTarget.elements.query.value;
+  moviesApi
+    .getMoviesByQuery()
+    .then(({ results }) => {
+      const movieDataList = results.map(item => movieAdapter(item));
 
-  moviesApi.getMoviesByQuery().then(({ results }) => {
-    const movieDataList = results.map(item => movieAdapter(item));
-
-    moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
-  });
+      moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
+      refs = getRefs();
+    })
+    .then(hideLoader);
 
   clearInput(event);
 }

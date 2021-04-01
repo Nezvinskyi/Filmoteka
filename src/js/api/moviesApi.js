@@ -38,7 +38,7 @@ export default class MoviesApi {
   getRefs() {
     const refs = {};
     refs.gallery = document.querySelector('.gallery-js');
-    refs.loader = document.querySelector('.loader');
+
     return refs;
   }
 
