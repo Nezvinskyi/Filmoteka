@@ -3,10 +3,10 @@ import addModal from './modal';
 import { movieAdapterModal } from './helpers/index';
 
 export function addEventListenerToGallery() {
-  moviesApi.getRefs().gallery.addEventListener('click', clickFilmCardHandler);
+  moviesApi.getRefs().gallery.addEventListener('click', onGalleryClick);
 }
 
-function clickFilmCardHandler(event) {
+function onGalleryClick(event) {
   if (event.target.className !== 'card-img') return;
 
   moviesApi.movieId = event.target.dataset.id;

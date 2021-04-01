@@ -9,7 +9,7 @@
 		</button>
 		<div class="modal-container">
 			<div class="modal-img">
-				<img src="{{imgSrc}}" alt="poster of film">
+				<img src="{{imgSrc}}" alt="poster of {{title}} film">
 			</div>
 
 			<div class="modal-wrapper">
@@ -41,8 +41,8 @@
 					<p class="modal-card_text">{{overview}}</p>
 				</div>
 				<div class="modal-btn-container">
-					<button class="btn btn-modal btn-active-page" type="button"
-						id="watched">add to
+					<button class="btn btn-modal btn-active-page js-addToWatched"
+						type="button" id="watched">add to
 						watched</button>
 					<button class="btn btn-modal" type="button" id="queue">add to
 						queue</button>

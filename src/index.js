@@ -11,7 +11,12 @@ import './js/gallery';
 import './js/helpers/index';
 // Яна, а надо ли сюда импортировать хелперы?
 
+
+//localStorrage
+import './js/api/storage';
+
 import './js/components/pagination';
 import './js/team-modal';
 //пример рефы
 import './js/refs-example';
+
