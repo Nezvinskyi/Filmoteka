@@ -55,17 +55,17 @@ export default class MoviesApi {
   }
 
   //----------------------------------
-  async getSearcYear(valueSearcYear) {
-    this.searchYear = valueSearcYear;
+  async getSearchYear(valueSearchYear) {
+    this.searchYear = valueSearchYear;
     const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&year=${this.searchYear}`;
     //&with_genres=14 --жанры по ID
     //&year=2020-- фильмы выпущеные в конкретном году
-    const searcYear = await this.fetch(url);
-    return console.log(searcYear);//-поиск по году выпуска
+    const searchYear = await this.fetch(url);
+    return console.log(searchYear);//-поиск по году выпуска
   }
 
-  async getSearcGenres(valueSearcGenres) {
-    
+  async getSearchGenres(valueSearchGenres) {
+    this.searchGenres = valueSearchGenres;
     const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&with_genres=${this.searchGenres}`;
     const searchGenres = await this.fetch(url);
     return console.log(searchGenres);//-поиск по жанру

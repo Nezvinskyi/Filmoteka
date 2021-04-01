@@ -31,3 +31,10 @@ console.log(moviesApi.getById()); */
 //   console.log(title, release_date);
 // }
 // getDate();
+
+//получить данные по жанру и году
+/* async function foo () {
+  await moviesApi.getSearchYear(1972);
+  await moviesApi.getSearchGenres('12, 28');
+}
+foo () */
