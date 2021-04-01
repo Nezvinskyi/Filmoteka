@@ -65,7 +65,7 @@ export default class MoviesApi {
   }
 
   async getSearcGenres(valueSearcGenres) {
-    this.searchGenres = valueSearcGenres;
+    
     const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&with_genres=${this.searchGenres}`;
     const searchGenres = await this.fetch(url);
     return console.log(searchGenres);//-поиск по жанру
@@ -114,10 +114,12 @@ export default class MoviesApi {
     selector.insertAdjacentHTML('beforeend', markup);
   }
 
-  renderModal() {}
-
-  getPage(markup, selector) {
+  renderModal(markup, selector) {
     selector.insertAdjacentHTML('beforeend', markup);
+  }
+
+  getPage(valuePage) {
+    this.page = valuePage;
   }
 
   incrementPage() {
