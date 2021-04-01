@@ -1,7 +1,5 @@
-import MoviesApi from './moviesApi';
-const moviesApi = new MoviesApi();
-
 let storage = [];
+
 export default function toLocalStor(item) {
   //
   const btnAddToWatchedRef = document.querySelector('.js-addToWatched');
