@@ -43,6 +43,7 @@ export default class MoviesApi {
   getRefs() {
     const refs = {};
     refs.gallery = document.querySelector('.gallery-js');
+    refs.header = document.querySelector('.header');
     refs.divContainer = document.querySelector('div[data-cont]');
     return refs;
   }
