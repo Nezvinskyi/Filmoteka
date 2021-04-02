@@ -2,8 +2,8 @@ import getRefs from '../js/get-refs';
 const refs = getRefs();
 
 function getWatched() {
-  console.log(JSON.parse(localStorage.getItem('watchLater')));
-  return localStorage.getItem('watchLater');
+  console.log(JSON.parse(localStorage.getItem('watched')));
+  return localStorage.getItem('watched');
 }
 
 function getQueue() {
