@@ -1,5 +1,10 @@
 import settings from './settings';
+import { paginator, getData, pageCounter } from '../components/pagination';
+
+console.log(pageCounter.page);
+
 const { API_KEY, BASE_URL } = settings;
+
 export default class MoviesApi {
   constructor() {
     this.searchQuery = '';
@@ -63,7 +68,7 @@ export default class MoviesApi {
   }
 
   async getPopularMovies() {
-    const url = `${BASE_URL}/trending/${this.mediaType}/${this.timeWindow}?api_key=${API_KEY}&page=${this.page}`;
+    const url = `${BASE_URL}/trending/${this.mediaType}/${this.timeWindow}?api_key=${API_KEY}&page=${pageCounter.page}`;
     if (this.page === 0) return;
     const popularMovies = await this.fetch(url);
 
