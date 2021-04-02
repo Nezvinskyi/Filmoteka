@@ -1,8 +1,7 @@
 <div class="backdrop-open">
 	<div class="modal">
 		<button class="modal-btn-close" type="button">
-			<svg class="close-svg" width="100%" height="100%" viewBox="0 0 30 30"
-				fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg class="close-svg" width="100%" height="100%" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path d="M8 8L22 22" stroke="black" stroke-width="2" />
 				<path d="M8 22L22 8" stroke="black" stroke-width="2" />
 			</svg>
@@ -32,7 +31,9 @@
 								<span>{{title}}</span>
 							</li>
 							<li class="modal-list_item modal-list_genre">
-								<span>{{genres}}</span>
+								<a href="" class="genre-id"><span data-search="ok" data-id="{{genreIdFirst}}">{{genresFirst}}</span></a>
+								<a href="" class="genre-id"><span data-search="ok" data-id="{{genreIdSecond}}">{{genresSecond}}</span></a>
+								<a href="" class="genre-id"><span data-search="ok" data-id="{{genreIdThird}}">{{genresThird}}</span></a>
 							</li>
 						</ul>
 					</div>
@@ -41,8 +42,7 @@
 					<p class="modal-card_text">{{overview}}</p>
 				</div>
 				<div class="modal-btn-container">
-					<button class="btn btn-modal btn-active-page btn-js-addtowatched"
-						type="button" id="watched">add to
+					<button class="btn btn-modal btn-active-page btn-js-addtowatched" type="button" id="watched">add to
 						watched</button>
 					<button class="btn btn-modal btn-js-addtoqueue" type="button" id="queue">add to
 						queue</button>
