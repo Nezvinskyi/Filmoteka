@@ -1,12 +1,6 @@
-{{!-- <ul>
-	{{#each data}}
-	<li>{{this}}</li>
-	{{/each}}
-</ul> --}}
-
-<div class="pagination-container container">
+<div class="pagination-container container pagination-js">
 	<ul class="page-btn_list">
-		<li class="arrow-btn">
+		<li class="arrow-btn page-btn" data-nav='prev'>
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16"
 				height="16" viewBox="0 0 32 32">
 				<title>arrow-left</title>
@@ -18,17 +12,12 @@
 					d="M16 25.334l-9.333-9.333 9.333-9.333"></path>
 			</svg>
 		</li>
-		<li class="page-btn">1</li>
-		<li class="page-btn">2</li>
-		<li class="page-btn">3</li>
-		<li class="page-btn">4</li>
-		<li class="page-btn">5</li>
-		<li class="page-btn">6</li>
-		<li class="page-btn">7</li>
-		<li class="page-btn">8</li>
-		<li class="page-btn">9</li>
-		<li class="page-btn">10</li>
-		<li class="arrow-btn">
+		{{#each range}}
+		<li class="page-btn" data-num='{{this}}'>{{this}}</li>
+		{{/each}}
+		<li>...</li>
+		<li class="page-btn" data-nav='last'>{{lastPage}}</li>
+		<li class="arrow-btn page-btn" data-nav='next'>
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16"
 				height="16" viewBox="0 0 32 32">
 				<title>arrow-left-1</title>
