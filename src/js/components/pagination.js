@@ -1,8 +1,11 @@
 import pagination from 'pagination';
 import paginationBtnsTpl from '../../templates/pagination.hbs';
 import getRefs from '../get-refs';
+import moviesApi from '../render-card';
+import { movieAdapter } from '../helpers/index';
+import galleryTmpl from '../../templates/film-list.hbs';
 
-const refs = getRefs();
+let refs = getRefs();
 
 export const paginator = new pagination.SearchPaginator({
   prelink: '/',
@@ -47,7 +50,8 @@ export const pageCounter = new PageCounter();
 const paginationRef = document.querySelector('.pagination-js');
 
 paginationRef.addEventListener('click', onPaginationClick);
-function onPaginationClick(e) {
+
+async function onPaginationClick(e) {
   if (!e.target.hasAttribute('data-nav') && !e.target.hasAttribute('data-num'))
     return;
 
@@ -65,11 +69,18 @@ function onPaginationClick(e) {
 
   paginator.set('current', pageCounter.page);
   range = paginator.getPaginationData().range;
-  console.log('current page from Counter:>> ', pageCounter.page);
-  console.log(
-    'current page from Paginator:>>',
-    paginator.getPaginationData().current,
-  );
+  // console.log('current page from Counter:>> ', pageCounter.page);
+  // console.log(
+  //   'current page from Paginator:>>',
+  //   paginator.getPaginationData().current,
+  // );
+  const { results, total_results } = await moviesApi.getPopularMovies();
+  const movieDataList = results.map(item => {
+    return movieAdapter(item);
+  });
+  const markup = galleryTmpl(movieDataList);
+
+  moviesApi.getRefs().divContainer.outerHTML = markup;
 
   paginationRef.innerHTML = paginationBtnsTpl({ range, lastPage });
 }
