@@ -26,7 +26,7 @@ export function getGenreNames(genre_ids) {
     const item = moviesApi.genres.find(item => item.id === genre_id);
     genreNames.push(item.name);
   });
-  return genreNames.slice(0, 3).join(', ');
+  return genreNames.slice(0, 3);
 }
 
 function getGenreNamesModal(genres) {
@@ -68,7 +68,13 @@ export const movieAdapter = ({
   popularity: popularity,
   overview: overview,
   id: id,
-  genres: getGenreNames(genre_ids),
+  genresFirst: getGenreNames(genre_ids)[0],
+  genresSecond: getGenreNames(genre_ids)[1],
+  genresThird: getGenreNames(genre_ids)[2],
+  genreIdFirst: genre_ids[0],
+  genreIdSecond: genre_ids[1],
+  genreIdThird: genre_ids[2],
+
   noPoster: generatePoster(),
 });
 
