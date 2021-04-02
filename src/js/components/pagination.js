@@ -19,7 +19,7 @@ export function getData({ total }) {
 let range = paginator.getPaginationData().range;
 const lastPage = paginator.getPaginationData().last;
 const markup = paginationBtnsTpl({ range, lastPage });
-refs.bodyRef.insertAdjacentHTML('afterend', markup);
+refs.bodyRef.insertAdjacentHTML('beforeend', markup);
 
 class PageCounter {
   constructor() {
