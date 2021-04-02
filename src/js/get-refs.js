@@ -11,5 +11,7 @@ export default function getRefs() {
     loader: document.querySelector('.loader'),
     // btnAddToWatched: document.querySelector('.js-addToWatched'),
     // btnAddToQueue: document.querySelector('.js-addToQueue'),
+    btnWatched: document.querySelector('.js-watched'),
+    btnQueue: document.querySelector('.js-queue'),
   };
 }
