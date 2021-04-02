@@ -2,6 +2,7 @@ import moviesApi from './render-card';
 import addModal from './modal';
 import { movieAdapterModal } from './helpers/index';
 
+
 export function addEventListenerToGallery() {
   moviesApi.getRefs().gallery.addEventListener('click', clickFilmCardHandler);
 }

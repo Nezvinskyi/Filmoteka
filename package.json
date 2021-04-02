@@ -23,6 +23,7 @@
     "@babel/preset-env": "^7.11.5",
     "autoprefixer": "^9.8.6",
     "babel-loader": "^8.1.0",
+    "basiclightbox": "^5.0.4",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^4.3.0",
     "file-loader": "^6.1.0",
