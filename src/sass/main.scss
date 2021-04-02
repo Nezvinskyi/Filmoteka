@@ -12,9 +12,11 @@
 // components
 @import './components/btn';
 @import './components/pagination';
+@import './components/loader.scss';
 
 //layouts
 @import './layouts/header';
 @import './layouts/gallery';
 @import './layouts/modal-card';
 @import './layouts/footer';
+@import './layouts/team-modal';

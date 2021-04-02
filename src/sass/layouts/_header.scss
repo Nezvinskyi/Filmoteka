@@ -178,10 +178,9 @@
     &:hover,
     &:focus {
       border-bottom: 1px solid $accent-color;
-
-      @media screen and (min-width: 768px) {
-        width: 336px;
-      }
+    }
+    @media screen and (min-width: 768px) {
+      width: 336px;
     }
   }
 
@@ -257,38 +256,5 @@
       background-image: $header-shadow,
         url('../images/library/header-bg-desktop/header-bg-desktop-3x.jpg');
     }
-  }
-}
-
-@keyframes rotate {
-  from {
-    transform: rotate(0);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.loader {
-  display: flex;
-  justify-content: center;
-
-  &__container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 40px;
-  }
-
-  &__film {
-    position: absolute;
-    top: -30px;
-    left: 0;
-    display: flex;
-  }
-
-  &__film-img {
-    animation: rotate 1.5s linear infinite;
   }
 }

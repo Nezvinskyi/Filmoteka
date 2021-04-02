@@ -6,7 +6,13 @@ import moviesApi from '../render-card';
 const { POSTER_URL } = imgPoster;
 const { NOPOSTER_URL } = imgNoPoster;
 
-export const generatePosterPath = imageName => `${POSTER_URL}/${imageName}`;
+export const generatePosterPath = imageName => {
+  if (imageName === null) {
+    return `${NOPOSTER_URL}`;
+  } else {
+    return `${POSTER_URL}/${imageName}`;
+  }
+};
 export const generatePoster = () => `${NOPOSTER_URL}`;
 
 const convertYear = date => {
@@ -20,7 +26,7 @@ export function getGenreNames(genre_ids) {
     const item = moviesApi.genres.find(item => item.id === genre_id);
     genreNames.push(item.name);
   });
-  return genreNames.join(', ');
+  return genreNames.slice(0, 3).join(', ');
 }
 
 function getGenreNamesModal(genres) {
@@ -30,9 +36,20 @@ function getGenreNamesModal(genres) {
   return genreNames.join(', ');
 }
 
+function cutTitle(original_title) {
+  const arrTitle = original_title.split('');
+  if (arrTitle.length > 33) {
+    const newTitle = arrTitle.splice(0, 34);
+
+    return newTitle.join('') + '...';
+  } else {
+    return arrTitle.join('');
+  }
+}
+
 export const movieAdapter = ({
   poster_path,
-  original_title,
+  title,
   release_date,
   vote_average,
   homepage,
@@ -43,7 +60,7 @@ export const movieAdapter = ({
   genre_ids,
 }) => ({
   imgSrc: generatePosterPath(poster_path),
-  title: original_title,
+  title: cutTitle(title),
   releaseDate: convertYear(release_date),
   voteAverage: vote_average,
   homepage: homepage,
@@ -57,7 +74,7 @@ export const movieAdapter = ({
 
 export const movieAdapterModal = ({
   poster_path,
-  original_title,
+  title,
   vote_average,
   vote_count,
   popularity,
@@ -65,7 +82,7 @@ export const movieAdapterModal = ({
   overview,
 }) => ({
   imgSrc: generatePosterPath(poster_path),
-  title: original_title,
+  title: title,
   voteAverage: vote_average,
   voteCount: vote_count,
   popularity: popularity,
