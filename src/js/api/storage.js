@@ -2,8 +2,8 @@ export function addToWatched(movie) {
   const btnAddToWatchedRef = document.querySelector('.btn-js-addtowatched');
   btnAddToWatchedRef.addEventListener('click', clickBtn);
   function clickBtn(event) {
-    if (localStorage.getItem('watchLater') === null) {
-      localStorage.setItem('watchLater', '[]');
+    if (localStorage.getItem('watched') === null) {
+      localStorage.setItem('watched', '[]');
     }
     saveToWatched(movie);
   }
@@ -21,7 +21,7 @@ export function addToQueue(movie) {
 }
 
 function saveToWatched(movie) {
-  let storage = JSON.parse(localStorage.getItem('watchLater'));
+  let storage = JSON.parse(localStorage.getItem('watched'));
   const { title, genres, voteAverage, imgSrc } = movie;
 
   const string = JSON.stringify({ title, genres, voteAverage, imgSrc });
@@ -34,7 +34,7 @@ function saveToWatched(movie) {
   }
   const stringFromObj = JSON.stringify(storage);
   let endStorage = JSON.parse(stringFromObj);
-  localStorage.setItem('watchLater', stringFromObj);
+  localStorage.setItem('watched', stringFromObj);
   return endStorage;
 }
 
