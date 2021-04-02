@@ -1,43 +1,57 @@
-let storage = [];
+export function addToWatched(movie) {
+  const btnAddToWatchedRef = document.querySelector('.btn-js-addtowatched');
+  btnAddToWatchedRef.addEventListener('click', clickBtn);
+  function clickBtn(event) {
+    if (localStorage.getItem('watchLater') === null) {
+      localStorage.setItem('watchLater', '[]');
+    }
+    saveToWatched(movie);
+  }
+}
 
-export default function toLocalStor(item) {
-  //
-  const btnAddToWatchedRef = document.querySelector('.js-addToWatched');
-  btnAddToWatchedRef.addEventListener('click', item => {
-    console.log('Gettin item: >>', item);
-  });
-  //
-  // const btnAddToQueueRef = document.querySelector('.js-addToQueue');
-  // btnAddToQueueRef.addEventListener('click', getNewFilm1);
+export function addToQueue(movie) {
+  const btnAddToQueueRef = document.querySelector('.btn-js-addtoqueue');
+  btnAddToQueueRef.addEventListener('click', clickBtn);
+  function clickBtn(event) {
+    if (localStorage.getItem('queue') === null) {
+      localStorage.setItem('queue', '[]');
+    }
+    saveToQueue(movie);
+  }
+}
 
-  // console.log('Gettin item: >>', item);
-  const locStor = JSON.parse(localStorage.getItem('watchLater'));
-  console.log('Checking locStor: >>parsed to array ', locStor);
+function saveToWatched(movie) {
+  let storage = JSON.parse(localStorage.getItem('watchLater'));
+  const { title, genres, voteAverage, imgSrc } = movie;
 
-  const { title, imgSrc, voteAverage } = item;
-  // console.log(title + imgSrc + voteAverage);
-
-  const string = JSON.stringify({ title, imgSrc, voteAverage });
-  const parsedString = JSON.parse(string);
-  // console.log(parsedString);
+  const string = JSON.stringify({ title, genres, voteAverage, imgSrc });
 
   const index = storage.indexOf(string);
-  console.log(index);
   if (index > -1) {
     storage.splice(index, 1);
   } else {
     storage.push(string);
   }
-
-  // console.log('Item added to storage: >>', storage);
   const stringFromObj = JSON.stringify(storage);
-  localStorage.setItem('watchLater', stringFromObj);
-  // console.log('parsedstorage: >>', JSON.parse(stringFromObj));
   let endStorage = JSON.parse(stringFromObj);
+  localStorage.setItem('watchLater', stringFromObj);
+  return endStorage;
 }
 
-// === get array for rendering page ===
-// function getWatched() {
-//   console.log(JSON.parse(localStorage.getItem('watchLater')));
-//   return localStorage.getItem('watchLater');
-// }
+function saveToQueue(movie) {
+  let storage = JSON.parse(localStorage.getItem('queue'));
+  const { title, genres, voteAverage, imgSrc } = movie;
+
+  const string = JSON.stringify({ title, genres, voteAverage, imgSrc });
+
+  const index = storage.indexOf(string);
+  if (index > -1) {
+    storage.splice(index, 1);
+  } else {
+    storage.push(string);
+  }
+  const stringFromObj = JSON.stringify(storage);
+  let endStorage = JSON.parse(stringFromObj);
+  localStorage.setItem('queue', stringFromObj);
+  return endStorage;
+}
