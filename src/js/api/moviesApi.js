@@ -45,7 +45,7 @@ export default class MoviesApi {
   getRefs() {
     const refs = {};
     refs.gallery = document.querySelector('.gallery-js');
-
+    refs.divContainer = document.querySelector('div[data-cont]');
     return refs;
   }
 
@@ -66,14 +66,14 @@ export default class MoviesApi {
     //&with_genres=14 --жанры по ID
     //&year=2020-- фильмы выпущеные в конкретном году
     const searchYear = await this.fetch(url);
-    return console.log(searchYear);//-поиск по году выпуска
+    return searchYear; //-поиск по году выпуска
   }
 
   async getSearchGenres(valueSearchGenres) {
     this.searchGenres = valueSearchGenres;
     const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&with_genres=${this.searchGenres}`;
     const searchGenres = await this.fetch(url);
-    return console.log(searchGenres);//-поиск по жанру
+    return searchGenres; //-поиск по жанру
   }
   //----------------------------------
 

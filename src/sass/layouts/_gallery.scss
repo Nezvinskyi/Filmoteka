@@ -39,7 +39,22 @@
 }
 
 .genre-id {
-  margin-right: 4px;
+  margin-right: 6px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: $accent-color;
+  transition-property: color, transform;
+  transition-duration: 500ms;
+  transition-timing-function: linear;
+  transition-delay: 0;
+}
+
+.genre-id:hover,
+.genre-id:focus {
+  transform: scale(1.1);
+  color: rgb(16, 116, 33);
 }
 
 .card-symb {
@@ -48,6 +63,7 @@
 
 .film-date {
   margin-right: 10px;
+  cursor: pointer;
 }
 
 .card-raiting {
@@ -64,8 +80,8 @@
 .container-film {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   @media screen and (max-width: 767px) {
+    justify-content: center;
     padding: 20px 0 40px 0;
   }
   @media screen and (min-width: 768px) {
