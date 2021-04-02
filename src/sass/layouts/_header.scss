@@ -178,10 +178,9 @@
     &:hover,
     &:focus {
       border-bottom: 1px solid $accent-color;
-
-      @media screen and (min-width: 768px) {
-        width: 336px;
-      }
+    }
+    @media screen and (min-width: 768px) {
+      width: 336px;
     }
   }
 
