@@ -16,7 +16,7 @@ function addTeamModal(event) {
 
   refs.teamModal.insertAdjacentHTML('afterbegin', markup);
 }
-// addTeamModal()
+  addTeamModal()
 
 
 
