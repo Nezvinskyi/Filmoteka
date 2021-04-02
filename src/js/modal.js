@@ -7,12 +7,22 @@ import 'basicLightbox/dist/basicLightbox.min.css';
 function onOpenModal(callback) {
   const instance = basicLightbox.create(callback);
   instance.show();
+  window.addEventListener("keydown", escCloseModal);
   
-  const closeModalBtn = document.querySelector('.modal-btn-close')
-  const closeModal = () => instance.close();
+  const closeModalBtn = document.querySelector('.modal-btn-close');
+  
+  const closeModal = () => {
+    instance.close();
+    window.removeEventListener("keydown", escCloseModal);
+  }
+
+  function escCloseModal(event) {
+    if (event.code === "Escape"){
+        closeModal();
+    }
+}
 
   closeModalBtn.addEventListener('click', closeModal)
-
 }
 
 
