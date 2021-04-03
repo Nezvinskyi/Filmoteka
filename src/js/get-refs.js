@@ -11,5 +11,6 @@ export default function getRefs() {
     loader: document.querySelector('.loader'),
     btnWatched: document.querySelector('.js-watched'),
     btnQueue: document.querySelector('.js-queue'),
+    scrollUpEl: document.getElementById('scrollToTop'),
   };
 }
