@@ -53,9 +53,46 @@
 }
 
 .youtubeBtn {
-  margin-left: 10px;
+  margin: 10px auto;
   padding: 10px;
   border: 1px solid black;
+  
+  @media screen and (min-width: 320px) and (max-width: 1023px) {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin: 10px auto 0px 0px;
+    width: 287px;
+  }
+  
+  &-close {
+    // outline: 1px solid $primary-color;
+    border: none;
+
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+
+      position: absolute;
+
+      @media screen and (min-width: 320px) and (max-width: 767px) {
+        top: 12px;
+        left: 240px;
+      }
+
+
+      @media screen and (min-width: 768px) and (max-width: 1023px) {
+        top: 6px;
+        left: 583px;
+      }
+
+      @media screen and (min-width: 1024px) {
+        top: 10px;
+        left: 843px;
+      }
+
+  }
 }
 
 .modal {
@@ -65,7 +102,6 @@
   background-color: $secondary-color;
 
   @media screen and (min-width: 320px) and (max-width: 767px) {
-    overflow-y: scroll;
     width: 280px;
     height: 958px;
   }

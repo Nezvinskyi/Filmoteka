@@ -1,56 +1,41 @@
 <div class="modal">
 	<div class="modal-btn-close_container">
 		<button class="modal-btn-close" type="button">
-
 			<svg class="close-svg" width="100%" height="100%" viewBox="0 0 30 30" fill="none"
 				xmlns="http://www.w3.org/2000/svg">
-
 				<path d="M8 8L22 22" stroke="black" stroke-width="2" />
 				<path d="M8 22L22 8" stroke="black" stroke-width="2" />
 			</svg>
 		</button>
+	</div>
+	<div class="modal-container">
+		<div class="modal-img">
+			<img src="{{imgSrc}}" alt="poster of {{title}} film">
+		</div>
 
-		<div class="modal-container">
-			<div class="modal-img">
-				<img src="{{imgSrc}}" alt="poster of {{title}} film">
-			</div>
-
-			<div class="modal-wrapper">
-				<div class="modal-content">
-					<h2 class="modal-content_title">{{title}}</h2>
-					<div class="modal-content-list_wrapper">
-						<ul class="modal-card_list_left">
-							<li class="modal-list_item"><span>Vote/Votes</span></li>
-							<li class="modal-list_item"><span>Popularity</span></li>
-							<li class="modal-list_item"><span>Original Title</span></li>
-							<li class="modal-list_item"><span>Genre</span></li>
-						</ul>
-						<ul class="modal-card_list_right">
-							<li class="modal-list_item ">
-								<span class="vote-avarage">{{voteAverage}}</span><span>/
-									{{voteCount}}</span>
-							</li>
-							<li class="modal-list_item"><span>{{popularity}}</span></li>
-							<li class="modal-list_item modal-list_title">
-								<span>{{title}}</span>
-							</li>
-							<li class="modal-list_item modal-list_genre">
-								<a href="" class="genre-id"><span data-search="ok" data-id="{{genreIdFirst}}">{{genresFirst}}</span></a>
-								<a href="" class="genre-id"><span data-search="ok" data-id="{{genreIdSecond}}">{{genresSecond}}</span></a>
-								<a href="" class="genre-id"><span data-search="ok" data-id="{{genreIdThird}}">{{genresThird}}</span></a>
-							</li>
-						</ul>
-					</div>
-
-					<h3 class="modal-title_about">about</h3>
-					<p class="modal-card_text">{{overview}}</p>
-				</div>
-				<div class="modal-btn-container">
-					<button class="btn btn-modal btn-active-page btn-js-addtowatched" type="button" id="watched">add to
-						watched</button>
-					<button class="btn btn-modal btn-js-addtoqueue" type="button" id="queue">add to
-						queue</button>
-
+		<div class="modal-wrapper">
+			<div class="modal-content">
+				<h2 class="modal-content_title">{{title}}</h2>
+				<div class="modal-content-list_wrapper">
+					<ul class="modal-card_list_left">
+						<li class="modal-list_item"><span>Vote/Votes</span></li>
+						<li class="modal-list_item"><span>Popularity</span></li>
+						<li class="modal-list_item"><span>Original Title</span></li>
+						<li class="modal-list_item"><span>Genre</span></li>
+					</ul>
+					<ul class="modal-card_list_right">
+						<li class="modal-list_item ">
+							<span class="vote-avarage">{{voteAverage}}</span><span>/
+								{{voteCount}}</span>
+						</li>
+						<li class="modal-list_item"><span>{{popularity}}</span></li>
+						<li class="modal-list_item modal-list_title">
+							<span>{{title}}</span>
+						</li>
+						<li class="modal-list_item modal-list_genre">
+							<span>{{genres}}</span>
+						</li>
+					</ul>
 				</div>
 
 				<h3 class="modal-title_about">about</h3>
@@ -61,17 +46,19 @@
 					watched</button>
 				<button class="btn btn-modal btn-js-addtoqueue" type="button" id="queue">add to
 					queue</button>
-				<button class="youtubeBtn btn" type="button" id="trailer">Trailer</button>
 			</div>
+
+			<button class="youtubeBtn btn" type="button" id="trailer">Trailer</button>
+
 		</div>
 	</div>
 	<div class="visually-hidden" id="modal-youtube">
-		<button class="btn youtubeBtn" type="button" id="closeYoutubeModalBtn">close trailer</button>
+		<button class="btn youtubeBtn-close" type="button" id="closeYoutubeModalBtn">
+			<svg class="close-svg" width="100%" height="100%" viewBox="0 0 30 30" fill="none"
+				xmlns="http://www.w3.org/2000/svg">
+				<path d="M8 8L22 22" stroke="black" stroke-width="2" />
+				<path d="M8 22L22 8" stroke="black" stroke-width="2" />
+			</svg>
+		</button>
 	</div>
 </div>
-
-{{!-- <div class="test-conteiner ">
-	<div class="modal-img">
-		<img src="{{imgSrc}}" alt="poster of {{title}} film">
-	</div>
-</div> --}}
