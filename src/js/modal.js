@@ -1,5 +1,5 @@
 import modalTemplate from '../templates/modal.hbs';
-import { addToWatched, addToQueue } from './api/storage';
+import { onClickToWatchedHandler, onClickToQueueHandler } from './api/storage';
 import getRefs from '../js/get-refs';
 
 import moviesApi from './render-card';
@@ -38,8 +38,8 @@ export default function addModal(movie) {
 
   onOpenModal(markup);
 
-  addToWatched(movie);
-  addToQueue(movie);
+  onClickToQueueHandler(movie);
+  onClickToWatchedHandler(movie);
 
   const modalContainer = document.querySelector('.modal-container');
   const modalCloseBtn = document.querySelector('.modal-btn-close_container');

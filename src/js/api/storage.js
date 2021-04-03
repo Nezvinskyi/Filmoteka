@@ -1,4 +1,4 @@
-export function addToWatched(movie) {
+export function onClickToWatchedHandler(movie) {
   const btnAddToWatchedRef = document.querySelector('.btn-js-addtowatched');
   btnAddToWatchedRef.addEventListener('click', clickBtn);
   function clickBtn(event) {
@@ -9,7 +9,7 @@ export function addToWatched(movie) {
   }
 }
 
-export function addToQueue(movie) {
+export function onClickToQueueHandler(movie) {
   const btnAddToQueueRef = document.querySelector('.btn-js-addtoqueue');
   btnAddToQueueRef.addEventListener('click', clickBtn);
   function clickBtn(event) {
@@ -22,9 +22,16 @@ export function addToQueue(movie) {
 
 function saveToWatched(movie) {
   let storage = JSON.parse(localStorage.getItem('watched'));
-  const { title, genres, voteAverage, imgSrc } = movie;
+  const { title, genres, voteAverage, imgSrc, releaseDate, id } = movie;
 
-  const string = JSON.stringify({ title, genres, voteAverage, imgSrc });
+  const string = JSON.stringify({
+    title,
+    genres,
+    voteAverage,
+    imgSrc,
+    releaseDate,
+    id,
+  });
 
   const index = storage.indexOf(string);
   if (index > -1) {
@@ -40,9 +47,15 @@ function saveToWatched(movie) {
 
 function saveToQueue(movie) {
   let storage = JSON.parse(localStorage.getItem('queue'));
-  const { title, genres, voteAverage, imgSrc } = movie;
+  const { title, genres, voteAverage, imgSrc, releaseDate } = movie;
 
-  const string = JSON.stringify({ title, genres, voteAverage, imgSrc });
+  const string = JSON.stringify({
+    title,
+    genres,
+    voteAverage,
+    imgSrc,
+    releaseDate,
+  });
 
   const index = storage.indexOf(string);
   if (index > -1) {
