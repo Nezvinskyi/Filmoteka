@@ -14,6 +14,7 @@ export default class MoviesApi {
     this.init();
     this.searchYear = null;
     this.searchGenres = '';
+    this.videoId = 0;
   }
 
   get query() {
@@ -76,6 +77,14 @@ export default class MoviesApi {
     const searchGenres = await this.fetch(url);
 
     return searchGenres; //-поиск по жанру
+  }
+
+  async getByVideo(valueVideo) {
+    this.videoId = valueVideo;
+    const url = `${BASE_URL}/movie/${this.videoId}/videos?api_key=${API_KEY}&language=en-US`;
+    const searchPopular = await this.fetch(url);
+    /* return console.log("данные из getByVideo", searchPopular), console.log("this.videoId",typeof this.videoId); */
+    return searchPopular //-поиск видео по id фильма
   }
   //----------------------------------
 
