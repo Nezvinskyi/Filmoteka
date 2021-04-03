@@ -1,6 +1,9 @@
 import modalTemplate from '../templates/modal.hbs';
 import { addToWatched, addToQueue } from './api/storage';
 
+import moviesApi from './render-card';
+import searchGenreDate from './gallery';
+
 import * as basicLightbox from 'basiclightbox';
 import 'basicLightbox/dist/basicLightbox.min.css';
 
@@ -23,18 +26,22 @@ function onOpenModal(callback) {
   
   closeModalBtn.addEventListener('click', closeModal)
 
+
+  moviesApi.getRefs().listGenreModal.addEventListener('click', closeModal);
+  moviesApi.getRefs().listGenreModal.addEventListener('click', searchGenreDate);
 }
 
+const refs = getRefs();
 
 
 export default function addModal(movie) {
   const markup = modalTemplate(movie);
-  
-  onOpenModal(markup);
 
+  onOpenModal(markup);
 
   addToWatched(movie);
   addToQueue(movie);
+
 
   const modalContainer = document.querySelector('.modal-container');
   const modalCloseBtn = document.querySelector('.modal-btn-close_container');

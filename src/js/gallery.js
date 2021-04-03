@@ -21,6 +21,8 @@ moviesApi
   .then(hideLoader);
 
 async function renderGenereGallery(e) {
+  e.preventDefault();
+
   const genre = await e.target;
   const idGenre = genre.dataset.id;
 
@@ -53,7 +55,7 @@ async function renderDateRelease(e) {
   });
 }
 
-function searchGenreDate(e) {
+export default function searchGenreDate(e) {
   if (e.target.dataset.search === 'ok') {
     renderGenereGallery(e);
   } else if (e.target.dataset.set === 'releaseDate') {

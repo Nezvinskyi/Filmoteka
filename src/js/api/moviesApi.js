@@ -45,6 +45,7 @@ export default class MoviesApi {
     refs.gallery = document.querySelector('.gallery-js');
     refs.header = document.querySelector('.header');
     refs.divContainer = document.querySelector('div[data-cont]');
+    refs.listGenreModal = document.querySelector('.modal-card_list_right');
     return refs;
   }
 
@@ -67,7 +68,6 @@ export default class MoviesApi {
     const searchYear = await this.fetch(url);
 
     return searchYear; //-поиск по году выпуска
-
   }
 
   async getSearchGenres(valueSearchGenres) {
@@ -76,7 +76,6 @@ export default class MoviesApi {
     const searchGenres = await this.fetch(url);
 
     return searchGenres; //-поиск по жанру
-
   }
   //----------------------------------
 
