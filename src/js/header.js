@@ -1,7 +1,6 @@
 import headerTplt from '../templates/header.hbs';
 import getRefs from '../js/get-refs';
 import { movieAdapter } from './helpers/index';
-// import cardList from '../templates/film-list.hbs';
 import filmCard from '../templates/film-card.hbs';
 import moviesApi from './render-card';
 import loaderTmplt from '../templates/loader.hbs';
@@ -86,4 +85,18 @@ function onSearch(event) {
 
 function clearInput(event) {
   event.currentTarget.elements.query.value = '';
+}
+
+refs.scrollUpEl.addEventListener('click', goUp);
+
+window.addEventListener('scroll', function () {
+  if (pageYOffset > 700) {
+    refs.scrollUpEl.style.opacity = '1';
+  } else {
+    refs.scrollUpEl.style.opacity = '0';
+  }
+});
+
+function goUp() {
+  window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 }
