@@ -39,6 +39,7 @@ function onNavClick(event) {
         const movieDataList = results.map(item => movieAdapter(item));
 
         moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
+        console.log('from home click:>>', moviesApi.fetchMethod);
       })
       .then(hideLoader)
       .catch(onFetchError);
@@ -57,6 +58,8 @@ function onNavClick(event) {
 
 function onSearch(event) {
   event.preventDefault();
+  moviesApi.fetchMethod = 'query';
+  console.log('from search:>>', moviesApi.fetchMethod);
 
   showLoader();
   // refs.loader.classList.remove('visually-hidden');

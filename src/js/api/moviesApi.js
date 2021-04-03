@@ -15,6 +15,7 @@ export default class MoviesApi {
     this.searchYear = null;
     this.searchGenres = '';
     this.videoId = 0;
+    this._fetchMethod = 'popular';
   }
 
   get query() {
@@ -31,6 +32,14 @@ export default class MoviesApi {
 
   set movieId(newId) {
     this._movieId = newId;
+  }
+
+  get fetchMethod() {
+    return this._fetchMethod;
+  }
+
+  set fetchMethod(newMethod) {
+    this._fetchMethod = newMethod;
   }
 
   async init() {
@@ -84,7 +93,7 @@ export default class MoviesApi {
     const url = `${BASE_URL}/movie/${this.videoId}/videos?api_key=${API_KEY}&language=en-US`;
     const searchPopular = await this.fetch(url);
     /* return console.log("данные из getByVideo", searchPopular), console.log("this.videoId",typeof this.videoId); */
-    return searchPopular //-поиск видео по id фильма
+    return searchPopular; //-поиск видео по id фильма
   }
   //----------------------------------
 
