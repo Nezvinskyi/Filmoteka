@@ -89,6 +89,8 @@ export const movieAdapterModal = ({
   popularity,
   genres,
   overview,
+  release_date,
+  id,
 }) => ({
   imgSrc: generatePosterPath(poster_path),
   title: title,
@@ -102,4 +104,6 @@ export const movieAdapterModal = ({
   genreIdSecond: getGenreIdModal(genres)[1],
   genreIdThird: getGenreIdModal(genres)[2],
   overview: overview,
+  releaseDate: convertYear(release_date),
+  id: id,
 });
