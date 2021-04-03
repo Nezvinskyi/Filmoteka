@@ -1,14 +1,12 @@
 import teamModalTpl from '../templates/team-modal.hbs';
 import getRefs from '../js/get-refs';
 
-
 const refs = getRefs();
 
 // 1додати івент-лисенер
 // 2 написати колбек функцію addTeammodal
 
-refs.teamModal.addEventListener('click', addTeamModal) 
-
+refs.teamModal.addEventListener('click', addTeamModal);
 
 function addTeamModal(event) {
   event.preventDefault();
@@ -16,9 +14,4 @@ function addTeamModal(event) {
 
   refs.teamModal.insertAdjacentHTML('afterbegin', markup);
 }
-  addTeamModal()
-
-
-
-
-
+// addTeamModal()

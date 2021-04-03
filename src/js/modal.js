@@ -1,5 +1,6 @@
 import modalTemplate from '../templates/modal.hbs';
 import { addToWatched, addToQueue } from './api/storage';
+import getRefs from '../js/get-refs';
 
 import moviesApi from './render-card';
 import searchGenreDate from './gallery';
@@ -10,29 +11,27 @@ import 'basicLightbox/dist/basicLightbox.min.css';
 function onOpenModal(callback) {
   const instance = basicLightbox.create(callback);
   instance.show();
-  window.addEventListener("keydown", escCloseModal);
-  
-  const closeModalBtn = document.querySelector('.modal-btn-close')
+  window.addEventListener('keydown', escCloseModal);
+
+  const closeModalBtn = document.querySelector('.modal-btn-close');
   const closeModal = () => {
     instance.close();
-    window.removeEventListener("keydown", escCloseModal);
-  }
+    window.removeEventListener('keydown', escCloseModal);
+  };
 
   function escCloseModal(event) {
-    if (event.code === "Escape") {
+    if (event.code === 'Escape') {
       closeModal();
     }
   }
-  
-  closeModalBtn.addEventListener('click', closeModal)
 
+  closeModalBtn.addEventListener('click', closeModal);
 
   moviesApi.getRefs().listGenreModal.addEventListener('click', closeModal);
   moviesApi.getRefs().listGenreModal.addEventListener('click', searchGenreDate);
 }
 
 const refs = getRefs();
-
 
 export default function addModal(movie) {
   const markup = modalTemplate(movie);
@@ -42,13 +41,12 @@ export default function addModal(movie) {
   addToWatched(movie);
   addToQueue(movie);
 
-
   const modalContainer = document.querySelector('.modal-container');
   const modalCloseBtn = document.querySelector('.modal-btn-close_container');
   const youtubeModalContainer = document.querySelector('#modal-youtube');
 
   const youtubeModalBtn = document.querySelector('#trailer');
-  const closeYoutubeModalBtn = document.querySelector('#closeYoutubeModalBtn')
+  const closeYoutubeModalBtn = document.querySelector('#closeYoutubeModalBtn');
 
   youtubeModalBtn.addEventListener('click', openModalYoutube);
   closeYoutubeModalBtn.addEventListener('click', closeModalYoutube);
@@ -57,10 +55,9 @@ export default function addModal(movie) {
     console.log('beefore');
     modalContainer.classList.add('visually-hidden');
     modalCloseBtn.classList.add('visually-hidden');
-    youtubeModalContainer.classList.remove('visually-hidden')
+    youtubeModalContainer.classList.remove('visually-hidden');
     youtubeModalContainer.classList.add('.is-open');
     console.log('after');
-
   }
 
   function closeModalYoutube() {
@@ -74,7 +71,3 @@ export default function addModal(movie) {
     console.log('after close');
   }
 }
-
-
-
-
