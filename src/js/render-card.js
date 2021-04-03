@@ -38,3 +38,8 @@ console.log(moviesApi.getById()); */
   await moviesApi.getSearchGenres('12, 28');
 }
 foo () */
+
+//получить данные(часть ссылки для YouTube) по id фильма
+/* async function foo() {
+  console.log(moviesApi.getByVideo(791373));
+} */
