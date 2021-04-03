@@ -4,6 +4,7 @@ import getRefs from '../js/get-refs';
 import { movieAdapter } from './helpers/index';
 import { addEventListenerToGallery } from './modal-event-listener';
 import { hideLoader, showLoader } from './loader';
+import { onError, onFetchError } from './components/notifications';
 
 const refs = getRefs();
 moviesApi
@@ -18,41 +19,55 @@ moviesApi
 
     moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
   })
-  .then(hideLoader);
+  .then(hideLoader)
+  .catch(onFetchError);
 
 async function renderGenereGallery(e) {
   e.preventDefault();
 
   const genre = await e.target;
   const idGenre = genre.dataset.id;
+  showLoader();
+  await moviesApi
+    .getSearchGenres(idGenre)
+    .then(({ results }) => {
+      const movieGenreList = results.map(item => {
+        return movieAdapter(item);
+      });
 
-  await moviesApi.getSearchGenres(idGenre).then(({ results }) => {
-    const movieGenreList = results.map(item => {
-      return movieAdapter(item);
-    });
+      moviesApi.getRefs().divContainer.innerHTML = '';
+      refs.header.insertAdjacentHTML('afterend', cardList(movieGenreList));
+      addEventListenerToGallery();
 
-    moviesApi.getRefs().divContainer.innerHTML = '';
-    refs.header.insertAdjacentHTML('afterend', cardList(movieGenreList));
-    addEventListenerToGallery();
-
-    moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
-  });
+      moviesApi
+        .getRefs()
+        .divContainer.addEventListener('click', searchGenreDate);
+    })
+    .then(hideLoader)
+    .catch(onFetchError);
 }
 
 async function renderDateRelease(e) {
   const date = await e.target.textContent;
   console.log(date);
-  await moviesApi.getSearchYear(date).then(({ results }) => {
-    const moviDataList = results.map(item => {
-      return movieAdapter(item);
-    });
+  showLoader();
+  await moviesApi
+    .getSearchYear(date)
+    .then(({ results }) => {
+      const moviDataList = results.map(item => {
+        return movieAdapter(item);
+      });
 
-    moviesApi.getRefs().divContainer.innerHTML = '';
-    refs.header.insertAdjacentHTML('afterend', cardList(moviDataList));
-    addEventListenerToGallery();
+      moviesApi.getRefs().divContainer.innerHTML = '';
+      refs.header.insertAdjacentHTML('afterend', cardList(moviDataList));
+      addEventListenerToGallery();
 
-    moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
-  });
+      moviesApi
+        .getRefs()
+        .divContainer.addEventListener('click', searchGenreDate);
+    })
+    .then(hideLoader)
+    .catch(onFetchError);
 }
 
 export default function searchGenreDate(e) {

@@ -1,11 +1,12 @@
 import headerTplt from '../templates/header.hbs';
 import getRefs from '../js/get-refs';
 import { movieAdapter } from './helpers/index';
-import cardList from '../templates/film-list.hbs';
+// import cardList from '../templates/film-list.hbs';
 import filmCard from '../templates/film-card.hbs';
 import moviesApi from './render-card';
 import loaderTmplt from '../templates/loader.hbs';
 import { hideLoader, showLoader } from './loader';
+import { onError, onFetchError } from './components/notifications';
 
 let refs = getRefs();
 
@@ -39,7 +40,8 @@ function onNavClick(event) {
 
         moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
       })
-      .then(hideLoader);
+      .then(hideLoader)
+      .catch(onFetchError);
   }
 
   if (event.target.dataset.action === 'library') {
@@ -55,18 +57,29 @@ function onNavClick(event) {
 
 function onSearch(event) {
   event.preventDefault();
+
   showLoader();
-  refs.loader.classList.remove('visually-hidden');
-  moviesApi.query = event.currentTarget.elements.query.value;
+  // refs.loader.classList.remove('visually-hidden');
+
+  moviesApi.query = event.currentTarget.elements.query.value.trim();
+
+  if (moviesApi.query === '') {
+    hideLoader();
+    return onError();
+  }
+
   moviesApi
     .getMoviesByQuery()
     .then(({ results }) => {
       const movieDataList = results.map(item => movieAdapter(item));
-
+      if (movieDataList.length === 0) {
+        return onError();
+      }
       moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
       refs = getRefs();
     })
-    .then(hideLoader);
+    .then(hideLoader)
+    .catch(onFetchError);
 
   clearInput(event);
 }

@@ -51,6 +51,7 @@
     "core-js": "^3.6.5",
     "handlebars": "^4.7.6",
     "node-sass": "^5.0.0",
+    "notyf": "^3.9.0",
     "pagination": "^0.4.6"
   }
 }
