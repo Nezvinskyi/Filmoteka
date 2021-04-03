@@ -67,7 +67,6 @@ export default class MoviesApi {
     const searchYear = await this.fetch(url);
 
     return searchYear; //-поиск по году выпуска
-
   }
 
   async getSearchGenres(valueSearchGenres) {
@@ -76,7 +75,6 @@ export default class MoviesApi {
     const searchGenres = await this.fetch(url);
 
     return searchGenres; //-поиск по жанру
-
   }
   //----------------------------------
 
