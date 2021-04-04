@@ -2,7 +2,7 @@ import { Notyf } from 'notyf';
 import 'notyf/notyf.min.css';
 
 const notyf = new Notyf({
-  duration: 20000,
+  duration: 40000,
   position: {
     x: 'center',
     y: 'top',
@@ -25,6 +25,18 @@ const notyf = new Notyf({
 
       background: '#FF001B',
       // duration: 8000,
+      dismissible: true,
+    },
+    {
+      type: 'info',
+      background: '#ff6b08',
+
+      icon: {
+        className: 'material-icons',
+        tagName: 'i',
+        text: 'warning',
+      },
+      // duration: 2000,
       dismissible: true,
     },
   ],

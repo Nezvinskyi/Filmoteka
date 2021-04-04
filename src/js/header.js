@@ -51,8 +51,8 @@ function onNavClick(event) {
     refs.header.classList.add('library-header');
     refs.searchForm.classList.add('visually-hidden');
     refs.headerBtnWrapper.classList.remove('visually-hidden');
-
-    moviesApi.getRefs().gallery.innerHTML = loader;
+    const initLibraryMarkup = `<span style="margin: 0 auto">There’s nothing here, yet :( You should add something first</span>`;
+    moviesApi.getRefs().gallery.innerHTML = initLibraryMarkup;
   }
 }
 
