@@ -1,5 +1,7 @@
 import cardList from '../templates/film-list.hbs';
 import { hideLoader, showLoader } from './loader';
+import { movieAdapterModal } from './helpers/index';
+
 import getRefs from './get-refs';
 const refs = getRefs();
 
@@ -15,11 +17,12 @@ function getQueue() {
 
 function renderFromLocalStorage(arrayOfStrings) {
   const movieDataList = arrayOfStrings.map(item => {
-    console.log(JSON.parse(item));
-    return JSON.parse(item);
+    let data = movieAdapterModal(JSON.parse(item));
+    return data;
   });
 
   hideLoader();
+
   const containerFilmRef = document.querySelector('.container-film');
   containerFilmRef.innerHTML = '';
 

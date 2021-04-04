@@ -22,15 +22,22 @@ export function onClickToQueueHandler(movie) {
 
 function saveToWatched(movie) {
   let storage = JSON.parse(localStorage.getItem('watched'));
-  const { title, genres, voteAverage, imgSrc, releaseDate, id } = movie;
+  const {
+    title,
+    genres,
+    release_date,
+    backdrop_path,
+    poster_path,
+    vote_average,
+  } = movie;
 
   const string = JSON.stringify({
     title,
     genres,
-    voteAverage,
-    imgSrc,
-    releaseDate,
-    id,
+    release_date,
+    backdrop_path,
+    poster_path,
+    vote_average,
   });
 
   const index = storage.indexOf(string);
@@ -46,15 +53,24 @@ function saveToWatched(movie) {
 }
 
 function saveToQueue(movie) {
+  console.log('movie to queue from storage.js>>', movie);
   let storage = JSON.parse(localStorage.getItem('queue'));
-  const { title, genres, voteAverage, imgSrc, releaseDate } = movie;
+  const {
+    title,
+    genres,
+    release_date,
+    backdrop_path,
+    poster_path,
+    vote_average,
+  } = movie;
 
   const string = JSON.stringify({
     title,
     genres,
-    voteAverage,
-    imgSrc,
-    releaseDate,
+    release_date,
+    backdrop_path,
+    poster_path,
+    vote_average,
   });
 
   const index = storage.indexOf(string);
