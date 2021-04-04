@@ -52,7 +52,8 @@ function onNavClick(event) {
     refs.header.classList.add('library-header');
     refs.searchForm.classList.add('visually-hidden');
     refs.headerBtnWrapper.classList.remove('visually-hidden');
-    const initLibraryMarkup = `<span style="margin: 0 auto">There’s nothing here, yet :( You should add something first</span>`;
+    refs.pagination.classList.add('visually-hidden');
+    const initLibraryMarkup = `<span style="text-align: center; display: block; margin-top: 25px">There’s nothing here, yet :( You should add something first</span>`;
     moviesApi.getRefs().gallery.innerHTML = initLibraryMarkup;
   }
 }
