@@ -20,7 +20,6 @@ refs.searchForm.addEventListener('submit', onSearch);
 // перенести в html!!
 const galleryContainerMarkup =
   '<div class="container gallery-js" data-cont="container"></div>';
-
 document
   .querySelector('.header')
   .insertAdjacentHTML('afterend', galleryContainerMarkup);
@@ -40,8 +39,16 @@ async function initGallery() {
     // уже ж стоит слушатель?
     // поменять реф!
     moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
+    document.addEventListener('click', onNavClick);
   } catch (error) {
     onFetchError();
+  }
+}
+
+function onNavClick(event) {
+  if (event.target.dataset.action === 'home' || event.target.closest('svg')) {
+    console.log('clicked on:', event.target);
+    initGallery();
   }
 }
 

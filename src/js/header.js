@@ -32,17 +32,18 @@ function onNavClick(event) {
     refs.searchForm.classList.remove('visually-hidden');
     refs.headerBtnWrapper.classList.add('visually-hidden');
 
-    moviesApi
-      .getPopularMovies()
-      .then(({ results }) => {
-        const movieDataList = results.map(item => movieAdapter(item));
+    // перенесено в gallery - запуск по клику перезапускает галлерею
+    //   moviesApi
+    //     .getPopularMovies()
+    //     .then(({ results }) => {
+    //       const movieDataList = results.map(item => movieAdapter(item));
 
-        moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
-        //
-        console.log('from home click. method:>>', moviesApi.fetchMethod);
-      })
-      .then(hideLoader)
-      .catch(onFetchError);
+    //       moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
+    //       //
+    //       console.log('from home click. method:>>', moviesApi.fetchMethod);
+    //     })
+    //     .then(hideLoader)
+    //     .catch(onFetchError);
   }
 
   if (event.target.dataset.action === 'library') {
