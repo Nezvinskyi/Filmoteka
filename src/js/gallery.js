@@ -130,10 +130,13 @@ function onPaginationClick(e) {
 
   if (moviesApi.fetchMethod === 'popular') {
     // console.log('render popular', pageCounter.page);
-    popularRender();
+    renderPopularGallery();
   } else if (moviesApi.fetchMethod === 'query') {
     // console.log('render query', pageCounter.page);
-    searchRender();
+    renderSearchGallery();
+  } else if (moviesApi.fetchMethod === 'genre') {
+    renderGenreGallery();
+  } else if (moviesApi.fetchMethod === 'year') {
   }
   setupPaginationBtns(paginator.getPaginationData().totalResult);
 
@@ -162,31 +165,45 @@ function onPaginationClick(e) {
   }
 }
 
-async function searchRender() {
+async function renderSearchGallery() {
   const { results, total_results } = await moviesApi.getMoviesByQuery();
   renderData(results);
 }
 
-async function popularRender() {
+async function renderPopularGallery() {
   const { results, total_results } = await moviesApi.getPopularMovies();
   renderData(results);
 }
 
-async function renderGenereGallery(e) {
+async function renderGenreGallery() {
+  const { results, total_results } = await moviesApi.getSearchGenres();
+  renderData(results);
+}
+
+async function renderDateGallery() {
+  const { results, total_results } = await moviesApi.getSearchYear();
+  renderData(results);
+}
+
+async function initGenreGallery(e) {
   e.preventDefault();
 
+  moviesApi.fetchMethod = 'genre';
+  pageCounter.page = 1;
+  paginator.set('current', 1);
+
   const genre = await e.target;
-  const idGenre = genre.dataset.id;
+  moviesApi.searchGenre = genre.dataset.id;
   showLoader();
   await moviesApi
-    .getSearchGenres(idGenre)
-    .then(({ results }) => {
+    .getSearchGenres()
+    .then(({ results, total_results }) => {
       const movieGenreList = results.map(item => {
         return movieAdapter(item);
       });
+      setupPaginationBtns(total_results);
+      renderData(results);
 
-      moviesApi.getRefs().divContainer.innerHTML = '';
-      refs.header.insertAdjacentHTML('afterend', cardList(movieGenreList));
       addEventListenerToGallery();
 
       moviesApi
@@ -197,20 +214,27 @@ async function renderGenereGallery(e) {
     .catch(onFetchError);
 }
 
-async function renderDateRelease(e) {
+async function initDateGallery(e) {
+  moviesApi.fetchMethod = 'year';
+  pageCounter.page = 1;
+  paginator.set('current', 1);
+
   const date = await e.target.textContent;
   console.log(date);
+  moviesApi.searchYear = date;
   showLoader();
   await moviesApi
-    .getSearchYear(date)
-    .then(({ results }) => {
+    .getSearchYear()
+    .then(({ results, total_results }) => {
       const moviDataList = results.map(item => {
         return movieAdapter(item);
       });
 
       moviesApi.getRefs().divContainer.innerHTML = '';
-      refs.header.insertAdjacentHTML('afterend', cardList(moviDataList));
+      renderData(results);
       addEventListenerToGallery();
+
+      setupPaginationBtns(total_results);
 
       moviesApi
         .getRefs()
@@ -222,9 +246,9 @@ async function renderDateRelease(e) {
 
 export default function searchGenreDate(e) {
   if (e.target.dataset.search === 'ok') {
-    renderGenereGallery(e);
+    initGenreGallery(e);
   } else if (e.target.dataset.set === 'releaseDate') {
-    renderDateRelease(e);
+    initDateGallery(e);
   } else {
     return;
   }
