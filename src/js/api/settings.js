@@ -1,7 +1,4 @@
-// TODO проверить url!
 import img from '../../images/default/no-poster-img.jpg';
-
-console.log(img);
 
 export default {
   BASE_URL: 'https://api.themoviedb.org/3',
