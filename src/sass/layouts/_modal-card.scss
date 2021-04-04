@@ -15,19 +15,7 @@
 //        height: 600px;
 //      }
 // }
-.visually-hidden {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    border: 0;
-    padding: 0;
 
-    white-space: nowrap;
-    clip-path: inset(100%);
-    clip: rect(0 0 0 0);
-    overflow: hidden;
-  }
 
 .is-open {
   background-color: white;
@@ -102,8 +90,9 @@
   background-color: $secondary-color;
 
   @media screen and (min-width: 320px) and (max-width: 767px) {
+    transform: translate(0px, 200px);
     width: 280px;
-    height: 958px;
+    // height: 958px;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -124,7 +113,7 @@
     height: auto;
 
     @media screen and (min-width: 320px) and (max-width: 767px) {
-      margin: 0px 20px 40px 20px;
+      padding: 1px 20px 28px 20px;
     }
 
     @media screen and (min-width: 768px) and (max-width: 1023px) {
