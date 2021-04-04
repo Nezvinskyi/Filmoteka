@@ -1,4 +1,10 @@
-  initGallery:
+* пагинацию в класс
+* скелет страницы
+* рефы!
+* экспорты
+* переписать на async-await
+
+	initGallery:
 	
 	try {
     const { results, total_results } = await moviesApi.getPopularMovies();

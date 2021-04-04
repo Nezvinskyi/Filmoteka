@@ -12,10 +12,12 @@
 					d="M16 25.334l-9.333-9.333 9.333-9.333"></path>
 			</svg>
 		</li>
+		<li class="page-btn visually-hidden" data-nav='first'>1</li>
+		<li class="page-btn visually-hidden">...</li>
 		{{#each range}}
 		<li class="page-btn" data-num='{{this}}'>{{this}}</li>
 		{{/each}}
-		<li>...</li>
+		<li class="page-btn">...</li>
 		<li class="page-btn" data-nav='last'>{{lastPage}}</li>
 		<li class="arrow-btn page-btn" data-nav='next'>
 			<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16"

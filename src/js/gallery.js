@@ -53,6 +53,9 @@ async function onSearch(event) {
   event.preventDefault();
 
   moviesApi.fetchMethod = 'query';
+  pageCounter.page = 1;
+  paginator.set('current', 1);
+
   console.log('from search. method:>>', moviesApi.fetchMethod);
 
   //!!loader start!!
@@ -75,6 +78,7 @@ async function onSearch(event) {
       paginator.getPaginationData().range,
       paginator.getPaginationData().last,
     );
+    console.log('найдено', total_results, 'фильмов');
   } catch (error) {
     // .then(hideLoader) !!
     onFetchError();
@@ -104,6 +108,8 @@ function onPaginationClick(e) {
   if (e.target.dataset.nav === 'prev') {
     if (pageCounter.page <= 1) return;
     pageCounter.decrement();
+  } else if (e.target.dataset.nav === 'first') {
+    pageCounter.page = 1;
   } else if (e.target.dataset.nav === 'next') {
     if (pageCounter.page >= paginator.getPaginationData().last) return;
     pageCounter.increment();
@@ -130,6 +136,31 @@ function onPaginationClick(e) {
     paginator.getPaginationData().range,
     paginator.getPaginationData().last,
   );
+
+  // подсветить активную кнопку
+  // скрыть крайние на краях диапазона
+  const firstBtnRef = document.querySelector('[data-nav="first"]');
+  const lastBtnRef = document.querySelector('[data-nav="last"]');
+  const btnsRefs = document.querySelectorAll('.page-btn');
+
+  btnsRefs.forEach(el => {
+    if (el.textContent === pageCounter.page) {
+      console.log(true);
+      el.classList.add('active');
+    }
+  });
+
+  if (pageCounter.page > 4) {
+    firstBtnRef.classList.remove('visually-hidden');
+    firstBtnRef.nextElementSibling.classList.remove('visually-hidden');
+    // firstBtnRef.previousElementSibling.classList.remove('visually-hidden');
+  }
+
+  if (pageCounter.page > paginator.getPaginationData().last - 3) {
+    lastBtnRef.classList.add('visually-hidden');
+    // lastBtnRef.nextElementSibling.classList.add('visually-hidden');
+    lastBtnRef.previousElementSibling.classList.add('visually-hidden');
+  }
 }
 
 async function searchRender() {

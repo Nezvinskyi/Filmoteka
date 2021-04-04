@@ -14,13 +14,13 @@ export const paginator = new pagination.SearchPaginator({
   totalResult: 20,
 });
 
-function setupPagination() {
+function setupPaginationContainer() {
   const markup =
     '<div class="pagination-container container pagination-js"><p>testjkshgdbfkjabsd,fjbasdf</p></div>';
   document.querySelector('.footer').insertAdjacentHTML('beforebegin', markup);
 }
 
-setupPagination();
+setupPaginationContainer();
 
 export const getDataPagination = ({ page, total }) => {
   const p = new pagination.SearchPaginator({
