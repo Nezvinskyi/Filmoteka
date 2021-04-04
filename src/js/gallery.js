@@ -23,7 +23,7 @@ async function initGallery() {
   moviesApi
     .getPopularMovies()
     .then(({ results, total_results }) => {
-      console.log('initial render. method:>>', moviesApi.fetchMethod);
+      // console.log('initial render. method:>>', moviesApi.fetchMethod);
       const movieDataList = results.map(item => {
         return movieAdapter(item);
       });
@@ -36,7 +36,7 @@ async function initGallery() {
         .getRefs()
         .divContainer.addEventListener('click', searchGenreDate);
 
-      console.log(total_results);
+      // console.log(total_results);
 
       //rendering pagination btns
       paginator.set('totalResult', total_results);
@@ -56,7 +56,7 @@ async function onSearch(event) {
   pageCounter.page = 1;
   paginator.set('current', 1);
 
-  console.log('from search. method:>>', moviesApi.fetchMethod);
+  // console.log('from search. method:>>', moviesApi.fetchMethod);
 
   //!!loader start!!
   // showLoader();
@@ -92,6 +92,7 @@ function renderData(results) {
     return movieAdapter(item);
   });
   refs.header.insertAdjacentHTML('afterend', cardList(movieDataList));
+  addEventListenerToGallery();
 }
 
 function setupPaginationBtns(range, lastPage) {
@@ -118,18 +119,18 @@ function onPaginationClick(e) {
   } else {
     pageCounter.page = e.target.dataset.num;
   }
-  console.log('pageCounter:>>', pageCounter.page);
+  // console.log('pageCounter:>>', pageCounter.page);
   paginator.set('current', pageCounter.page);
-  console.log(
-    'currentPaginationPage:>>',
-    paginator.getPaginationData().current,
-  );
+  // console.log(
+  //   'currentPaginationPage:>>',
+  //   paginator.getPaginationData().current,
+  // );
 
   if (moviesApi.fetchMethod === 'popular') {
-    console.log('render popular', pageCounter.page);
+    // console.log('render popular', pageCounter.page);
     popularRender();
   } else if (moviesApi.fetchMethod === 'query') {
-    console.log('render query', pageCounter.page);
+    // console.log('render query', pageCounter.page);
     searchRender();
   }
   setupPaginationBtns(
@@ -145,7 +146,6 @@ function onPaginationClick(e) {
 
   btnsRefs.forEach(el => {
     if (el.textContent === pageCounter.page) {
-      console.log(true);
       el.classList.add('active');
     }
   });
