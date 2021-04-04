@@ -90,6 +90,7 @@ async function onSearch(event) {
 }
 
 function renderData(results) {
+  refs.pagination.classList.remove('visually-hidden');
   // galleryRef.innerHTML = '';
   const movieDataList = results.map(item => {
     return movieAdapter(item);
