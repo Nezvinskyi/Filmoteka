@@ -21,7 +21,7 @@ addHeader();
 refs = getRefs();
 
 refs.pagesNav.addEventListener('click', onNavClick);
-refs.searchForm.addEventListener('submit', onSearch);
+// refs.searchForm.addEventListener('submit', onSearch); перенесено в gallery
 
 function onNavClick(event) {
   if (event.target.dataset.action === 'home' || event.target.closest('svg')) {
@@ -38,7 +38,8 @@ function onNavClick(event) {
         const movieDataList = results.map(item => movieAdapter(item));
 
         moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
-        console.log('from home click:>>', moviesApi.fetchMethod);
+        //
+        console.log('from home click. method:>>', moviesApi.fetchMethod);
       })
       .then(hideLoader)
       .catch(onFetchError);
@@ -55,36 +56,37 @@ function onNavClick(event) {
   }
 }
 
-function onSearch(event) {
-  event.preventDefault();
-  moviesApi.fetchMethod = 'query';
-  console.log('from search:>>', moviesApi.fetchMethod);
+// перенесено в gallery
+// function onSearch(event) {
+//   event.preventDefault();
+//   moviesApi.fetchMethod = 'query';
+//   console.log('from search. method:>>', moviesApi.fetchMethod);
 
-  showLoader();
-  // refs.loader.classList.remove('visually-hidden');
+//   showLoader();
+//   // refs.loader.classList.remove('visually-hidden');
 
-  moviesApi.query = event.currentTarget.elements.query.value.trim();
+//   moviesApi.query = event.currentTarget.elements.query.value.trim();
 
-  if (moviesApi.query === '') {
-    hideLoader();
-    return onError();
-  }
+//   if (moviesApi.query === '') {
+//     hideLoader();
+//     return onError();
+//   }
 
-  moviesApi
-    .getMoviesByQuery()
-    .then(({ results }) => {
-      const movieDataList = results.map(item => movieAdapter(item));
-      if (movieDataList.length === 0) {
-        return onError();
-      }
-      moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
-      refs = getRefs();
-    })
-    .then(hideLoader)
-    .catch(onFetchError);
+//   moviesApi
+//     .getMoviesByQuery()
+//     .then(({ results }) => {
+//       const movieDataList = results.map(item => movieAdapter(item));
+//       if (movieDataList.length === 0) {
+//         return onError();
+//       }
+//       moviesApi.getRefs().gallery.innerHTML = filmCard(movieDataList);
+//       refs = getRefs();
+//     })
+//     .then(hideLoader)
+//     .catch(onFetchError);
 
-  clearInput(event);
-}
+//   clearInput(event);
+// }
 
 function clearInput(event) {
   event.currentTarget.elements.query.value = '';

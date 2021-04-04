@@ -11,18 +11,37 @@ export const paginator = new pagination.SearchPaginator({
   prelink: '/',
   current: 1,
   rowsPerPage: 20,
-  totalResult: 530,
+  totalResult: 20,
 });
+
+function setupPagination() {
+  const markup =
+    '<div class="pagination-container container pagination-js"><p>testjkshgdbfkjabsd,fjbasdf</p></div>';
+  document.querySelector('.footer').insertAdjacentHTML('beforebegin', markup);
+}
+
+setupPagination();
+
+export const getDataPagination = ({ page, total }) => {
+  const p = new pagination.SearchPaginator({
+    prelink: '/',
+    current: page,
+    // rowsPerPage: itemsNum,
+    totalResult: total,
+  });
+  return p.getPaginationData();
+};
 
 export function getData({ total }) {
   console.dir(paginator.getPaginationData());
   return paginator.getPaginationData();
 }
-
-let range = paginator.getPaginationData().range;
-const lastPage = paginator.getPaginationData().last;
-const markup = paginationBtnsTpl({ range, lastPage });
-refs.bodyRef.insertAdjacentHTML('beforeend', markup);
+//->
+// let range = paginator.getPaginationData().range;
+// const lastPage = paginator.getPaginationData().last;
+// const markup = paginationBtnsTpl({ range, lastPage });
+// refs.bodyRef.insertAdjacentHTML('beforeend', markup);
+//<-
 
 class PageCounter {
   constructor() {
@@ -49,7 +68,7 @@ export const pageCounter = new PageCounter();
 
 const paginationRef = document.querySelector('.pagination-js');
 
-paginationRef.addEventListener('click', onPaginationClick);
+// paginationRef.addEventListener('click', onPaginationClick);
 
 async function onPaginationClick(e) {
   if (!e.target.hasAttribute('data-nav') && !e.target.hasAttribute('data-num'))

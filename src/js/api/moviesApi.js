@@ -127,7 +127,7 @@ export default class MoviesApi {
 
   async getMoviesByQuery() {
     // this.searchQuery = query;
-    const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.searchQuery}&page=${this.page}&include_adult=false`;
+    const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${this.searchQuery}&page=${pageCounter.page}&include_adult=false`;
     /* if (this.searchQuery === '') return; */
     const movies = await this.fetch(url);
     // console.log('возвращает массив фильмов по поиску', movies);

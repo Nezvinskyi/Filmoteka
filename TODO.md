@@ -1,8 +1,24 @@
-- добавить в _common.scss шрифты и цвета с переменными
+  initGallery:
+	
+	try {
+    const { results, total_results } = await moviesApi.getPopularMovies();
+    console.log('initial render. method:>>', moviesApi.fetchMethod);
+    renderData(results);
+  } catch (error) {
+    // .then(hideLoader) !!
+    onFetchError();
+  }
 
+  addEventListenerToGallery();
 
-+api key, base url
-+js modules
-+base-reset 
-+modern-normalize
-+css partials
+  moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
+
+  console.log(total_results);
+
+  //rendering pagination btns
+  paginator.set('totalResult', total_results);
+  setupPaginationBtns(
+    paginator.getPaginationData().range,
+    paginator.getPaginationData().last,
+  );
+  // .then(hideLoader)
