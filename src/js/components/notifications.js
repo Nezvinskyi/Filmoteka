@@ -29,12 +29,12 @@ const notyf = new Notyf({
     },
     {
       type: 'info',
-      background: '#ff6b08',
+      background: '#13c230',
 
       icon: {
         className: 'material-icons',
         tagName: 'i',
-        text: 'warning',
+        text: 'info',
       },
       // duration: 2000,
       dismissible: true,
@@ -57,4 +57,11 @@ function onFetchError() {
   });
 }
 
-export { onError, onFetchError };
+function onQueryInfo(total_result) {
+  notyf.open({
+    type: 'info',
+    message: `found ${total_result} movies`,
+  });
+}
+
+export { onError, onFetchError, onQueryInfo };
