@@ -12,6 +12,7 @@ export default function getRefs() {
     btnWatched: document.querySelector('.js-watched'),
     btnQueue: document.querySelector('.js-queue'),
     scrollUpEl: document.getElementById('scrollToTop'),
+    teamModalClose: document.querySelector('.modal-team-close-button'),
     // footer: document.querySelector('.footer'),
   };
 }
