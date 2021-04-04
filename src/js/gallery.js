@@ -16,37 +16,33 @@ const refs = getRefs();
 
 refs.searchForm.addEventListener('submit', onSearch);
 
+// отрисовка контейнера для галлереи
+// перенести в html!!
+const galleryContainerMarkup =
+  '<div class="container gallery-js" data-cont="container"></div>';
+
+document
+  .querySelector('.header')
+  .insertAdjacentHTML('afterend', galleryContainerMarkup);
+const galleryRef = document.querySelector('.gallery-js');
+
 // первый запуск - отрисовка галлереи, установка пагинации
 initGallery();
 
 async function initGallery() {
-  moviesApi
-    .getPopularMovies()
-    .then(({ results, total_results }) => {
-      // console.log('initial render. method:>>', moviesApi.fetchMethod);
-      const movieDataList = results.map(item => {
-        return movieAdapter(item);
-      });
+  try {
+    const { results, total_results } = await moviesApi.getPopularMovies();
+    renderData(results);
+    setupPaginationBtns(total_results);
+    hideLoader();
 
-      refs.header.insertAdjacentHTML('afterend', cardList(movieDataList));
-      addEventListenerToGallery();
-      //
-
-      moviesApi
-        .getRefs()
-        .divContainer.addEventListener('click', searchGenreDate);
-
-      // console.log(total_results);
-
-      //rendering pagination btns
-      paginator.set('totalResult', total_results);
-      setupPaginationBtns(
-        paginator.getPaginationData().range,
-        paginator.getPaginationData().last,
-      );
-    })
-    .then(hideLoader)
-    .catch(onFetchError);
+    // addEventListenerToGallery();
+    // уже ж стоит слушатель?
+    // поменять реф!
+    moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
+  } catch (error) {
+    onFetchError();
+  }
 }
 
 async function onSearch(event) {
@@ -55,8 +51,6 @@ async function onSearch(event) {
   moviesApi.fetchMethod = 'query';
   pageCounter.page = 1;
   paginator.set('current', 1);
-
-  // console.log('from search. method:>>', moviesApi.fetchMethod);
 
   //!!loader start!!
   // showLoader();
@@ -78,11 +72,12 @@ async function onSearch(event) {
     }
     renderData(results);
 
-    paginator.set('totalResult', total_results);
-    setupPaginationBtns(
-      paginator.getPaginationData().range,
-      paginator.getPaginationData().last,
-    );
+    setupPaginationBtns(total_results);
+    // paginator.set('totalResult', total_results);
+    // setupPaginationBtns(
+    //   paginator.getPaginationData().range,
+    //   paginator.getPaginationData().last,
+    // );
     console.log('найдено', total_results, 'фильмов');
   } catch (error) {
     // .then(hideLoader) !!
@@ -92,16 +87,18 @@ async function onSearch(event) {
 }
 
 function renderData(results) {
-  moviesApi.getRefs().divContainer.innerHTML = '';
+  // galleryRef.innerHTML = '';
   const movieDataList = results.map(item => {
     return movieAdapter(item);
   });
-  refs.header.insertAdjacentHTML('afterend', cardList(movieDataList));
+  galleryRef.innerHTML = cardList(movieDataList);
   addEventListenerToGallery();
 }
 
-function setupPaginationBtns(range, lastPage) {
-  const markup = paginationBtnsTpl({ range, lastPage });
+function setupPaginationBtns(total_results) {
+  paginator.set('totalResult', total_results);
+  const { range, last } = paginator.getPaginationData();
+  const markup = paginationBtnsTpl({ range, last });
   const paginationRef = document.querySelector('.pagination-js');
   paginationRef.innerHTML = markup;
   paginationRef.addEventListener('click', onPaginationClick);
@@ -138,10 +135,7 @@ function onPaginationClick(e) {
     // console.log('render query', pageCounter.page);
     searchRender();
   }
-  setupPaginationBtns(
-    paginator.getPaginationData().range,
-    paginator.getPaginationData().last,
-  );
+  setupPaginationBtns(paginator.getPaginationData().totalResult);
 
   // подсветить активную кнопку
   // скрыть крайние на краях диапазона
