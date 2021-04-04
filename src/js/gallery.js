@@ -144,6 +144,7 @@ function onPaginationClick(e) {
   } else if (moviesApi.fetchMethod === 'genre') {
     renderGenreGallery();
   } else if (moviesApi.fetchMethod === 'year') {
+    renderDateGallery();
   }
   setupPaginationBtns(paginator.getPaginationData().totalResult);
 
