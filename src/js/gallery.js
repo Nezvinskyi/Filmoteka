@@ -71,6 +71,11 @@ async function onSearch(event) {
   try {
     const { results, total_results } = await moviesApi.getMoviesByQuery();
 
+    if (results.length === 0) {
+      //позже добавить надо будет
+      // clearInput();
+      return onError();
+    }
     renderData(results);
 
     paginator.set('totalResult', total_results);
