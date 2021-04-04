@@ -7,7 +7,6 @@ export function addEventListenerToGallery() {
 }
 
 function onGalleryClick(event) {
-  console.log('eventListener ON');
   if (event.target.className !== 'card-img') return;
 
   moviesApi.movieId = event.target.dataset.id;

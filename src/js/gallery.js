@@ -80,12 +80,6 @@ async function onSearch(event) {
     renderData(results);
 
     setupPaginationBtns(total_results);
-    // paginator.set('totalResult', total_results);
-    // setupPaginationBtns(
-    //   paginator.getPaginationData().range,
-    //   paginator.getPaginationData().last,
-    // );
-    console.log('найдено', total_results, 'фильмов');
   } catch (error) {
     // .then(hideLoader) !!
     onFetchError();
@@ -202,24 +196,19 @@ async function initGenreGallery(e) {
 
   const genre = await e.target;
   moviesApi.searchGenre = genre.dataset.id;
+
   showLoader();
-  await moviesApi
-    .getSearchGenres()
-    .then(({ results, total_results }) => {
-      const movieGenreList = results.map(item => {
-        return movieAdapter(item);
-      });
-      setupPaginationBtns(total_results);
-      renderData(results);
 
-      addEventListenerToGallery();
-
-      moviesApi
-        .getRefs()
-        .divContainer.addEventListener('click', searchGenreDate);
-    })
-    .then(hideLoader)
-    .catch(onFetchError);
+  try {
+    const { results, total_results } = await moviesApi.getSearchGenres();
+    setupPaginationBtns(total_results);
+    renderData(results);
+    addEventListenerToGallery();
+    moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
+    hideLoader();
+  } catch (error) {
+    onFetchError();
+  }
 }
 
 async function initDateGallery(e) {
@@ -227,29 +216,22 @@ async function initDateGallery(e) {
   pageCounter.page = 1;
   paginator.set('current', 1);
 
-  const date = await e.target.textContent;
-  console.log(date);
-  moviesApi.searchYear = date;
-  showLoader();
-  await moviesApi
-    .getSearchYear()
-    .then(({ results, total_results }) => {
-      const moviDataList = results.map(item => {
-        return movieAdapter(item);
-      });
+  try {
+    const date = await e.target.textContent;
+    moviesApi.searchYear = date;
+    showLoader();
+    const { results, total_results } = await moviesApi.getSearchYear();
 
-      moviesApi.getRefs().divContainer.innerHTML = '';
-      renderData(results);
-      addEventListenerToGallery();
+    renderData(results);
+    addEventListenerToGallery();
 
-      setupPaginationBtns(total_results);
+    setupPaginationBtns(total_results);
 
-      moviesApi
-        .getRefs()
-        .divContainer.addEventListener('click', searchGenreDate);
-    })
-    .then(hideLoader)
-    .catch(onFetchError);
+    moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
+    hideLoader();
+  } catch (error) {
+    onFetchError();
+  }
 }
 
 export default function searchGenreDate(e) {

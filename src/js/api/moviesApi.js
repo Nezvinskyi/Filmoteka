@@ -43,11 +43,11 @@ export default class MoviesApi {
   }
 
   get searchGenre() {
-    return this._searchGenres;
+    return this._searchGenre;
   }
 
   set searchGenre(newGenre) {
-    this._searchGenres = newGenre;
+    this._searchGenre = newGenre;
   }
 
   get searchYear() {
@@ -95,10 +95,8 @@ export default class MoviesApi {
   }
 
   async getSearchGenres() {
-    console.log('from XXX', this._searchGenre);
     const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&with_genres=${this._searchGenre}`;
     const searchGenres = await this.fetch(url);
-    // console.log('from genreFetch', searchGenres);
 
     return searchGenres; //-поиск по жанру
   }
