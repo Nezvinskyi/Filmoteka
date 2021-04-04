@@ -4,7 +4,7 @@ import getRefs from '../js/get-refs';
 import { movieAdapter } from './helpers/index';
 import { addEventListenerToGallery } from './modal-event-listener';
 import { hideLoader, showLoader } from './loader';
-import { onError, onFetchError } from './components/notifications';
+import { onError, onFetchError, onQueryInfo } from './components/notifications';
 import {
   paginator,
   getDataPagination,
@@ -69,7 +69,7 @@ async function onSearch(event) {
       //позже добавить надо будет
       // clearInput();
       return onError();
-    }
+    } else onQueryInfo(total_results);
     renderData(results);
 
     setupPaginationBtns(total_results);
