@@ -29,6 +29,8 @@ const galleryRef = document.querySelector('.gallery-js');
 initGallery();
 
 async function initGallery() {
+  pageCounter.page = 1;
+  paginator.set('current', 1);
   try {
     const { results, total_results } = await moviesApi.getPopularMovies();
     renderData(results);
