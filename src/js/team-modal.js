@@ -1,17 +1,32 @@
+import * as basicLightbox from 'basiclightbox';
+import 'basicLightbox/dist/basicLightbox.min.css';
 import teamModalTpl from '../templates/team-modal.hbs';
-import getRefs from '../js/get-refs';
+import markup from '../html/team-modal.html';
 
-const refs = getRefs();
+// const markup = teamModalTpl(img);
 
-// 1додати івент-лисенер
-// 2 написати колбек функцію addTeammodal
+const teamModal = document.querySelector('.modal-team-js');
 
-refs.teamModal.addEventListener('click', addTeamModal);
+teamModal.addEventListener('click', openModal);
 
-function addTeamModal(event) {
+const modal = basicLightbox.create(markup);
+
+function openModal(event) {
   event.preventDefault();
-  const markup = teamModalTpl();
+  modal.show();
+  window.addEventListener('keydown', closeModalHandler);
 
-  refs.teamModal.insertAdjacentHTML('afterbegin', markup);
+  function closeModalHandler(event) {
+    if (event.code === 'Escape') {
+      modal.close();
+      window.removeEventListener('keydown', closeModalHandler);
+    }
+  }
+  const btnCloseRef = document.querySelector('.modal-team-close-button');
+  btnCloseRef.addEventListener('click', closeModalbyBtn);
+  function closeModalbyBtn() {
+    modal.close();
+
+    btnCloseRef.removeEventListener('click', closeModalbyBtn);
+  }
 }
-// addTeamModal()
