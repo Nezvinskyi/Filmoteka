@@ -1,0 +1,13 @@
+.modal-video {
+  @media screen and (max-width: 767px) {
+    width: 280px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    width: 618px;
+    height: 562px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 882px;
+    height: 600px;
+  }
+}
