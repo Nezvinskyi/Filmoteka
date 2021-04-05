@@ -6,6 +6,12 @@ const refs = getRefs();
 
 function getWatched() {
   let arrayOfStrings = JSON.parse(localStorage.getItem('watched'));
+
+  if (arrayOfStrings === null) {
+    refs.btnWatched.classList.remove('btn-active-page');
+    return;
+  }
+
   renderFromLocalStorage(arrayOfStrings);
   refs.btnWatched.classList.add('btn-active-page');
   refs.btnQueue.classList.remove('btn-active-page');
@@ -13,6 +19,12 @@ function getWatched() {
 
 function getQueue() {
   let arrayOfStrings = JSON.parse(localStorage.getItem('queue'));
+
+  if (arrayOfStrings === null) {
+    // refs.btnWatched.classList.remove('btn-active-page');
+    return;
+  }
+
   renderFromLocalStorage(arrayOfStrings);
   refs.btnQueue.classList.add('btn-active-page');
   refs.btnWatched.classList.remove('btn-active-page');
@@ -25,8 +37,8 @@ function renderFromLocalStorage(arrayOfStrings) {
   });
 
   hideLoader();
-  const containerFilmRef = document.querySelector('[data-cont="container"]');
 
+  const containerFilmRef = document.querySelector('[data-cont="container"]');
   containerFilmRef.innerHTML = cardList(movieDataList);
 }
 

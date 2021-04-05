@@ -54,14 +54,22 @@ function saveToWatched(movie) {
 
 function saveToQueue(movie) {
   let storage = JSON.parse(localStorage.getItem('queue'));
-  const { title, genres, voteAverage, imgSrc, releaseDate } = movie;
+  const {
+    title,
+    genres,
+    release_date,
+    backdrop_path,
+    poster_path,
+    vote_average,
+  } = movie;
 
   const string = JSON.stringify({
     title,
     genres,
-    voteAverage,
-    imgSrc,
-    releaseDate,
+    release_date,
+    backdrop_path,
+    poster_path,
+    vote_average,
   });
 
   const index = storage.indexOf(string);

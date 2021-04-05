@@ -113,8 +113,13 @@ function goUp() {
 // init link myLibrary - torkotiuk
 import cardList from '../templates/film-list.hbs';
 import { movieAdapterModal } from './helpers/index';
+
 function getWatched() {
   let arrayOfStrings = JSON.parse(localStorage.getItem('watched'));
+  if (arrayOfStrings === null) {
+    refs.btnWatched.classList.remove('btn-active-page');
+    return;
+  }
   renderFromLocalStorage(arrayOfStrings);
   refs.btnWatched.classList.add('btn-active-page');
   refs.btnQueue.classList.remove('btn-active-page');
