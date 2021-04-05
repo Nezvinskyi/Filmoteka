@@ -18,3 +18,4 @@ import './js/components/pagination';
 import './js/team-modal';
 //пример рефы
 import './js/refs-example';
+import './js/auth';
