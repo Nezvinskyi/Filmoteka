@@ -87,7 +87,7 @@ export default class MoviesApi {
 
   //----------------------------------
   async getSearchYear() {
-    const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&primary_release_year=${this._searchYear}`;
+    const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&primary_release_year=${this._searchYear}&page=${pageCounter.page}`;
     //&with_genres=14 --жанры по ID
     //&primary_release_year=2020-- фильмы выпущеные в конкретном году
     const searchYear = await this.fetch(url);
@@ -95,9 +95,8 @@ export default class MoviesApi {
   }
 
   async getSearchGenres() {
-    const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&with_genres=${this._searchGenre}`;
+    const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&include_adult=false&include_video=false&with_genres=${this._searchGenre}&page=${pageCounter.page}`;
     const searchGenres = await this.fetch(url);
-
     return searchGenres; //-поиск по жанру
   }
 
@@ -113,9 +112,7 @@ export default class MoviesApi {
     const url = `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`;
     const { genres } = await this.fetch(url);
     this.genres = genres;
-
     // console.log('возращает массив жанров', genres);
-
     return genres;
   }
 
