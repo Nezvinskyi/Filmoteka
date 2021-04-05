@@ -52,6 +52,26 @@ function onNavClick(event) {
     // console.log('clicked on:', event.target);
     initGallery();
     refs.searchForm.elements.query.value = '';
+    showLoader();
+    refs.libNav.classList.remove('current-page');
+    refs.homeNav.classList.add('current-page');
+    refs.header.classList.remove('library-header');
+    refs.searchForm.classList.remove('visually-hidden');
+    refs.headerBtnWrapper.classList.add('visually-hidden');
+  }
+  if (event.target.dataset.action === 'library') {
+    // !!! если не авторизовано, то модалка регистрации/входа
+
+    refs.homeNav.classList.remove('current-page');
+    refs.libNav.classList.add('current-page');
+    refs.header.classList.add('library-header');
+    refs.searchForm.classList.add('visually-hidden');
+    refs.headerBtnWrapper.classList.remove('visually-hidden');
+    refs.pagination.classList.add('visually-hidden');
+    const initLibraryMarkup = `<span class="library-inittext" style="text-align: center; display: block; margin-top: 25px">There’s nothing here, yet :( You should add something first</span>`;
+    moviesApi.getRefs().gallery.innerHTML = initLibraryMarkup;
+
+    getWatched();
   }
 }
 
@@ -255,3 +275,70 @@ export default function searchGenreDate(e) {
     return;
   }
 }
+
+function getWatched() {
+  let keys = Object.keys(localStorage);
+  let arr = [];
+  for (let key of keys) {
+    let keyName = `${key}`;
+    arr.push(keyName);
+  }
+  const localStorageKeys = arr.map(item => {
+    if (item === 'watched' || item === 'queue') {
+      let data = item;
+      return data;
+    }
+  });
+
+  if (localStorageKeys.includes('watched')) {
+    let arrayOfStrings = JSON.parse(localStorage.getItem('watched'));
+
+    if (arrayOfStrings === null && arrayOfStrings.length === 0) {
+      refs.btnWatched.classList.remove('btn-active-page');
+      const containerFilmRef = document.querySelector(
+        '[data-cont="container"]',
+      );
+      const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing in the QUEUE, yet :( You should add something first</span>`;
+      containerFilmRef.innerHTML = initLibraryMarkup;
+    } else {
+      let arrayOfStrings5 = JSON.parse(localStorage.getItem('watched'));
+      refs.btnWatched.classList.add('btn-active-page');
+      refs.btnQueue.classList.remove('btn-active-page');
+      renderFromLocalStorage(arrayOfStrings5);
+      return;
+    }
+  } else if (localStorageKeys.includes('queue')) {
+    refs.btnWatched.classList.remove('btn-active-page');
+    let arrayOfStrings = JSON.parse(localStorage.getItem('queue'));
+    if (arrayOfStrings === null && arrayOfStrings.length === 0) {
+      refs.btnWatched.classList.remove('btn-active-page');
+      const containerFilmRef = document.querySelector(
+        '[data-cont="container"]',
+      );
+      const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing here, yet :( You should add something first</span>`;
+      containerFilmRef.innerHTML = initLibraryMarkup;
+    } else {
+      let arrayOfStrings5 = JSON.parse(localStorage.getItem('queue'));
+      refs.btnQueue.classList.add('btn-active-page');
+      refs.btnWatched.classList.remove('btn-active-page');
+      renderFromLocalStorage(arrayOfStrings5);
+    }
+  } else {
+    refs.btnQueue.classList.remove('btn-active-page');
+    refs.btnWatched.classList.remove('btn-active-page');
+  }
+}
+
+function renderFromLocalStorage(arrayOfStrings) {
+  const movieDataList = arrayOfStrings.map(item => {
+    let data = movieAdapterModal(JSON.parse(item));
+    return data;
+  });
+  const containerFilmRef = document.querySelector('[data-cont="container"]');
+  containerFilmRef.innerHTML = cardList(movieDataList);
+}
+refs.btnWatched.addEventListener('click', getWatched);
+
+import { AuthApp } from './auth';
+console.log(AuthApp);
+console.log('Андрей, твоя точка входа - функция onNavClick.  строка 63');
