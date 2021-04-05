@@ -1,3 +1,5 @@
+import { onError, onFetchError, onInfo } from '../components/notifications';
+
 export function onClickToWatchedHandler(movie) {
   const btnAddToWatchedRef = document.querySelector('.btn-js-addtowatched');
   btnAddToWatchedRef.addEventListener('click', clickBtn);
@@ -75,7 +77,9 @@ function saveToQueue(movie) {
   const index = storage.indexOf(string);
   if (index > -1) {
     storage.splice(index, 1);
+    onInfo('Deleted from queue');
   } else {
+    onInfo('Added to queue');
     storage.push(string);
   }
   const stringFromObj = JSON.stringify(storage);
