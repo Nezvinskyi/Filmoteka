@@ -29,6 +29,8 @@ const galleryRef = document.querySelector('.gallery-js');
 initGallery();
 
 async function initGallery() {
+  pageCounter.page = 1;
+  paginator.set('current', 1);
   try {
     const { results, total_results } = await moviesApi.getPopularMovies();
     renderData(results);
@@ -49,6 +51,7 @@ function onNavClick(event) {
   if (event.target.dataset.action === 'home' || event.target.closest('svg')) {
     console.log('clicked on:', event.target);
     initGallery();
+    refs.searchForm.elements.query.value = '';
   }
 }
 
@@ -88,6 +91,7 @@ async function onSearch(event) {
 }
 
 function renderData(results) {
+  refs.pagination.classList.remove('visually-hidden');
   // galleryRef.innerHTML = '';
   const movieDataList = results.map(item => {
     return movieAdapter(item);

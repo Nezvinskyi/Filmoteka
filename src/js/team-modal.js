@@ -1,6 +1,5 @@
 import * as basicLightbox from 'basiclightbox';
 import 'basicLightbox/dist/basicLightbox.min.css';
-import teamModalTpl from '../templates/team-modal.hbs';
 import markup from '../html/team-modal.html';
 
 // const markup = teamModalTpl(img);

@@ -52,8 +52,10 @@ function onNavClick(event) {
     refs.header.classList.add('library-header');
     refs.searchForm.classList.add('visually-hidden');
     refs.headerBtnWrapper.classList.remove('visually-hidden');
-    const initLibraryMarkup = `<span style="margin: 0 auto">There’s nothing here, yet :( You should add something first</span>`;
+    refs.pagination.classList.add('visually-hidden');
+    const initLibraryMarkup = `<span style="text-align: center; display: block; margin-top: 25px">There’s nothing here, yet :( You should add something first</span>`;
     moviesApi.getRefs().gallery.innerHTML = initLibraryMarkup;
+    getWatched();
   }
 }
 
@@ -106,3 +108,29 @@ window.addEventListener('scroll', function () {
 function goUp() {
   window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 }
+
+// =================================================================
+// init link myLibrary - torkotiuk
+import cardList from '../templates/film-list.hbs';
+import { movieAdapterModal } from './helpers/index';
+
+function getWatched() {
+  let arrayOfStrings = JSON.parse(localStorage.getItem('watched'));
+  if (arrayOfStrings === null) {
+    refs.btnWatched.classList.remove('btn-active-page');
+    return;
+  }
+  renderFromLocalStorage(arrayOfStrings);
+  refs.btnWatched.classList.add('btn-active-page');
+  refs.btnQueue.classList.remove('btn-active-page');
+}
+function renderFromLocalStorage(arrayOfStrings) {
+  const movieDataList = arrayOfStrings.map(item => {
+    let data = movieAdapterModal(JSON.parse(item));
+    return data;
+  });
+  const containerFilmRef = document.querySelector('[data-cont="container"]');
+  containerFilmRef.innerHTML = cardList(movieDataList);
+}
+refs.btnWatched.addEventListener('click', getWatched);
+// =================================================================
