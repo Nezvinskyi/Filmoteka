@@ -16,14 +16,26 @@
 //      }
 // }
 
-.genre-modal {
-  color: $primary-color;
+.genre-id-modal {
+  cursor: pointer;
   text-decoration: none;
 
-  :hover,
-  :focus {
-    color: $accent-color;
-  }
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: $primary-color;
+
+  transition-property: color, transform;
+  transition-duration: 500ms;
+  transition-timing-function: linear;
+  transition-delay: 0;
+}
+
+.genre-id-modal:hover,
+.genre-id-modal:focus {
+  transform: scale(1.1);
+  color: rgb(16, 116, 33);
 }
 
 .is-open {
@@ -71,10 +83,7 @@
 
   cursor: pointer;
 
-  :hover,
-  :focus {
-    cursor: pointer;
-  }
+ 
 
   @media screen and (min-width: 320px) and (max-width: 1023px) {
     width: 100%;
@@ -97,10 +106,8 @@
     outline-style: none;
 
     position: absolute;
-    :hover,
-    :focus {
-      cursor: pointer;
-    }
+    cursor: pointer;
+  
 
     @media screen and (min-width: 320px) and (max-width: 767px) {
       top: -28px;
@@ -129,18 +136,23 @@
     transform: translate(0px, 200px);
     width: 280px;
     min-height: 400px;
+    padding: 1px 20px 28px 20px;
+
   }
 
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     display: flex;
     width: 618px;
     min-height: 400px;
+    padding: 43px 30px 40px 30px;
   }
 
   @media screen and (min-width: 1024px) {
     display: flex;
     width: 882px;
     min-height: 400px;
+    padding: 50px 30px 40px 30px;
+
   }
 
   &-container {
@@ -149,17 +161,15 @@
     height: auto;
 
     @media screen and (min-width: 320px) and (max-width: 767px) {
-      padding: 1px 20px 28px 20px;
     }
 
     @media screen and (min-width: 768px) and (max-width: 1023px) {
       display: flex;
-      margin: 43px 30px 40px 30px;
+      
     }
 
     @media screen and (min-width: 1024px) {
       display: flex;
-      margin: 50px 30px 40px 30px;
     }
   }
 
@@ -200,12 +210,10 @@
 
     @media screen and (min-width: 768px) and (max-width: 1023px) {
       width: 264px;
-      max-height: 416px;
     }
 
     @media screen and (min-width: 1024px) {
       width: 396px;
-      max-height: 478px;
     }
   }
 
@@ -289,10 +297,8 @@
       display: inline-flex;
       margin-left: auto;
 
-      :hover,
-      :focus {
-        cursor: pointer;
-      }
+      cursor: pointer;
+     
     }
 
     &-close {
@@ -304,13 +310,7 @@
       height: 30px;
       background-color: transparent;
 
-      outline-style: none;
-
-      :hover,
-      :focus {
-        cursor: pointer;
-        outline-style: none;
-      }
+      cursor: pointer;
 
       &_container {
         position: absolute;
