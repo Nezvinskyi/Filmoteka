@@ -49,7 +49,7 @@ async function initGallery() {
 
 function onNavClick(event) {
   if (event.target.dataset.action === 'home' || event.target.closest('svg')) {
-    console.log('clicked on:', event.target);
+    // console.log('clicked on:', event.target);
     initGallery();
   }
 }
@@ -197,6 +197,10 @@ async function initGenreGallery(e) {
   pageCounter.page = 1;
   paginator.set('current', 1);
 
+  // clear active status of library buttons
+  refs.btnWatched.classList.remove('btn-active-page');
+  refs.btnQueue.classList.remove('btn-active-page');
+
   const genre = await e.target;
   moviesApi.searchGenre = genre.dataset.id;
 
@@ -218,6 +222,10 @@ async function initDateGallery(e) {
   moviesApi.fetchMethod = 'year';
   pageCounter.page = 1;
   paginator.set('current', 1);
+
+  // clear active status of library buttons
+  refs.btnWatched.classList.remove('btn-active-page');
+  refs.btnQueue.classList.remove('btn-active-page');
 
   try {
     const date = await e.target.textContent;
