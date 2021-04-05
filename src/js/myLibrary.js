@@ -7,8 +7,15 @@ const refs = getRefs();
 function getWatched() {
   let arrayOfStrings = JSON.parse(localStorage.getItem('watched'));
 
-  if (arrayOfStrings === null) {
+  if (arrayOfStrings === null || arrayOfStrings.length === 0) {
+    const containerFilmRef = document.querySelector('[data-cont="container"]');
+    // const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing in WATCHED library :( You should add something first or <span class="library-choosetext">choose QUEUE</span> by clicking the button up</span>`;
+    const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing <span class="library-choosetext">in the WATCHED</span>, yet :( You should add something first</span>`;
+
+    containerFilmRef.innerHTML = initLibraryMarkup;
     refs.btnWatched.classList.remove('btn-active-page');
+    refs.btnQueue.classList.remove('btn-active-page');
+
     return;
   }
 
@@ -20,8 +27,12 @@ function getWatched() {
 function getQueue() {
   let arrayOfStrings = JSON.parse(localStorage.getItem('queue'));
 
-  if (arrayOfStrings === null) {
-    // refs.btnWatched.classList.remove('btn-active-page');
+  if (arrayOfStrings === null || arrayOfStrings.length === 0) {
+    refs.btnWatched.classList.remove('btn-active-page');
+
+    const containerFilmRef = document.querySelector('[data-cont="container"]');
+    const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing <span class="library-choosetext">in the QUEUE</span>, yet :( You should add something first</span>`;
+    containerFilmRef.innerHTML = initLibraryMarkup;
     return;
   }
 
@@ -35,6 +46,8 @@ function renderFromLocalStorage(arrayOfStrings) {
     let data = movieAdapterModal(JSON.parse(item));
     return data;
   });
+
+  // console.log(movieDataList);
 
   hideLoader();
 

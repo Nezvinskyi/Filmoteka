@@ -292,3 +292,20 @@
 .scroll-up:hover {
   background-color: $accent-color;
 }
+
+.library-inittext {
+  padding-bottom: 24px;
+  font-family: Roboto, sans-serif;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.17;
+  color: #ff8d0b;
+
+  // margin: 0 0.5rem;
+  animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 3s; /* don't forget to set a duration! */
+}
+
+.library-choosetext {
+  color: green;
+}
