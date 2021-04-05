@@ -8,9 +8,10 @@ import './js/render-card';
 import './js/modal';
 
 import './js/gallery';
-import './js/helpers/index';
+import './js/video';
+
 import './js/loader';
-// Яна, а надо ли сюда импортировать хелперы?
+// Яна, а надо ли сюда импортировать хелперы? --- Не надо)
 
 import './js/myLibrary';
 

@@ -19,6 +19,12 @@ const convertYear = date => {
   return new Date(date).getFullYear();
 };
 
+function getVideoKey(key) {
+  let urlVideo = `http://www.youtube.com/embed/${key}?autoplay=1&origin=http://example.com`;
+
+  return urlVideo;
+}
+
 export function getGenreNames(genre_ids) {
   const genreNames = [];
 
@@ -79,6 +85,10 @@ export const movieAdapter = ({
   genreIdThird: genre_ids[2],
 
   noPoster: generatePoster(),
+});
+
+export const movieAdapterVideo = ({ key }) => ({
+  keyVideo: getVideoKey(key),
 });
 
 export const movieAdapterModal = ({

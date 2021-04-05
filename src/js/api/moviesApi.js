@@ -72,6 +72,8 @@ export default class MoviesApi {
     refs.header = document.querySelector('.header');
     refs.divContainer = document.querySelector('div[data-cont]');
     refs.listGenreModal = document.querySelector('.modal-card_list_right');
+    refs.divModalVideo = document.querySelector('#modal-youtube');
+
     return refs;
   }
 
