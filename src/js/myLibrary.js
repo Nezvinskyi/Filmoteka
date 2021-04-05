@@ -1,29 +1,33 @@
 import cardList from '../templates/film-list.hbs';
 import { hideLoader, showLoader } from './loader';
+import { movieAdapterModal } from './helpers/index';
 import getRefs from './get-refs';
 const refs = getRefs();
 
 function getWatched() {
   let arrayOfStrings = JSON.parse(localStorage.getItem('watched'));
   renderFromLocalStorage(arrayOfStrings);
+  refs.btnWatched.classList.add('btn-active-page');
+  refs.btnQueue.classList.remove('btn-active-page');
 }
 
 function getQueue() {
   let arrayOfStrings = JSON.parse(localStorage.getItem('queue'));
   renderFromLocalStorage(arrayOfStrings);
+  refs.btnQueue.classList.add('btn-active-page');
+  refs.btnWatched.classList.remove('btn-active-page');
 }
 
 function renderFromLocalStorage(arrayOfStrings) {
   const movieDataList = arrayOfStrings.map(item => {
-    console.log(JSON.parse(item));
-    return JSON.parse(item);
+    let data = movieAdapterModal(JSON.parse(item));
+    return data;
   });
 
   hideLoader();
-  const containerFilmRef = document.querySelector('.container-film');
-  containerFilmRef.innerHTML = '';
+  const containerFilmRef = document.querySelector('[data-cont="container"]');
 
-  refs.header.insertAdjacentHTML('afterend', cardList(movieDataList));
+  containerFilmRef.innerHTML = cardList(movieDataList);
 }
 
 refs.btnWatched.addEventListener('click', getWatched);
