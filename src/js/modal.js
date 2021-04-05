@@ -27,7 +27,11 @@ function onOpenModal(callback) {
 
   closeModalBtn.addEventListener('click', closeModal);
 
-  moviesApi.getRefs().listGenreModal.addEventListener('click', searchGenreDate);
+  // moviesApi.getRefs().listGenreModal.addEventListener('click', closeModal);
+  moviesApi.getRefs().listGenreModal.addEventListener('click', event => {
+    searchGenreDate(event);
+    closeModal();
+  });
 }
 
 const refs = getRefs();
