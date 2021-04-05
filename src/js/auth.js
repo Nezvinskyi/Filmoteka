@@ -79,10 +79,6 @@ export class AuthApp {
   }
 
   static displaysRegistrationForm() {
-    console.log(1);
-    this.watchAuth();
     // onOpenModal(markupAuth);
   }
 }
-
-AuthApp.displaysRegistrationForm();
