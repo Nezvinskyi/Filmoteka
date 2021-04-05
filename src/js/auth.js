@@ -27,7 +27,7 @@ export class AuthApp {
     firebase.auth().createUserWithEmailAndPassword(email, password);
   }
 
-  static singInAuth() {
+  static signInAuth(email, password) {
     firebase.auth().signInWithEmailAndPassword(email, password);
   }
 
