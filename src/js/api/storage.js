@@ -47,8 +47,10 @@ function saveToWatched(movie) {
   const index = storage.indexOf(string);
   if (index > -1) {
     storage.splice(index, 1);
+    onInfo('Deleted from watched');
   } else {
     storage.push(string);
+    onInfo('Added to watched');
   }
   const stringFromObj = JSON.stringify(storage);
   let endStorage = JSON.parse(stringFromObj);
@@ -83,8 +85,8 @@ function saveToQueue(movie) {
     storage.splice(index, 1);
     onInfo('Deleted from queue');
   } else {
-    onInfo('Added to queue');
     storage.push(string);
+    onInfo('Added to queue');
   }
   const stringFromObj = JSON.stringify(storage);
   let endStorage = JSON.parse(stringFromObj);
