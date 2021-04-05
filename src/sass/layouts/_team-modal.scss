@@ -1,18 +1,22 @@
 .basicLightbox {
   overflow-y: scroll;
 }
-// .team-modal-container {
-//   padding-top: 0px;
-// }
+.team-modal-container {
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    width: 240px;
+    height: 800px;
+  }
+}
 
 .modal-team {
-  // cursor: pointer;
-  // transform: translate(0px, 400px);
   @media screen and (min-width: 320px) and (max-width: 767px) {
-    // padding-top: 70px;
     width: 240px;
-    transform: translate(0px, 200px);
-    height: 1400px;
+    transform: translate(0px, 160px);
+    height: 800px;
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    transform: translate(0px, 250px);
+    width: 400px;
   }
 }
 
@@ -23,16 +27,11 @@
   border-radius: 5px;
 
   @media screen and (min-width: 320px) and (max-width: 767px) {
-    // padding-top: 70px;
     width: 240px;
-    // transform: translate(0px, 400px);
-    // height: 1400px;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     width: 400px;
-    // height: 1200px;
-    border-radius: 5px;
   }
 
   @media screen and (min-width: 1024px) {
@@ -71,10 +70,6 @@
   height: 90px;
   width: 90px;
   border-radius: 50%;
-  // &:hover,
-  // &:focus {
-  //   transform: scale(1.2);
-  // }
 }
 
 .management-list-subtitle {
@@ -93,117 +88,6 @@
     font-size: 14px;
   }
 }
-// .modal-team {
-//   position: absolute;
-//   z-index: 999;
-//   left: 50%;
-//   font-family: $primary-font;
-//   font-style: normal;
-//   color: $primary-color;
-//   background-color: rgb(235, 208, 119);
-//   border-radius: 10px;
-
-//   @media screen and (min-width: 320px) and (max-width: 767px) {
-//     width: 280px;
-//     height: 1700px;
-//     transform: translate(-50%, 0px);
-//   }
-
-//   @media screen and (min-width: 768px) and (max-width: 1023px) {
-//     display: flex;
-//     width: 618px;
-//     height: 600px;
-//     transform: translate(-50%, 50px);
-//     overflow-y: auto;
-//   }
-
-//   @media screen and (min-width: 1024px) {
-//     display: flex;
-//     width: 882px;
-//     height: 600px;
-//     transform: translate(-50%, 0px);
-//     // overflow-y: hidden;
-//   }
-// }
-
-// .team-modal-container {
-//   margin: 0 auto;
-//   margin-top: 40px;
-//   // padding-top: 10px;
-//   // outline: 1px solid green;
-//   justify-content: center;
-// }
-
-// .team-modal-list {
-//   // margin-top: 20px;
-//   margin: 0 auto;
-//   display: flex;
-//   flex-wrap: wrap;
-//   // outline: 1px solid purple;
-
-//   @media screen and (max-width: (767px)) {
-//     margin-top: 70px;
-//     width: 240px;
-//   }
-
-//   @media screen and (min-width: 768px) {
-//     width: 600px;
-//   }
-
-//   @media screen and (min-width: 1024px) {
-//     width: 800px;
-//   }
-// }
-// .teamlead-modal-item {
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   width: calc(100% / 1);
-// }
-// .team-modal-item {
-//   // position: relative;
-//   display: flex;
-//   flex-direction: column;
-//   align-items: center;
-//   margin: 10px 40px;
-//   width: calc((100% - 80px) / 1);
-
-//   @media screen and (min-width: 768px) {
-//     width: calc((100% - 160px) / 2);
-//   }
-
-//   @media screen and (min-width: 1024px) {
-//     margin: 15px 30px;
-
-//     width: calc((100% - 240px) / 4);
-//   }
-// }
-
-// .management-list-subtitle {
-//   margin-top: 5px;
-//   text-align: center;
-//   font-family: $primary-font;
-//   font-style: normal;
-// }
-
-// .management-list-description {
-//   margin-top: 5px;
-//   text-align: center;
-//   font-family: $primary-font;
-//   font-style: italic;
-//   color: #ff6b08;
-// }
-
-// .workers-photo {
-//   margin-bottom: 10px;
-//   height: 100px;
-//   width: 100px;
-//   border-radius: 50%;
-//   &:hover,
-//   &:focus {
-//     transform: scale(1.2);
-//   }
-// }
 
 .modal-team-close-button {
   position: absolute;
