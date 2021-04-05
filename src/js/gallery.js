@@ -51,6 +51,7 @@ function onNavClick(event) {
   if (event.target.dataset.action === 'home' || event.target.closest('svg')) {
     console.log('clicked on:', event.target);
     initGallery();
+    refs.searchForm.elements.query.value = '';
   }
 }
 
