@@ -57,11 +57,11 @@ function onFetchError() {
   });
 }
 
-function onQueryInfo(total_result) {
+function onInfo(message) {
   notyf.open({
     type: 'info',
-    message: `found ${total_result} movies`,
+    message: message,
   });
 }
 
-export { onError, onFetchError, onQueryInfo };
+export { onError, onFetchError, onInfo };
