@@ -101,7 +101,7 @@ function clearInput(event) {
 refs.scrollUpEl.addEventListener('click', goUp);
 
 window.addEventListener('scroll', function () {
-  if (pageYOffset > 700) {
+  if (pageYOffset > 250) {
     refs.scrollUpEl.style.opacity = '1';
   } else {
     refs.scrollUpEl.style.opacity = '0';
