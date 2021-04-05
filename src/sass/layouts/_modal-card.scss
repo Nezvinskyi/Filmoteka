@@ -16,9 +16,17 @@
 //      }
 // }
 
+.genre-modal {
+  color: $primary-color;
+  text-decoration: none;
+
+  :hover, :focus {
+    color: $accent-color;
+  }
+}
 
 .is-open {
-  background-color: white;
+  background-color: $secondary-color;
   outline: 1px solid blue;
   
   @media screen and (min-width: 320px) and (max-width: 767px) {
@@ -44,6 +52,23 @@
   margin: 10px auto;
   padding: 10px;
   border: 1px solid black;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+
+  box-sizing: border-box;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0);
+
+  font-family: $primary-font;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+
+  cursor: pointer;
   
   @media screen and (min-width: 320px) and (max-width: 1023px) {
     width: 100%;
@@ -60,25 +85,31 @@
 
     width: 30px;
     height: 30px;
-    background-color: transparent;
-
-      position: absolute;
-
-      @media screen and (min-width: 320px) and (max-width: 767px) {
-        top: 12px;
-        left: 240px;
-      }
+    background-color: white;
+    outline-style: none;
 
 
-      @media screen and (min-width: 768px) and (max-width: 1023px) {
-        top: 6px;
-        left: 583px;
-      }
+    position: absolute;
+    :hover,
+    :focus {
+      cursor: pointer;
+    }
 
-      @media screen and (min-width: 1024px) {
-        top: 10px;
-        left: 843px;
-      }
+    @media screen and (min-width: 320px) and (max-width: 767px) {
+      top: -28px;
+      right: -15px;
+    }
+
+
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      top: -28px;
+      right: -15px;
+    }
+
+    @media screen and (min-width: 1024px) {
+      top: -28px;
+      right: -15px;
+    }
 
   }
 }
@@ -92,19 +123,19 @@
   @media screen and (min-width: 320px) and (max-width: 767px) {
     transform: translate(0px, 200px);
     width: 280px;
-    // height: 958px;
+    min-height: 400px;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     display: flex;
     width: 618px;
-    height: 562px;
+    min-height: 400px;
   }
 
   @media screen and (min-width: 1024px) {
     display: flex;
     width: 882px;
-    height: 600px;
+    min-height: 400px;
   }
 
   &-container {
@@ -131,7 +162,10 @@
     // outline: 1px solid $primary-color;
     display: flex;
     align-items: center;
+    
     overflow: hidden;
+
+    border-radius: 5px;
 
     @media screen and (min-width: 320px) and (max-width: 767px) {
       width: 240px;
@@ -266,6 +300,15 @@
       width: 30px;
       height: 30px;
       background-color: transparent;
+
+      outline-style: none;
+
+      :hover, :focus {
+        cursor: pointer;
+        outline-style: none;
+      }
+      
+
 
       &_container {
         position: absolute;
