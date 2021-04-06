@@ -8,6 +8,7 @@ function getWatched() {
   let arrayOfStrings = JSON.parse(localStorage.getItem('watched'));
 
   if (arrayOfStrings === null || arrayOfStrings.length === 0) {
+    hideLoader();
     watchedEmptyHandler();
     return;
   }
@@ -18,14 +19,17 @@ function getWatched() {
 }
 
 function getQueue() {
+  showLoader();
   let arrayOfStrings = JSON.parse(localStorage.getItem('queue'));
 
   if (arrayOfStrings === null || arrayOfStrings.length === 0) {
+    hideLoader();
     queueEmptyHandler();
     return;
   }
 
   renderFromLocalStorage(arrayOfStrings);
+  hideLoader();
   btnQueue.classList.add('btn-active-page');
   btnWatched.classList.remove('btn-active-page');
 }
@@ -51,8 +55,6 @@ function renderFromLocalStorage(arrayOfStrings) {
     let data = movieAdapterModal(JSON.parse(item));
     return data;
   });
-
-  hideLoader();
 
   const containerFilmRef = document.querySelector('[data-cont="container"]');
   containerFilmRef.innerHTML = cardList(movieDataList);
