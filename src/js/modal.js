@@ -7,7 +7,7 @@ import searchGenreDate from './gallery';
 import * as basicLightbox from 'basiclightbox';
 import 'basicLightbox/dist/basicLightbox.min.css';
 
-function onOpenModal(callback) {
+export function onOpenModal(callback) {
   const instance = basicLightbox.create(callback);
   refs.bodyRef.classList.add('overflow-hidden');
   instance.show();

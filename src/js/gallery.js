@@ -61,17 +61,20 @@ function onNavClick(event) {
   }
   if (event.target.dataset.action === 'library') {
     // !!! если не авторизовано, то модалка регистрации/входа
+    if (!AuthApp.userId) {
+      AuthApp.openModalAuth();
+    } else {
+      refs.homeNav.classList.remove('current-page');
+      refs.libNav.classList.add('current-page');
+      refs.header.classList.add('library-header');
+      refs.searchForm.classList.add('visually-hidden');
+      refs.headerBtnWrapper.classList.remove('visually-hidden');
+      refs.pagination.classList.add('visually-hidden');
+      const initLibraryMarkup = `<span class="library-inittext" style="text-align: center; display: block; margin-top: 25px">There’s nothing here, yet :( You should add something first</span>`;
+      moviesApi.getRefs().gallery.innerHTML = initLibraryMarkup;
 
-    refs.homeNav.classList.remove('current-page');
-    refs.libNav.classList.add('current-page');
-    refs.header.classList.add('library-header');
-    refs.searchForm.classList.add('visually-hidden');
-    refs.headerBtnWrapper.classList.remove('visually-hidden');
-    refs.pagination.classList.add('visually-hidden');
-    const initLibraryMarkup = `<span class="library-inittext" style="text-align: center; display: block; margin-top: 25px">There’s nothing here, yet :( You should add something first</span>`;
-    moviesApi.getRefs().gallery.innerHTML = initLibraryMarkup;
-
-    getWatched();
+      getWatched();
+    }
   }
 }
 
