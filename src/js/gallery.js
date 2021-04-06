@@ -1,7 +1,7 @@
 import moviesApi from './render-card';
 import cardList from '../templates/film-list.hbs';
 import getRefs from '../js/get-refs';
-import { movieAdapter } from './helpers/index';
+import { movieAdapter, movieAdapterModal } from './helpers/index';
 import { addEventListenerToGallery } from './modal-event-listener';
 import { hideLoader, showLoader } from './loader';
 import { onError, onFetchError, onInfo } from './components/notifications';
