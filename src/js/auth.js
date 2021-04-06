@@ -21,7 +21,7 @@ firebase.initializeApp(firebaseConfig);
 // -----------------------------------------
 
 export class AuthApp {
-  static isLoggedIn = 'hello';
+  static userId = null;
 
   static createAuth(email, password) {
     firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -33,22 +33,23 @@ export class AuthApp {
 
   static watchAuth() {
     firebase.auth().onAuthStateChanged(user => {
-      console.log('user', user);
-      console.log('Сработал AthApp.checksAuth');
+      // console.log(user);
       if (user) {
         console.log('Вошел');
-        console.log('isLoggedIn + до', AuthApp.isLoggedIn);
-        this.isLoggedIn = true;
-        console.log('isLoggedIn + после', AuthApp.isLoggedIn);
+        this.userId = user.uid;
+        console.log('userId ', this.userId);
+
+        // получаем данные о библиотеке для загрузки в локал сторедж(id фильма)
       } else {
         console.log('Не вошел');
-        console.log('isLoggedIn - до', AuthApp.isLoggedIn);
-        this.isLoggedIn = false;
-        console.log('isLoggedIn - после', AuthApp.isLoggedIn);
-        alert('Зарегистрируйтесь');
-        const email = prompt('Введите свой email');
-        const password = prompt('Введите пароль');
-        this.createAuth(email, password);
+        this.userId = null;
+        console.log('userId ', this.userId);
+        // console.log(this.openModalAuth);
+        // this.openModalAuth();
+        // alert('Зарегистрируйтесь');
+        // const email = prompt('Введите свой email');
+        // const password = prompt('Введите пароль');
+        // this.createAuth(email, password);
       }
     });
   }
@@ -78,7 +79,21 @@ export class AuthApp {
       });
   }
 
-  static displaysRegistrationForm() {
-    // onOpenModal(markupAuth);
+  static openModalAuth() {
+    onOpenModal(markupAuth);
+    const formRef = document.querySelector('.auth-form');
+
+    formRef.addEventListener('submit', onSubmitInForm);
   }
 }
+
+function onSubmitInForm(event) {
+  event.preventDefault();
+  const email = event.currentTarget.elements[0].value;
+  const password = event.currentTarget.elements[1].value;
+  AuthApp.createAuth(email, password);
+  // закрыть модалку
+  // щчистить модалку
+}
+
+AuthApp.watchAuth();
