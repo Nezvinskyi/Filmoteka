@@ -132,24 +132,17 @@ function setupPaginationBtns(total_results) {
   // скрыть крайние на краях диапазона
   const firstBtnRef = document.querySelector('[data-nav="first"]');
   const lastBtnRef = document.querySelector('[data-nav="last"]');
-  // const btnsRefs = document.querySelectorAll('.page-btn');
   const btnsNumRefs = document.querySelectorAll('[data-num]');
-  console.log(btnsNumRefs);
 
-  // подсветить текущую кнопку
+  // подсветить текущую кнопку, убрать лишние элементы на краям диапазона
   btnsNumRefs.forEach(el => {
-    console.log(pageCounter.page, el.textContent);
-    // console.log(pageCounter.page);
-
     if (el.textContent == pageCounter.page) {
-      console.log(true);
       el.classList.add('active');
     }
   });
 
   if (pageCounter.page > 3) {
     firstBtnRef.classList.remove('visually-hidden');
-    // firstBtnRef.previousElementSibling.classList.remove('visually-hidden');
   }
   if (pageCounter.page > 4) {
     firstBtnRef.nextElementSibling.classList.remove('visually-hidden');
@@ -179,18 +172,11 @@ function onPaginationClick(e) {
   } else {
     pageCounter.page = e.target.dataset.num;
   }
-  // console.log('pageCounter:>>', pageCounter.page);
   paginator.set('current', pageCounter.page);
-  // console.log(
-  //   'currentPaginationPage:>>',
-  //   paginator.getPaginationData().current,
-  // );
 
   if (moviesApi.fetchMethod === 'popular') {
-    // console.log('render popular', pageCounter.page);
     renderPopularGallery();
   } else if (moviesApi.fetchMethod === 'query') {
-    // console.log('render query', pageCounter.page);
     renderSearchGallery();
   } else if (moviesApi.fetchMethod === 'genre') {
     renderGenreGallery();
@@ -198,31 +184,6 @@ function onPaginationClick(e) {
     renderDateGallery();
   }
   setupPaginationBtns(paginator.getPaginationData().totalResult);
-
-  // перенесено в setupPaginationBtns
-  // // подсветить активную кнопку
-  // // скрыть крайние на краях диапазона
-  // const firstBtnRef = document.querySelector('[data-nav="first"]');
-  // const lastBtnRef = document.querySelector('[data-nav="last"]');
-  // const btnsRefs = document.querySelectorAll('.page-btn');
-
-  // btnsRefs.forEach(el => {
-  //   if (el.textContent === pageCounter.page) {
-  //     el.classList.add('active');
-  //   }
-  // });
-
-  // if (pageCounter.page > 4) {
-  //   firstBtnRef.classList.remove('visually-hidden');
-  //   firstBtnRef.nextElementSibling.classList.remove('visually-hidden');
-  //   // firstBtnRef.previousElementSibling.classList.remove('visually-hidden');
-  // }
-
-  // if (pageCounter.page > paginator.getPaginationData().last - 3) {
-  //   lastBtnRef.classList.add('visually-hidden');
-  //   // lastBtnRef.nextElementSibling.classList.add('visually-hidden');
-  //   lastBtnRef.previousElementSibling.classList.add('visually-hidden');
-  // }
 }
 
 async function renderSearchGallery() {
