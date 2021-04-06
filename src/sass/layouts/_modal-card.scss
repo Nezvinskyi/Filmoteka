@@ -367,6 +367,6 @@
 
 .genre-id-modal:hover,
 .genre-id-modal:focus {
-  font-size: 14px;
-  color: #ff6b08;
+  color: $accent-color;
+  text-decoration: underline;
 }
