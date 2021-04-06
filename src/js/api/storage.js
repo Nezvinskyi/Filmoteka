@@ -53,9 +53,9 @@ function saveToWatched(movie) {
     onInfo('Added to watched');
   }
   const stringFromObj = JSON.stringify(storage);
-  let endStorage = JSON.parse(stringFromObj);
+  // let endStorage = JSON.parse(stringFromObj);
   localStorage.setItem('watched', stringFromObj);
-  return endStorage;
+  // return endStorage;
 }
 
 function saveToQueue(movie) {
@@ -89,7 +89,7 @@ function saveToQueue(movie) {
     onInfo('Added to queue');
   }
   const stringFromObj = JSON.stringify(storage);
-  let endStorage = JSON.parse(stringFromObj);
+  // let endStorage = JSON.parse(stringFromObj);
   localStorage.setItem('queue', stringFromObj);
-  return endStorage;
+  // return endStorage;
 }
