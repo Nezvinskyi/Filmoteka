@@ -17,7 +17,7 @@ export function onOpenModal(callback) {
 
   const closeModal = () => {
     instance.close();
-    refs.bodyRef.classList.remove('overflow-hidden')
+    refs.bodyRef.classList.remove('overflow-hidden');
     window.removeEventListener('keydown', escCloseModal);
   };
 
@@ -28,10 +28,11 @@ export function onOpenModal(callback) {
   }
 
   closeModalBtn.addEventListener('click', closeModal);
-
-  moviesApi.getRefs().listGenreModal.addEventListener('click', event => {
-    searchGenreDate(event);
-  });
+  if (moviesApi.getRefs().listGenreModal) {
+    moviesApi.getRefs().listGenreModal.addEventListener('click', event => {
+      searchGenreDate(event);
+    });
+  }
 }
 
 const refs = getRefs();
