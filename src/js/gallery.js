@@ -270,7 +270,9 @@ export default function searchGenreDate(e) {
   }
 }
 
+// localStorage check and first render from localStorage
 function getWatched() {
+  const { btnWatched, btnQueue } = getRefs();
   let keys = Object.keys(localStorage);
   let arr = [];
   for (let key of keys) {
@@ -284,42 +286,50 @@ function getWatched() {
     }
   });
 
+  refs.btnQueue.classList.remove('btn-active-page');
+
   if (localStorageKeys.includes('watched')) {
     let arrayOfStrings = JSON.parse(localStorage.getItem('watched'));
 
-    if (arrayOfStrings === null && arrayOfStrings.length === 0) {
-      refs.btnWatched.classList.remove('btn-active-page');
-      const containerFilmRef = document.querySelector(
-        '[data-cont="container"]',
-      );
-      const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing in the QUEUE, yet :( You should add something first</span>`;
-      containerFilmRef.innerHTML = initLibraryMarkup;
+    if (arrayOfStrings.length === 0 && localStorageKeys.includes('queue')) {
+      let arrayOfQueue = JSON.parse(localStorage.getItem('queue'));
+      if (arrayOfQueue.length === 0 || arrayOfQueue === null) {
+        btnWatched.classList.add('btn-active-page');
+        showEmptyLibrary();
+      } else {
+        let arrayOfStrings5 = JSON.parse(localStorage.getItem('queue'));
+        btnQueue.classList.add('btn-active-page');
+        btnWatched.classList.remove('btn-active-page');
+        renderFromLocalStorage(arrayOfStrings5);
+      }
     } else {
       let arrayOfStrings5 = JSON.parse(localStorage.getItem('watched'));
-      refs.btnWatched.classList.add('btn-active-page');
-      refs.btnQueue.classList.remove('btn-active-page');
-      renderFromLocalStorage(arrayOfStrings5);
-      return;
+      if (arrayOfStrings5.length > 0) {
+        btnWatched.classList.add('btn-active-page');
+        btnQueue.classList.remove('btn-active-page');
+        renderFromLocalStorage(arrayOfStrings5);
+        return;
+      } else {
+        btnWatched.classList.add('btn-active-page');
+        showEmptyLibrary();
+        return;
+      }
     }
   } else if (localStorageKeys.includes('queue')) {
-    refs.btnWatched.classList.remove('btn-active-page');
+    btnWatched.classList.remove('btn-active-page');
     let arrayOfStrings = JSON.parse(localStorage.getItem('queue'));
-    if (arrayOfStrings === null && arrayOfStrings.length === 0) {
-      refs.btnWatched.classList.remove('btn-active-page');
-      const containerFilmRef = document.querySelector(
-        '[data-cont="container"]',
-      );
-      const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing here, yet :( You should add something first</span>`;
-      containerFilmRef.innerHTML = initLibraryMarkup;
+    if (arrayOfStrings === null || arrayOfStrings.length === 0) {
+      btnWatched.classList.add('btn-active-page');
+      showEmptyLibrary();
     } else {
       let arrayOfStrings5 = JSON.parse(localStorage.getItem('queue'));
-      refs.btnQueue.classList.add('btn-active-page');
-      refs.btnWatched.classList.remove('btn-active-page');
+      btnQueue.classList.add('btn-active-page');
+      btnWatched.classList.remove('btn-active-page');
       renderFromLocalStorage(arrayOfStrings5);
     }
   } else {
-    refs.btnQueue.classList.remove('btn-active-page');
-    refs.btnWatched.classList.remove('btn-active-page');
+    btnQueue.classList.remove('btn-active-page');
+    btnWatched.classList.add('btn-active-page');
   }
 }
 
@@ -331,7 +341,13 @@ function renderFromLocalStorage(arrayOfStrings) {
   const containerFilmRef = document.querySelector('[data-cont="container"]');
   containerFilmRef.innerHTML = cardList(movieDataList);
 }
-refs.btnWatched.addEventListener('click', getWatched);
+
+function showEmptyLibrary() {
+  const containerFilmRef = document.querySelector('[data-cont="container"]');
+  const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing in <span class="library-choosetext">"My library"</span>, yet :( You should add something first</span>`;
+  containerFilmRef.innerHTML = initLibraryMarkup;
+}
+//
 
 import { AuthApp } from './auth';
 console.log(AuthApp);
