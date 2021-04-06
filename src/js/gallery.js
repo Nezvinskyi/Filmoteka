@@ -127,7 +127,6 @@ function setupPaginationBtns(total_results) {
   const paginationRef = document.querySelector('.pagination-js');
   paginationRef.innerHTML = markup;
   paginationRef.addEventListener('click', onPaginationClick);
-  console.log('подсветка активной кнопки');
 
   // скрыть крайние на краях диапазона
   const firstBtnRef = document.querySelector('[data-nav="first"]');
