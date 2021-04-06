@@ -35,16 +35,16 @@ async function initGallery() {
     const { results, total_results } = await moviesApi.getPopularMovies();
     renderData(results);
     setupPaginationBtns(total_results);
-    hideLoader();
-
     // addEventListenerToGallery();
     // уже ж стоит слушатель?
     // поменять реф!
     moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
     refs.header.addEventListener('click', onNavClick);
   } catch (error) {
+    hideLoader();
     onFetchError();
   }
+  hideLoader();
 }
 
 function onNavClick(event) {
@@ -82,31 +82,29 @@ async function onSearch(event) {
   pageCounter.page = 1;
   paginator.set('current', 1);
 
-  //!!loader start!!
-  // showLoader();
-
   moviesApi.query = event.currentTarget.elements.query.value.trim();
 
   if (moviesApi.query === '') {
-    // hideLoader();
     return onError();
   }
 
   try {
+    showLoader();
     const { results, total_results } = await moviesApi.getMoviesByQuery();
 
     if (results.length === 0) {
-      //позже добавить надо будет
-      // clearInput();
+      refs.searchForm.reset();
+      hideLoader();
       return onError();
     } else onInfo(`found ${total_results} movies`);
     renderData(results);
 
     setupPaginationBtns(total_results);
   } catch (error) {
-    // .then(hideLoader) !!
+    hideLoader();
     onFetchError();
   }
+  hideLoader();
   //!!clearInput!!
 }
 
