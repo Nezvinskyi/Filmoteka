@@ -13,7 +13,7 @@ function onOpenModal(callback) {
   window.addEventListener('keydown', escCloseModal);
 
   const closeModalBtn = document.querySelector('.modal-btn-close');
-  
+
   const closeModal = () => {
     instance.close();
     window.removeEventListener('keydown', escCloseModal);

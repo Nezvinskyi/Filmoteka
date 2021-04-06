@@ -46,7 +46,7 @@
   font-size: 12px;
   line-height: 16px;
   color: $accent-color;
-  transition-property: color, transform;
+  transition-property: transform;
   transition-duration: 500ms;
   transition-timing-function: linear;
   transition-delay: 0;
@@ -55,7 +55,6 @@
 .genre-id:hover,
 .genre-id:focus {
   transform: scale(1.1);
-  color: rgb(16, 116, 33);
 }
 
 .card-symb {
