@@ -41,7 +41,7 @@ async function initGallery() {
     // уже ж стоит слушатель?
     // поменять реф!
     moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
-    document.addEventListener('click', onNavClick);
+    refs.header.addEventListener('click', onNavClick);
   } catch (error) {
     onFetchError();
   }
