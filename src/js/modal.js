@@ -9,6 +9,7 @@ import 'basicLightbox/dist/basicLightbox.min.css';
 
 function onOpenModal(callback) {
   const instance = basicLightbox.create(callback);
+  refs.bodyRef.classList.add('overflow-hidden');
   instance.show();
   window.addEventListener('keydown', escCloseModal);
 
@@ -16,6 +17,7 @@ function onOpenModal(callback) {
 
   const closeModal = () => {
     instance.close();
+    refs.bodyRef.classList.remove('overflow-hidden')
     window.removeEventListener('keydown', escCloseModal);
   };
 
@@ -27,10 +29,8 @@ function onOpenModal(callback) {
 
   closeModalBtn.addEventListener('click', closeModal);
 
-  // moviesApi.getRefs().listGenreModal.addEventListener('click', closeModal);
   moviesApi.getRefs().listGenreModal.addEventListener('click', event => {
     searchGenreDate(event);
-    closeModal();
   });
 }
 
