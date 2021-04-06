@@ -4,6 +4,8 @@ import getRefs from '../js/get-refs';
 import moviesApi from './render-card';
 import searchGenreDate from './gallery';
 
+import openVideo from './video';
+
 import * as basicLightbox from 'basiclightbox';
 import 'basicLightbox/dist/basicLightbox.min.css';
 
@@ -38,6 +40,7 @@ const refs = getRefs();
 
 export default function addModal(movie) {
   const markup = modalTemplate(movie);
+  const movieId = movie.id;
 
   onOpenModal(markup);
 
@@ -52,6 +55,7 @@ export default function addModal(movie) {
   closeYoutubeModalBtn.addEventListener('click', closeModalYoutube);
 
   function openModalYoutube() {
+    openVideo(movieId);
     modalContainer.classList.add('visually-hidden');
     modalCloseBtn.classList.add('visually-hidden');
     youtubeModalContainer.classList.remove('visually-hidden');
@@ -59,6 +63,7 @@ export default function addModal(movie) {
   }
 
   function closeModalYoutube() {
+    youtubeModalContainer.innerHTML = '';
     youtubeModalContainer.classList.remove('.is-open');
     youtubeModalContainer.classList.add('visually-hidden');
     modalContainer.classList.remove('visually-hidden');

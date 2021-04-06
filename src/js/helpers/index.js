@@ -20,7 +20,7 @@ const convertYear = date => {
 };
 
 function getVideoKey(key) {
-  let urlVideo = `http://www.youtube.com/embed/${key}?autoplay=1&origin=http://example.com`;
+  let urlVideo = `http://www.youtube.com/embed/${key}?autoplay=1&origin`;
 
   return urlVideo;
 }
@@ -38,6 +38,7 @@ export function getGenreNames(genre_ids) {
 function getGenreNamesModal(genres) {
   const genreNames = [];
   genres.forEach(genre => genreNames.push(genre.name));
+
   return genreNames;
 }
 
@@ -56,6 +57,10 @@ function cutTitle(original_title) {
   } else {
     return arrTitle.join('');
   }
+}
+
+function cutPopularity(popularity) {
+  return Math.round(popularity);
 }
 
 export const movieAdapter = ({
@@ -106,7 +111,7 @@ export const movieAdapterModal = ({
   title: title,
   voteAverage: vote_average,
   voteCount: vote_count,
-  popularity: popularity,
+  popularity: cutPopularity(popularity),
   genresFirst: getGenreNamesModal(genres)[0],
   genresSecond: getGenreNamesModal(genres)[1],
   genresThird: getGenreNamesModal(genres)[2],
