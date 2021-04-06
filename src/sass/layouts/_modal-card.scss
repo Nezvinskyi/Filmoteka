@@ -359,14 +359,14 @@
   font-size: 12px;
   line-height: 16px;
   color: #000000;
-  transition-property: color, transform;
-  transition-duration: 500ms;
+  transition-property: color;
+  transition-duration: 200ms;
   transition-timing-function: linear;
   transition-delay: 0;
 }
 
 .genre-id-modal:hover,
 .genre-id-modal:focus {
-  transform: scale(1.1);
+  font-size: 14px;
   color: #ff6b08;
 }
