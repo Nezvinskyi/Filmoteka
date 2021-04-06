@@ -20,7 +20,7 @@ const convertYear = date => {
 };
 
 function getVideoKey(key) {
-  let urlVideo = `http://www.youtube.com/embed/${key}?autoplay=1&origin=http://example.com`;
+  let urlVideo = `http://www.youtube.com/embed/${key}?autoplay=1&origin`;
 
   return urlVideo;
 }
@@ -38,6 +38,7 @@ export function getGenreNames(genre_ids) {
 function getGenreNamesModal(genres) {
   const genreNames = [];
   genres.forEach(genre => genreNames.push(genre.name));
+
   return genreNames;
 }
 
