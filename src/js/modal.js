@@ -10,7 +10,6 @@ import * as basicLightbox from 'basiclightbox';
 import 'basicLightbox/dist/basicLightbox.min.css';
 
 export function onOpenModal(callback) {
-
   const instance = basicLightbox.create(callback, {
     onClose: instance => {
       refs.bodyRef.classList.remove('overflow-hidden');
@@ -43,13 +42,6 @@ export function onOpenModal(callback) {
 }
 
 const refs = getRefs();
-
-const visible = instance.visible();
-if (!visible) {
-  refs.bodyRef.classList.remove('overflow-hidden');
-} else {
-  refs.bodyRef.classList.add('overflow-hidden');
-}
 
 export default function addModal(movie) {
   const markup = modalTemplate(movie);
