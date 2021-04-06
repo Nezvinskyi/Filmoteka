@@ -1,21 +1,3 @@
-// .test-conteiner {
-//     background: white;
-//      @media screen and (min-width: 320px) and (max-width: 767px) {
-//        width: 280px;
-//        height: 958px;
-//      }
-
-//      @media screen and (min-width: 768px) and (max-width: 1023px) {
-//        width: 618px;
-//        height: 562px;
-//      }
-
-//      @media screen and (min-width: 1024px) {
-//        width: 882px;
-//        height: 600px;
-//      }
-// }
-
 .genre-id-modal {
   cursor: pointer;
   text-decoration: none;
@@ -35,7 +17,6 @@
 .genre-id-modal:hover,
 .genre-id-modal:focus {
   transform: scale(1.1);
-  color: rgb(16, 116, 33);
 }
 
 .is-open {
@@ -45,19 +26,16 @@
   @media screen and (min-width: 320px) and (max-width: 767px) {
     display: flex;
     width: 280px;
-    height: 958px;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     display: flex;
     width: 618px;
-    height: 562px;
   }
 
   @media screen and (min-width: 1024px) {
     display: flex;
     width: 882px;
-    height: 600px;
   }
 }
 
@@ -83,7 +61,7 @@
 
   cursor: pointer;
 
- 
+
 
   @media screen and (min-width: 320px) and (max-width: 1023px) {
     width: 100%;
@@ -99,29 +77,30 @@
     border: none;
     outline-style: none;
 
-    width: 30px;
-    height: 30px;
-    background-color: white;
+    width: 40px;
+    height: 40px;
 
     outline-style: none;
 
     position: absolute;
     cursor: pointer;
-  
+
+
+
 
     @media screen and (min-width: 320px) and (max-width: 767px) {
-      top: -28px;
-      right: -15px;
+      top: -40px;
+      right: -0px;
     }
 
     @media screen and (min-width: 768px) and (max-width: 1023px) {
-      top: -28px;
-      right: -15px;
+      top: -40px;
+      right: -0px;
     }
 
     @media screen and (min-width: 1024px) {
-      top: -28px;
-      right: -15px;
+      top: -40px;
+      right: -0px;
     }
   }
 }
@@ -135,9 +114,8 @@
   @media screen and (min-width: 320px) and (max-width: 767px) {
     transform: translate(0px, 200px);
     width: 280px;
-// video_Yana
+    // video_Yana
     // min-height: 400px;
-    padding: 1px 20px 28px 20px;
 
 
   }
@@ -146,14 +124,12 @@
     display: flex;
     width: 618px;
     min-height: 400px;
-    padding: 43px 30px 40px 30px;
   }
 
   @media screen and (min-width: 1024px) {
     display: flex;
     width: 882px;
     min-height: 400px;
-    padding: 50px 30px 40px 30px;
 
   }
 
@@ -163,14 +139,17 @@
     height: auto;
 
     @media screen and (min-width: 320px) and (max-width: 767px) {
+      padding: 1px 20px 28px 20px;
+
     }
 
     @media screen and (min-width: 768px) and (max-width: 1023px) {
+      padding: 43px 30px 40px 30px;
       display: flex;
-      
     }
 
     @media screen and (min-width: 1024px) {
+      padding: 50px 30px 40px 30px;
       display: flex;
     }
   }
@@ -206,7 +185,6 @@
   }
 
   &-wrapper {
-    // display: flex;
     // outline: 1px solid $primary-color;
     left: auto;
 
@@ -300,7 +278,7 @@
       margin-left: auto;
 
       cursor: pointer;
-     
+
     }
 
     &-close {
@@ -338,6 +316,7 @@
 
 .close-svg {
   display: inline-flex;
+
 }
 
 .vote-avarage {
