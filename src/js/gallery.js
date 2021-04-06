@@ -127,6 +127,39 @@ function setupPaginationBtns(total_results) {
   const paginationRef = document.querySelector('.pagination-js');
   paginationRef.innerHTML = markup;
   paginationRef.addEventListener('click', onPaginationClick);
+  console.log('подсветка активной кнопки');
+
+  // скрыть крайние на краях диапазона
+  const firstBtnRef = document.querySelector('[data-nav="first"]');
+  const lastBtnRef = document.querySelector('[data-nav="last"]');
+  // const btnsRefs = document.querySelectorAll('.page-btn');
+  const btnsNumRefs = document.querySelectorAll('[data-num]');
+  console.log(btnsNumRefs);
+
+  // подсветить текущую кнопку
+  btnsNumRefs.forEach(el => {
+    console.log(pageCounter.page, el.textContent);
+    // console.log(pageCounter.page);
+
+    if (el.textContent == pageCounter.page) {
+      console.log(true);
+      el.classList.add('active');
+    }
+  });
+
+  if (pageCounter.page > 3) {
+    firstBtnRef.classList.remove('visually-hidden');
+    // firstBtnRef.previousElementSibling.classList.remove('visually-hidden');
+  }
+  if (pageCounter.page > 4) {
+    firstBtnRef.nextElementSibling.classList.remove('visually-hidden');
+  }
+  if (pageCounter.page > paginator.getPaginationData().last - 3) {
+    lastBtnRef.classList.add('visually-hidden');
+  }
+  if (pageCounter.page > paginator.getPaginationData().last - 4) {
+    lastBtnRef.previousElementSibling.classList.add('visually-hidden');
+  }
 }
 
 function onPaginationClick(e) {
@@ -166,29 +199,30 @@ function onPaginationClick(e) {
   }
   setupPaginationBtns(paginator.getPaginationData().totalResult);
 
-  // подсветить активную кнопку
-  // скрыть крайние на краях диапазона
-  const firstBtnRef = document.querySelector('[data-nav="first"]');
-  const lastBtnRef = document.querySelector('[data-nav="last"]');
-  const btnsRefs = document.querySelectorAll('.page-btn');
+  // перенесено в setupPaginationBtns
+  // // подсветить активную кнопку
+  // // скрыть крайние на краях диапазона
+  // const firstBtnRef = document.querySelector('[data-nav="first"]');
+  // const lastBtnRef = document.querySelector('[data-nav="last"]');
+  // const btnsRefs = document.querySelectorAll('.page-btn');
 
-  btnsRefs.forEach(el => {
-    if (el.textContent === pageCounter.page) {
-      el.classList.add('active');
-    }
-  });
+  // btnsRefs.forEach(el => {
+  //   if (el.textContent === pageCounter.page) {
+  //     el.classList.add('active');
+  //   }
+  // });
 
-  if (pageCounter.page > 4) {
-    firstBtnRef.classList.remove('visually-hidden');
-    firstBtnRef.nextElementSibling.classList.remove('visually-hidden');
-    // firstBtnRef.previousElementSibling.classList.remove('visually-hidden');
-  }
+  // if (pageCounter.page > 4) {
+  //   firstBtnRef.classList.remove('visually-hidden');
+  //   firstBtnRef.nextElementSibling.classList.remove('visually-hidden');
+  //   // firstBtnRef.previousElementSibling.classList.remove('visually-hidden');
+  // }
 
-  if (pageCounter.page > paginator.getPaginationData().last - 3) {
-    lastBtnRef.classList.add('visually-hidden');
-    // lastBtnRef.nextElementSibling.classList.add('visually-hidden');
-    lastBtnRef.previousElementSibling.classList.add('visually-hidden');
-  }
+  // if (pageCounter.page > paginator.getPaginationData().last - 3) {
+  //   lastBtnRef.classList.add('visually-hidden');
+  //   // lastBtnRef.nextElementSibling.classList.add('visually-hidden');
+  //   lastBtnRef.previousElementSibling.classList.add('visually-hidden');
+  // }
 }
 
 async function renderSearchGallery() {
