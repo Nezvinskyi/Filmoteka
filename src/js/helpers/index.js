@@ -59,6 +59,10 @@ function cutTitle(original_title) {
   }
 }
 
+function cutPopularity(popularity) {
+  return Math.round(popularity);
+}
+
 export const movieAdapter = ({
   poster_path,
   title,
@@ -107,7 +111,7 @@ export const movieAdapterModal = ({
   title: title,
   voteAverage: vote_average,
   voteCount: vote_count,
-  popularity: popularity,
+  popularity: cutPopularity(popularity),
   genresFirst: getGenreNamesModal(genres)[0],
   genresSecond: getGenreNamesModal(genres)[1],
   genresThird: getGenreNamesModal(genres)[2],
