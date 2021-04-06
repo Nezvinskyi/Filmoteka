@@ -1,7 +1,7 @@
 .is-open {
   background-color: $secondary-color;
   // outline: 1px solid blue;
-
+  
   @media screen and (min-width: 320px) and (max-width: 767px) {
     display: flex;
     width: 280px;
@@ -320,4 +320,8 @@
 .genre-id-modal:focus {
   color: $accent-color;
   text-decoration: underline;
+}
+
+.overflow-hidden {
+  overflow: hidden;
 }
