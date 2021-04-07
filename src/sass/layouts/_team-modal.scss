@@ -10,6 +10,8 @@
 }
 
 .modal-team {
+  border-radius: 5px;
+
   @media screen and (min-width: 320px) and (max-width: 767px) {
     width: 240px;
     transform: translate(0px, 160px);

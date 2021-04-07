@@ -86,24 +86,23 @@
   color: $primary-color;
   background-color: $secondary-color;
 
+  border-radius: 5px;
+
   @media screen and (min-width: 320px) and (max-width: 767px) {
     transform: translate(0px, 200px);
     width: 280px;
-    // video_Yana
-    // min-height: 400px;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1023px) {
     display: flex;
     width: 618px;
-    min-height: 400px;
+    // min-height: 400px;
   }
 
   @media screen and (min-width: 1024px) {
     display: flex;
     width: 882px;
-    min-height: 400px;
-
+    // min-height: 400px;
   }
 
   &-container {
