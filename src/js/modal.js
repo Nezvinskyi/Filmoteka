@@ -10,8 +10,13 @@ import * as basicLightbox from 'basiclightbox';
 import 'basicLightbox/dist/basicLightbox.min.css';
 
 export function onOpenModal(callback) {
-  const instance = basicLightbox.create(callback);
+  const instance = basicLightbox.create(callback, {
+    onClose: instance => {
+      refs.bodyRef.classList.remove('overflow-hidden');
+    },
+  });
   refs.bodyRef.classList.add('overflow-hidden');
+
   instance.show();
   window.addEventListener('keydown', escCloseModal);
 
@@ -19,7 +24,9 @@ export function onOpenModal(callback) {
 
   const closeModal = () => {
     instance.close();
-    refs.bodyRef.classList.remove('overflow-hidden');
+// <<<<<<< btn_Name_Yana
+// refs.bodyRef.classList.remove('overflow-hidden');
+
     window.removeEventListener('keydown', escCloseModal);
   };
 

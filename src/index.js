@@ -20,3 +20,4 @@ import './js/team-modal';
 //пример рефы
 import './js/refs-example';
 import './js/auth';
+import './js/firebase';
