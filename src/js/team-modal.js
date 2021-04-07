@@ -22,7 +22,7 @@ function openModal(event) {
       window.removeEventListener('keydown', closeModalHandler);
     }
   }
-  const btnCloseRef = document.querySelector('.modal-team-close-button');
+  const btnCloseRef = document.querySelector('.modal-btn-close');
   btnCloseRef.addEventListener('click', closeModalbyBtn);
   function closeModalbyBtn() {
     modal.close();
