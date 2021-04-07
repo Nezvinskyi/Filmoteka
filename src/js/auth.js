@@ -26,16 +26,56 @@ export class AuthApp {
   static userId = null;
 
   static createAuth(email, password) {
-    firebase.auth().createUserWithEmailAndPassword(email, password);
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        // Signed in
+        const user = userCredential.user;
+        document.querySelector('#auth-form-input-email').value = '';
+        document.querySelector('#auth-form-input-password').value = '';
+        console.log('Поздравляем! Ваш акаунт создан!');
+        console.log('Новый user >>>', user);
+        alert('Ваш акаунт создан');
+        // ...
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log('errorCode >>>>', errorCode);
+        console.log('errorMessage >>>>', errorMessage);
+        alert(`${errorCode}
+        ${errorMessage}`);
+        // ..
+      });
   }
 
   static signInAuth(email, password) {
-    firebase.auth().signInWithEmailAndPassword(email, password);
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(userCredential => {
+        // Signed in
+        const user = userCredential.user;
+        document.querySelector('#auth-form-input-email').value = '';
+        document.querySelector('#auth-form-input-password').value = '';
+        console.log('Вы вошли в свой акаунт');
+        console.log('Ваш user >>>', user);
+        // ...
+      })
+      .catch(error => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log('errorCode >>>>', errorCode);
+        console.log('errorMessage >>>>', errorMessage);
+        alert(`${errorCode}
+        ${errorMessage}`);
+      });
   }
 
   static watchAuth() {
     firebase.auth().onAuthStateChanged(user => {
-      console.log(user);
+      console.log('Проверка user >>>', user);
       if (user) {
         console.log('Вошел');
         this.userId = user.uid;
@@ -46,12 +86,6 @@ export class AuthApp {
         console.log('Не вошел');
         this.userId = null;
         console.log('userId ', this.userId);
-        // console.log(this.openModalAuth);
-        // this.openModalAuth();
-        // alert('Зарегистрируйтесь');
-        // const email = prompt('Введите свой email');
-        // const password = prompt('Введите пароль');
-        // this.createAuth(email, password);
       }
     });
   }
@@ -83,19 +117,26 @@ export class AuthApp {
 
   static openModalAuth() {
     onOpenModal(markupAuth);
-    const formRef = document.querySelector('.auth-form');
 
-    formRef.addEventListener('submit', onSubmitInForm);
+    const btnSignInRef = document.querySelector('.auth-modal-btn-signin');
+    const btnSignUpRef = document.querySelector('.auth-modal-btn-signup');
+    const inputEmailRef = document.querySelector('#auth-form-input-email');
+    const inputPasswordRef = document.querySelector(
+      '#auth-form-input-password',
+    );
+
+    btnSignInRef.addEventListener('click', () => {
+      const email = inputEmailRef.value;
+      const password = inputPasswordRef.value;
+      this.signInAuth(email, password);
+    });
+
+    btnSignUpRef.addEventListener('click', () => {
+      const email = inputEmailRef.value;
+      const password = inputPasswordRef.value;
+      this.createAuth(email, password);
+    });
   }
-}
-
-function onSubmitInForm(event) {
-  event.preventDefault();
-  const email = event.currentTarget.elements[0].value;
-  const password = event.currentTarget.elements[1].value;
-  AuthApp.createAuth(email, password);
-  // закрыть модалку
-  // щчистить модалку
 }
 
 AuthApp.watchAuth();

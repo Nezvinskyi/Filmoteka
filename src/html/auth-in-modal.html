@@ -13,32 +13,34 @@
       <label class="auth-form-label">
         Email
         <input
+          id="auth-form-input-email"
           class="auth-form-input"
           type="email"
           name="email"
           autocomplete="off"
           required
-          placeholder=""
+          placeholder="name@name.com"
         />
       </label>
       <label class="auth-form-label">
         password
         <input
+          id="auth-form-input-password"
           class="auth-form-input"
           type="password"
           name="password"
           autocomplete="off"
           required
-          placeholder=""
+          placeholder="minimum 6 characters"
         />
       </label>
 
       <div class="auth-btn-wrapper">
-        <button class="auth-btn auth-modal-btn-login" type="submit">
-          login
+        <button class="auth-btn auth-modal-btn-signin" type="button">
+          sign in
         </button>
-        <button class="auth-btn auth-modal-btn-register" type="submit">
-          register
+        <button class="auth-btn auth-modal-btn-signup" type="button">
+          sign up
         </button>
       </div>
     </form>
