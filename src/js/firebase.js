@@ -45,5 +45,5 @@ function getById(id) {
     }
   }).dbId;
 }
-console.log('4. поиск по id(148):>>', getById(156));
+console.log('4. поиск по id(156):>>', getById(156));
 console.log('4. поиск по id(148):>>', getById(148));

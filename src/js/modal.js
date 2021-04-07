@@ -24,8 +24,8 @@ export function onOpenModal(callback) {
 
   const closeModal = () => {
     instance.close();
-// <<<<<<< btn_Name_Yana
-// refs.bodyRef.classList.remove('overflow-hidden');
+    // <<<<<<< btn_Name_Yana
+    // refs.bodyRef.classList.remove('overflow-hidden');
 
     window.removeEventListener('keydown', escCloseModal);
   };
@@ -40,6 +40,7 @@ export function onOpenModal(callback) {
 
   moviesApi.getRefs().listGenreModal.addEventListener('click', event => {
     searchGenreDate(event);
+    closeModal();
   });
 }
 
