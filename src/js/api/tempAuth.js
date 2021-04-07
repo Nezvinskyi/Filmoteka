@@ -47,51 +47,45 @@ class AuthUser {
         this.token = data.idToken;
         this.userId = data.localId;
         // console.log('token', data.idToken);
-        console.log('Медведь пришел', this.userId);
+        console.log('Медведь пришел. ID:', this.userId);
       });
   }
 
-  addToWatched(data) {
-    const url = `${DB_URL}/users/${this.userId}/watched.json?auth=${this.token}`;
+  // перенесено в db.js
+  // addToWatched(data) {
+  //   const url = `${DB_URL}/users/${this.userId}/watched.json?auth=${this.token}`;
 
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-type': 'application/json',
-      },
-    })
-      .then(response => response.json())
-      .then(console.log);
-  }
+  //   fetch(url, {
+  //     method: 'POST',
+  //     body: JSON.stringify(data),
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(console.log);
+  // }
 
-  addToQueue(data) {}
+  // addToQueue(data) {}
 
-  getAllData() {
-    const url = `${DB_URL}/users/${this.userId}/watched.json?auth=${this.token}`;
+  // getAllData() {
+  //   const url = `${DB_URL}/users/${this.userId}/watched.json?auth=${this.token}`;
 
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json',
-      },
-    })
-      .then(response => response.json())
-      .then(console.log);
-  }
+  //   fetch(url, {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //   })
+  //     .then(response => response.json())
+  //     .then(console.log);
+  // }
 }
 
 const authUser = new AuthUser();
 export default authUser;
 // authUser.signUp('mail@mail.od', '123456');
 authUser.signIn('mail@mail.od', '123456');
-
-setTimeout(() => {
-  // authUser.addToWatched(film);
-  // authUser.addToWatched(film);
-  // authUser.getAllData();
-  console.log(authUser.token);
-}, 1000);
 
 // при Добавить / библтиотека
 // if (authUser.token === "") {
