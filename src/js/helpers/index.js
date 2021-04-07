@@ -60,7 +60,7 @@ function cutTitle(original_title) {
 }
 
 function cutPopularity(popularity) {
-  return Math.round(popularity);
+  return popularity.toFixed(1);
 }
 
 export const movieAdapter = ({
