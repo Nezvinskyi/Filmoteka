@@ -1,5 +1,6 @@
 import { onError, onFetchError, onInfo } from '../components/notifications';
 import getRefs from '../get-refs';
+import dbUi from './db';
 
 const refs = getRefs();
 checkLocalStorage();
@@ -34,6 +35,8 @@ function checkLocalStorage() {
 
 // Wached ====================================================
 function saveToWatched(movie) {
+  // добавлять в firebase
+
   let storage = JSON.parse(localStorage.getItem('watched'));
   const {
     title,
@@ -56,6 +59,16 @@ function saveToWatched(movie) {
     id,
     popularity,
   });
+
+  // =========================
+  getDbId(movie, 158);
+  function getDbId(data, movieId) {
+    const watchedIds = Object.entries(data.watched);
+    console.log(watchedIds);
+    const targetId = watchedIds.find(([id, obj]) => obj.id === movieId)[0];
+    return targetId;
+  }
+  dbUi.addToWatched(movie);
 
   const index = storage.indexOf(string);
   if (index > -1) {

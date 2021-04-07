@@ -350,6 +350,6 @@ function showEmptyLibrary() {
 }
 //
 
-import { AuthApp } from './api/auth';
-console.log(AuthApp);
-console.log('Андрей, твоя точка входа - функция onNavClick.  строка 63');
+// import { AuthApp } from './api/auth';
+// console.log(AuthApp);
+// console.log('Андрей, твоя точка входа - функция onNavClick.  строка 63');

@@ -50,6 +50,9 @@ const refs = getRefs();
 export default function addModal(movie) {
   const markup = modalTemplate(movie);
   const movieId = movie.id;
+  console.warn(
+    'проверка на наличие в бд =>> применение стилей к кнопкам модалки ',
+  );
 
   onOpenModal(markup);
 
