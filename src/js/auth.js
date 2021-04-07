@@ -3,6 +3,8 @@ import markupAuth from '../html/auth-in-modal.html';
 // ---------------------------------------
 import firebase from 'firebase/app';
 
+import db from './db.json';
+console.log(db);
 import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/firestore';
@@ -33,7 +35,7 @@ export class AuthApp {
 
   static watchAuth() {
     firebase.auth().onAuthStateChanged(user => {
-      // console.log(user);
+      console.log(user);
       if (user) {
         console.log('Вошел');
         this.userId = user.uid;
@@ -97,3 +99,12 @@ function onSubmitInForm(event) {
 }
 
 AuthApp.watchAuth();
+// const database = firebase.database();
+// firebase
+//   .database()
+//   .ref('users/' + 'userId')
+//   .set({
+//     username: 'name',
+//     email: 'email',
+//   });
+// console.log(database);
