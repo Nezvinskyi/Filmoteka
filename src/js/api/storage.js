@@ -8,6 +8,7 @@ export function onClickToWatchedHandler(movie) {
   const btnAddToWatchedRef = document.querySelector('.btn-js-addtowatched');
   btnAddToWatchedRef.addEventListener('click', clickBtn);
   function clickBtn() {
+    checkLocalStorage();
     saveToWatched(movie);
   }
   actualyLibraryWached(movie);
