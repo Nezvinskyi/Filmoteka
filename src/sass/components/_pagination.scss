@@ -46,3 +46,11 @@
   color: white;
   background-color: #ff6b08;
 }
+
+.arr {
+  font-size: 16px;
+  // color: black;
+  & :hover {
+    color: white;
+  }
+}
