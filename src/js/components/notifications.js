@@ -44,18 +44,17 @@ const notyf = new Notyf({
   ],
 });
 
-function onError() {
+function onError(message) {
   notyf.open({
     type: 'warning',
-    message:
-      'Search result not successful. Please, enter correct movie name and try again',
+    message: message,
   });
 }
 
-function onFetchError() {
+function onFetchError(message) {
   notyf.open({
     type: 'error',
-    message: 'Ooops!Something went wrong :(',
+    message: message,
   });
 }
 
