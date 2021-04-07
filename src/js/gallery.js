@@ -42,7 +42,7 @@ async function initGallery() {
     refs.header.addEventListener('click', onNavClick);
   } catch (error) {
     hideLoader();
-    onFetchError();
+    onFetchError('Ooops!Something went wrong :(');
   }
   hideLoader();
 }
@@ -88,7 +88,9 @@ async function onSearch(event) {
   moviesApi.query = event.currentTarget.elements.query.value.trim();
 
   if (moviesApi.query === '') {
-    return onError();
+    return onError(
+      'Search result not successful. Please, enter correct movie name and try again',
+    );
   }
 
   try {
@@ -98,14 +100,16 @@ async function onSearch(event) {
     if (results.length === 0) {
       refs.searchForm.reset();
       hideLoader();
-      return onError();
+      return onError(
+        'Search result not successful. Please, enter correct movie name and try again',
+      );
     } else onInfo(`found ${total_results} movies`);
     renderData(results);
 
     setupPaginationBtns(total_results);
   } catch (error) {
     hideLoader();
-    onFetchError();
+    onFetchError('Ooops!Something went wrong :(');
   }
   hideLoader();
   //!!clearInput!!
@@ -230,7 +234,7 @@ async function initGenreGallery(e) {
     moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
     hideLoader();
   } catch (error) {
-    onFetchError();
+    onFetchError('Ooops!Something went wrong :(');
   }
 }
 
@@ -257,7 +261,7 @@ async function initDateGallery(e) {
     moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
     hideLoader();
   } catch (error) {
-    onFetchError();
+    onFetchError('Ooops!Something went wrong :(');
   }
 }
 
@@ -350,6 +354,6 @@ function showEmptyLibrary() {
 }
 //
 
-import { AuthApp } from './api/auth';
-console.log(AuthApp);
-console.log('Андрей, твоя точка входа - функция onNavClick.  строка 63');
+// import { AuthApp } from './api/auth';
+// console.log(AuthApp);
+// console.log('Андрей, твоя точка входа - функция onNavClick.  строка 63');

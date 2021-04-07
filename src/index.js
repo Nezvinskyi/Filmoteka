@@ -19,6 +19,10 @@ import './js/components/pagination';
 import './js/team-modal';
 //пример рефы
 import './js/refs-example';
-// import './js/auth';
+import './js/api/auth';
 import './js/firebase';
-import './js/api/tempAuth';
+import './js/api/db';
+
+import './js/api/storage';
+
+// import './js/api/tempAuth';
