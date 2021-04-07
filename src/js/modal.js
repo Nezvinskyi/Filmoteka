@@ -19,7 +19,7 @@ export function onOpenModal(callback) {
 
   const closeModal = () => {
     instance.close();
-    refs.bodyRef.classList.remove('overflow-hidden')
+    refs.bodyRef.classList.remove('overflow-hidden');
     window.removeEventListener('keydown', escCloseModal);
   };
 
