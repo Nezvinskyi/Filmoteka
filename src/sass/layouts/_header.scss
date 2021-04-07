@@ -157,12 +157,20 @@
   }
 
   &-form {
-    display: inline-block;
+    position: absolute;
+    // top: -3px;
+
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 16px;
+    color: $secondary-color;
+
+    @extend %transition;
   }
 
   &-input {
     min-width: 280px;
-    margin-bottom: 22px;
+    padding-bottom: 2px;
 
     outline: 0px;
     color: $secondary-color;
@@ -178,7 +186,13 @@
     &:hover,
     &:focus {
       border-bottom: 1px solid $accent-color;
+      & + .header-form {
+        color: $accent-color;
+        transform: translate(0, -20px);
+        @extend %transition;
+      }
     }
+
     @media screen and (min-width: 768px) {
       width: 336px;
     }
