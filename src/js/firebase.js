@@ -11,7 +11,43 @@ function getIdsfromWatched(data) {
   watchedIds.forEach(([id, obj]) => arr.push(obj.id));
   return arr;
 }
-console.log('1. id фильмов, хранящихся в базе watched', getIdsfromWatched(db));
+function getIdsfromQueue(data) {
+  let arr = [];
+  const watchedIds = Object.entries(data.queue);
+  watchedIds.forEach(([id, obj]) => {
+    arr.push(obj.id);
+  });
+  return arr;
+}
+console.log(
+  '1. a) id фильмов, хранящихся в базе watched (Firebase)',
+  getIdsfromWatched(db),
+);
+console.log(
+  '1. б) id фильмов, хранящихся в базе queue (Firebase)',
+  getIdsfromQueue(db),
+);
+
+// записывает полученный массив id фильмов в localStorage
+function saveIdsToWatchedLocStor(idx) {
+  localStorage.setItem('watched_2', JSON.stringify(idx));
+}
+function saveIdsToQueueLocStor(idx) {
+  localStorage.setItem('queue_2', JSON.stringify(idx));
+}
+
+let watchedIdx = getIdsfromWatched(db);
+let queuedIdx = getIdsfromQueue(db);
+saveIdsToWatchedLocStor(watchedIdx);
+saveIdsToQueueLocStor(queuedIdx);
+console.log(
+  '1. в) id записываются в localStorage з ключом "watched_2">>',
+  localStorage.getItem('watched_2'),
+);
+console.log(
+  '1. г) id записываются в localStorage з ключом "queue_2">>',
+  localStorage.getItem('queue_2'),
+);
 
 //возвращает id записи в базе по id фильма
 function getDbId(data, movieId) {
