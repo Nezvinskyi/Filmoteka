@@ -42,6 +42,7 @@ function saveToWatched(movie) {
     poster_path,
     vote_average,
     id,
+    popularity,
   } = movie;
 
   const string = JSON.stringify({
@@ -52,6 +53,7 @@ function saveToWatched(movie) {
     poster_path,
     vote_average,
     id,
+    popularity,
   });
 
   const index = storage.indexOf(string);
@@ -109,6 +111,7 @@ function saveToQueue(movie) {
     poster_path,
     vote_average,
     id,
+    popularity,
   } = movie;
 
   const string = JSON.stringify({
@@ -119,6 +122,7 @@ function saveToQueue(movie) {
     poster_path,
     vote_average,
     id,
+    popularity,
   });
 
   const index = storage.indexOf(string);

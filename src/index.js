@@ -21,3 +21,4 @@ import './js/team-modal';
 import './js/refs-example';
 import './js/auth';
 import './js/firebase';
+import './js/api/tempAuth';
