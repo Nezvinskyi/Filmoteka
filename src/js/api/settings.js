@@ -6,6 +6,7 @@ export default {
   POSTER_URL: 'https://image.tmdb.org/t/p/w400',
   NOPOSTER_URL: img,
   // tempAuth
-  DB_URL: 'https://identitytoolkit.googleapis.com/v1/accounts:signUp',
+  DB_AUTH_URL: 'https://identitytoolkit.googleapis.com/v1/accounts:',
   DB_API: 'AIzaSyDn53btmBJPZDSPSp5tBFxkSuER-mlWeuM',
+  DB_URL: 'https://filmoteka-blended2-default-rtdb.firebaseio.com',
 };

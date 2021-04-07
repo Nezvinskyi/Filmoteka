@@ -140,12 +140,6 @@ export class AuthApp {
 }
 
 AuthApp.watchAuth();
-// const database = firebase.database();
-// firebase
-//   .database()
-//   .ref('users/' + 'userId')
-//   .set({
-//     username: 'name',
-//     email: 'email',
-//   });
-// console.log(database);
+
+import dbUser from './api/tempAuth';
+console.warn(dbUser);
