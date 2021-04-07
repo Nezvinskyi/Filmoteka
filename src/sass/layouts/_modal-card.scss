@@ -1,7 +1,7 @@
 .is-open {
   background-color: $secondary-color;
   // outline: 1px solid blue;
-  
+
   @media screen and (min-width: 320px) and (max-width: 767px) {
     display: flex;
     width: 280px;
@@ -103,7 +103,6 @@
     display: flex;
     width: 882px;
     min-height: 400px;
-
   }
 
   &-container {
@@ -113,7 +112,6 @@
 
     @media screen and (min-width: 320px) and (max-width: 767px) {
       padding: 1px 20px 28px 20px;
-
     }
 
     @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -324,4 +322,14 @@
 
 .overflow-hidden {
   overflow: hidden;
+}
+.youtubeBtn:hover,
+.btn-modal:hover {
+  background: $accent-color;
+  color: $secondary-color;
+  transition: 1s linear;
+}
+
+.btn:focus {
+  outline: none;
 }

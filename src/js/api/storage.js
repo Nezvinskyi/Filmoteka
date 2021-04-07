@@ -1,7 +1,7 @@
 import { onError, onFetchError, onInfo } from '../components/notifications';
 import getRefs from '../get-refs';
-const refs = getRefs();
 
+const refs = getRefs();
 checkLocalStorage();
 
 export function onClickToWatchedHandler(movie) {
@@ -75,19 +75,19 @@ function saveToWatched(movie) {
 
 function addClassBtnWached() {
   const modalBtnWached = document.querySelector('.btn-js-addtowatched');
-  modalBtnWached.classList.remove('btn-active-page');
+  modalBtnWached.classList.add('btn-active-page');
   modalBtnWached.innerHTML = 'Delete from wached';
 }
 
 function deleteClassBtnWached() {
   const modalBtnWached = document.querySelector('.btn-js-addtowatched');
-  modalBtnWached.classList.add('btn-active-page');
+  modalBtnWached.classList.remove('btn-active-page');
   modalBtnWached.innerHTML = 'Add to wached';
 }
 
 function actualyLibraryWached(movie) {
   const modalBtnWached = document.querySelector('.btn-js-addtowatched');
-  modalBtnWached.classList.add('btn-active-page');
+  modalBtnWached.classList.remove('btn-active-page');
   let storageSaved = JSON.parse(localStorage.getItem('watched'));
   storageSaved.forEach(element => {
     const elementOfStorage = JSON.parse(element);
@@ -144,26 +144,26 @@ function saveToQueue(movie) {
 
 function addClassBtnQueue() {
   const modalBtn = document.querySelector('.btn-js-addtoqueue');
-  modalBtn.classList.add('btn-active-page');
+  modalBtn.classList.remove('btn-active-page');
   modalBtn.innerHTML = 'Add to queue';
 }
 
 function deleteClassBtnQueue() {
   const modalBtnQueue = document.querySelector('.btn-js-addtoqueue');
-  modalBtnQueue.classList.remove('btn-active-page');
+  modalBtnQueue.classList.add('btn-active-page');
   modalBtnQueue.innerHTML = 'Delete from queue';
 }
 
 function actualyLibraryQueue(movie) {
   const modalBtnQueue = document.querySelector('.btn-js-addtoqueue');
-  modalBtnQueue.classList.add('btn-active-page');
+  modalBtnQueue.classList.remove('btn-active-page');
   let storageSaved = JSON.parse(localStorage.getItem('queue'));
   storageSaved.forEach(element => {
     const elementOfStorage = JSON.parse(element);
     const findedMovie = elementOfStorage.id === movie.id;
     if (findedMovie) {
       const modalBtnQueue = document.querySelector('.btn-js-addtoqueue');
-      modalBtnQueue.classList.remove('btn-active-page');
+      modalBtnQueue.classList.add('btn-active-page');
       modalBtnQueue.innerHTML = 'Delete from queue';
       return;
     }
