@@ -4,11 +4,19 @@ import getRefs from '../js/get-refs';
 import moviesApi from './render-card';
 import searchGenreDate from './gallery';
 
+import openVideo from './video';
+
 import * as basicLightbox from 'basiclightbox';
 import 'basicLightbox/dist/basicLightbox.min.css';
 
-function onOpenModal(callback) {
-  const instance = basicLightbox.create(callback);
+export function onOpenModal(callback) {
+  const instance = basicLightbox.create(callback, {
+    onClose: instance => {
+      refs.bodyRef.classList.remove('overflow-hidden');
+    },
+  });
+  refs.bodyRef.classList.add('overflow-hidden');
+
   instance.show();
   window.addEventListener('keydown', escCloseModal);
 
@@ -16,6 +24,9 @@ function onOpenModal(callback) {
 
   const closeModal = () => {
     instance.close();
+    // <<<<<<< btn_Name_Yana
+    // refs.bodyRef.classList.remove('overflow-hidden');
+
     window.removeEventListener('keydown', escCloseModal);
   };
 
@@ -27,7 +38,6 @@ function onOpenModal(callback) {
 
   closeModalBtn.addEventListener('click', closeModal);
 
-  // moviesApi.getRefs().listGenreModal.addEventListener('click', closeModal);
   moviesApi.getRefs().listGenreModal.addEventListener('click', event => {
     searchGenreDate(event);
     closeModal();
@@ -38,6 +48,7 @@ const refs = getRefs();
 
 export default function addModal(movie) {
   const markup = modalTemplate(movie);
+  const movieId = movie.id;
 
   onOpenModal(markup);
 
@@ -52,6 +63,7 @@ export default function addModal(movie) {
   closeYoutubeModalBtn.addEventListener('click', closeModalYoutube);
 
   function openModalYoutube() {
+    openVideo(movieId);
     modalContainer.classList.add('visually-hidden');
     modalCloseBtn.classList.add('visually-hidden');
     youtubeModalContainer.classList.remove('visually-hidden');
@@ -59,6 +71,7 @@ export default function addModal(movie) {
   }
 
   function closeModalYoutube() {
+    youtubeModalContainer.innerHTML = '';
     youtubeModalContainer.classList.remove('.is-open');
     youtubeModalContainer.classList.add('visually-hidden');
     modalContainer.classList.remove('visually-hidden');

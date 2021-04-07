@@ -65,9 +65,9 @@ function saveToWatched(movie) {
     addClassBtnWached();
   }
   const stringFromObj = JSON.stringify(storage);
-  let endStorage = JSON.parse(stringFromObj);
+  // let endStorage = JSON.parse(stringFromObj);
   localStorage.setItem('watched', stringFromObj);
-  return endStorage;
+  // return endStorage;
 }
 
 function addClassBtnWached() {
@@ -132,9 +132,9 @@ function saveToQueue(movie) {
     deleteClassBtnQueue();
   }
   const stringFromObj = JSON.stringify(storage);
-  let endStorage = JSON.parse(stringFromObj);
+  // let endStorage = JSON.parse(stringFromObj);
   localStorage.setItem('queue', stringFromObj);
-  return endStorage;
+  // return endStorage;
 }
 
 function addClassBtnQueue() {
