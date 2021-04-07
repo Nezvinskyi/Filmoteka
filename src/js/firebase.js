@@ -19,14 +19,8 @@ function getIdsfromQueue(data) {
   });
   return arr;
 }
-console.log(
-  '1. a) id фильмов, хранящихся в базе watched (Firebase)',
-  getIdsfromWatched(db),
-);
-console.log(
-  '1. б) id фильмов, хранящихся в базе queue (Firebase)',
-  getIdsfromQueue(db),
-);
+getIdsfromWatched(db);
+getIdsfromQueue(db);
 
 // записывает полученный массив id фильмов в localStorage
 function saveIdsToWatchedLocStor(idx) {
@@ -40,14 +34,6 @@ let watchedIdx = getIdsfromWatched(db);
 let queuedIdx = getIdsfromQueue(db);
 saveIdsToWatchedLocStor(watchedIdx);
 saveIdsToQueueLocStor(queuedIdx);
-console.log(
-  '1. в) id записываются в localStorage з ключом "watched_2">>',
-  localStorage.getItem('watched_2'),
-);
-console.log(
-  '1. г) id записываются в localStorage з ключом "queue_2">>',
-  localStorage.getItem('queue_2'),
-);
 
 //возвращает id записи в базе по id фильма
 function getDbId(data, movieId) {
@@ -55,7 +41,7 @@ function getDbId(data, movieId) {
   const targetId = watchedIds.find(([id, obj]) => obj.id === movieId)[0];
   return targetId;
 }
-console.log('2. найден фильм! id в базе:>>', getDbId(db, 148));
+// console.log('2. найден фильм! id в базе:>>', getDbId(db, 148));
 
 // второй вариант
 // сразу сохраняем в localStorage оба id в объекте
@@ -69,7 +55,7 @@ function getDbIds(data) {
     };
   });
 }
-console.log('3. Массив с обоими id:', getDbIds(db));
+// console.log('3. Массив с обоими id:', getDbIds(db));
 
 // поиск по id возвращает id из базы данных
 function getById(id) {
@@ -81,5 +67,5 @@ function getById(id) {
     }
   }).dbId;
 }
-console.log('4. поиск по id(156):>>', getById(156));
-console.log('4. поиск по id(148):>>', getById(148));
+// console.log('4. поиск по id(156):>>', getById(156));
+// console.log('4. поиск по id(148):>>', getById(148));
