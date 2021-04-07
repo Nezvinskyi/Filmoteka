@@ -61,14 +61,15 @@ function saveToWatched(movie) {
   });
 
   // =========================
-  getDbId(movie, 158);
-  function getDbId(data, movieId) {
-    const watchedIds = Object.entries(data.watched);
-    console.log(watchedIds);
-    const targetId = watchedIds.find(([id, obj]) => obj.id === movieId)[0];
-    return targetId;
-  }
-  dbUi.addToWatched(movie);
+  //====Тимчасово закоментував щоб пофіксити баг з кнопками (Ярослав).=====//
+  // getDbId(movie, 158);
+  // function getDbId(data, movieId) {
+  //   const watchedIds = Object.entries(data.watched);
+  //   console.log(watchedIds);
+  //   const targetId = watchedIds.find(([id, obj]) => obj.id === movieId)[0];
+  //   return targetId;
+  // }
+  // dbUi.addToWatched(movie);
 
   const index = storage.indexOf(string);
   if (index > -1) {
@@ -107,7 +108,7 @@ function actualyLibraryWached(movie) {
     const findedMovie = elementOfStorage.id === movie.id;
     if (findedMovie) {
       const modalBtnWached = document.querySelector('.btn-js-addtowatched');
-      modalBtnWached.classList.remove('btn-active-page');
+      modalBtnWached.classList.add('btn-active-page');
       modalBtnWached.innerHTML = 'Delete from wached';
       return;
     }
