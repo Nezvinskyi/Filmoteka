@@ -187,7 +187,7 @@
     &:focus {
       border-bottom: 1px solid $accent-color;
       & + .header-form {
-        color: $accent-color;
+        color: #cb8353;
         transform: translate(0, -20px);
         @extend %transition;
       }
