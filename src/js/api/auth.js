@@ -1,10 +1,8 @@
-import { onOpenModal } from './modal';
-import markupAuth from '../html/auth-in-modal.html';
+import { onOpenModal } from '../modal';
+import markupAuth from '../../html/auth-in-modal.html';
 // ---------------------------------------
 import firebase from 'firebase/app';
 
-import db from './db.json';
-console.log(db);
 import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/firestore';
@@ -141,5 +139,73 @@ export class AuthApp {
 
 AuthApp.watchAuth();
 
-import dbUser from './api/tempAuth';
-console.warn(dbUser);
+//==================================
+import settings from './settings';
+
+const { DB_AUTH_URL, DB_API } = settings;
+
+class AuthUser {
+  constructor() {
+    this.token = '';
+    this.userId = '';
+  }
+
+  //регистрация
+  async signUp(email, password) {
+    const data = {
+      email: email,
+      password: password,
+      returnSecureToken: true,
+    };
+    const url = `${DB_AUTH_URL}signUp?key=${DB_API}`;
+    const response = await fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    });
+    const dbUserData = response.json();
+    // console.log('data:>>', dbUserData);
+  }
+
+  //вход
+  signIn(email, password) {
+    const data = {
+      email: email,
+      password: password,
+      returnSecureToken: true,
+    };
+    const url = `${DB_AUTH_URL}signInWithPassword?key=${DB_API}`;
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(data => {
+        // console.log(data);
+        this.token = data.idToken;
+        this.userId = data.localId;
+        // console.log('token', data.idToken);
+        console.log('Медведь пришел. ID:', this.userId);
+      });
+  }
+}
+
+const authUser = new AuthUser();
+export default authUser;
+
+//взять из формы емейл и пароь и вызвать:
+// authUser.signUp('mail@mail.od', '123456');
+authUser.signIn('mail@mail.od', '123456');
+
+// при Добавить / библтиотека
+// if (authUser.token === "") {
+// 	открыть модалку регистрации
+// }
+
+// authUser.signUp('@', 'pass')
+// authUser.signIn('@', 'pass')
