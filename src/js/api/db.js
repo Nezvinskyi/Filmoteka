@@ -4,6 +4,12 @@ import settings from './settings';
 const { DB_URL } = settings;
 
 // import film from '../film.json';
+import {
+  addClassBtnWached,
+  deleteClassBtnWached,
+  addClassBtnQueue,
+  deleteClassBtnQueue,
+} from '../api/storage';
 
 class DbInterface {
   constructor() {
@@ -44,12 +50,14 @@ class DbInterface {
       !savedWatchedData.find(([id, obj]) => obj.id === movie.id)
     ) {
       this.addToWatched(movie);
+      addClassBtnWached();
       return false;
     } else {
       const targetId = savedWatchedData.find(
         ([id, obj]) => obj.id === movie.id,
       )[0];
       this.removeFromWatched(targetId);
+      deleteClassBtnWached();
       return targetId;
     }
   }
@@ -114,12 +122,14 @@ class DbInterface {
       !savedQueueData.find(([id, obj]) => obj.id === movie.id)
     ) {
       this.addToQueue(movie);
+      addClassBtnQueue();
       return false;
     } else {
       const targetId = savedQueueData.find(
         ([id, obj]) => obj.id === movie.id,
       )[0];
       this.removeFromQueue(targetId);
+      deleteClassBtnQueue();
       return targetId;
     }
   }
