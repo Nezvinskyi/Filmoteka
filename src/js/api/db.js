@@ -89,7 +89,6 @@ class DbInterface {
       .then(response => response.json())
       .then(console.log)
       .then(() => this.getAllWatchedData());
-    // .then(this.getAllWatchedData);
   }
 
   async getAllQueueData() {
@@ -107,12 +106,13 @@ class DbInterface {
     }
 
     const array = Object.entries(allQueue);
+    console.log(allQueue);
 
     this.queue = allQueue;
 
     let newArr = [];
     array.forEach(item => newArr.push(item[1]));
-    console.log('обновляю localStorage');
+    console.log('обновляю localStorage queue');
     localStorage.setItem('queue_fb', JSON.stringify(newArr));
     return newArr;
   }
@@ -151,8 +151,8 @@ class DbInterface {
     })
       .then(response => response.json())
       .then(console.log)
-      .then(console.log('добавлено в watched'))
-      .then(() => this.getAllWatchedData());
+      .then(console.log('добавлено в queue'))
+      .then(() => this.getAllQueueData());
   }
 
   removeFromQueue(id) {
@@ -172,9 +172,9 @@ class DbInterface {
       .then(() => this.getAllQueueData());
   }
 
-  render(data) {
-    console.log(data);
-  }
+  // render(data) {
+  //   console.log(data);
+  // }
 
   async fetch(url, params) {
     try {
@@ -186,26 +186,26 @@ class DbInterface {
     }
   }
 
-  async getDbId(movieId) {
-    await this.getAllWatchedData();
+  // async getDbId(movieId) {
+  //   await this.getAllWatchedData();
 
-    const savedWatchedData = Object.entries(this.watched);
-    const targetId = savedWatchedData.find(
-      ([id, obj]) => obj.id === movieId,
-    )[0];
+  //   const savedWatchedData = Object.entries(this.watched);
+  //   const targetId = savedWatchedData.find(
+  //     ([id, obj]) => obj.id === movieId,
+  //   )[0];
 
-    console.log('айди из базы', targetId);
+  //   console.log('айди из базы', targetId);
 
-    return targetId;
-  }
+  //   return targetId;
+  // }
 
-  getFromStorage() {
-    const parsedString = localStorage.getItem('watched-123');
-    // console.log(JSON.parse(parsedString));
-    // console.log(parsedString);
-    // const a = Object.entries(parsedString);
-    // console.log(a);
-  }
+  // getFromStorage() {
+  //   const parsedString = localStorage.getItem('watched-123');
+  // console.log(JSON.parse(parsedString));
+  // console.log(parsedString);
+  // const a = Object.entries(parsedString);
+  // console.log(a);
+  // }
 }
 const dbUi = new DbInterface();
 setTimeout(() => {
@@ -215,7 +215,7 @@ setTimeout(() => {
   // console.log(authUser.token);
 }, 1000);
 
-dbUi.getFromStorage();
+// dbUi.getFromStorage();
 
 export default dbUi;
 //todo

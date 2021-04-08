@@ -75,7 +75,7 @@ function onNavClick(event) {
       refs.searchForm.classList.add('visually-hidden');
       refs.headerBtnWrapper.classList.remove('visually-hidden');
       refs.pagination.classList.add('visually-hidden');
-      const initLibraryMarkup = `<span class="library-inittext" style="text-align: center; display: block; margin-top: 25px">There’s nothing here, yet :( You should add something first</span>`;
+      const initLibraryMarkup = `<span class="library-inittext" style="text-align: center; display: block; margin-top: 25px">There’s nothing here yet :( You should add something first</span>`;
       moviesApi.getRefs().gallery.innerHTML = initLibraryMarkup;
 
       getLibrary();
@@ -307,7 +307,7 @@ function getLibrary() {
       let arrayOfQueue = JSON.parse(localStorage.getItem('queue'));
       if (arrayOfQueue.length === 0 || arrayOfQueue === null) {
         btnWatched.classList.add('btn-active-page');
-        showEmptyLibrary();
+        emptyLibraryHandler();
       } else {
         let arrayOfStrings5 = JSON.parse(localStorage.getItem('queue'));
         btnQueue.classList.add('btn-active-page');
@@ -329,7 +329,7 @@ function getLibrary() {
         return;
       } else {
         btnWatched.classList.add('btn-active-page');
-        showEmptyLibrary();
+        emptyLibraryHandler();
         return;
       }
     }
@@ -338,7 +338,7 @@ function getLibrary() {
     let arrayOfStrings = JSON.parse(localStorage.getItem('queue'));
     if (arrayOfStrings === null || arrayOfStrings.length === 0) {
       btnWatched.classList.add('btn-active-page');
-      showEmptyLibrary();
+      emptyLibraryHandler();
     } else {
       let arrayOfStrings5 = JSON.parse(localStorage.getItem('queue'));
       btnQueue.classList.add('btn-active-page');
@@ -366,7 +366,7 @@ function renderFromLocalStorage(arrayOfStrings) {
   containerFilmRef.innerHTML = cardList(movieDataList);
 }
 
-function showEmptyLibrary() {
+function emptyLibraryHandler() {
   const containerFilmRef = document.querySelector('[data-cont="container"]');
   const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing in <span class="library-choosetext">"My library"</span>, yet :( You should add something first</span>`;
   containerFilmRef.innerHTML = initLibraryMarkup;
