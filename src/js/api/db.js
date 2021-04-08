@@ -11,26 +11,11 @@ class DbInterface {
   }
 
   async dataHandler(movie) {
-    await this.itemExists(movie);
-    // сonsole.log(this.itemExists(movie));
-    // if (this.itemExists(movie)) {
-    //   console.log('Хендлер вызывает add');
-    //   this.addToWatched(movie);
-    // } else {
-    //   console.log('Хендлер вызывает remove');
-    // }
-
-    // this.addToWatched(movie);
+    await this.itemExistsInWatched(movie);
   }
 
   async addToWatched(data) {
     const url = `${DB_URL}/users/${authUser.userId}/watched.json?auth=${authUser.token}`;
-
-    // await this.getAllWatchedData();
-
-    // this.getDbId(data.id);
-    // console.log('movieeeeeId :>> ', data.id);
-    // console.log(this.watched);
 
     fetch(url, {
       method: 'POST',
@@ -40,11 +25,13 @@ class DbInterface {
       },
     })
       .then(response => response.json())
-      .then(console.log);
-    // .then(console.log(this.watched));
+      .then(console.log)
+      .then(console.log(this.watched))
+      .then(console.log('добавлено в watched'))
+      .then(() => this.getAllWatchedData());
   }
 
-  async itemExists(movie) {
+  async itemExistsInWatched(movie) {
     await this.getAllWatchedData();
     const savedWatchedData = Object.entries(this.watched);
     console.log(savedWatchedData);
@@ -92,7 +79,9 @@ class DbInterface {
       },
     })
       .then(response => response.json())
-      .then(console.log);
+      .then(console.log)
+      .then(() => this.getAllWatchedData());
+    // .then(this.getAllWatchedData);
   }
 
   async getAllWatchedData() {
@@ -113,12 +102,9 @@ class DbInterface {
 
     this.watched = allWatched;
 
-    // console.log(allWatched);
-    // getDbId(399566);
-
     let newArr = [];
     array.forEach(item => newArr.push(item[1]));
-
+    console.log('обновляю localStorage');
     localStorage.setItem('watched_fb', JSON.stringify(newArr));
     return newArr;
   }
