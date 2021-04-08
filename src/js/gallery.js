@@ -63,7 +63,8 @@ function onNavClick(event) {
   }
   if (event.target.dataset.action === 'library') {
     // !!! если не авторизовано, то модалка регистрации/входа
-    if (!authUser.userId) {
+    // && authUser.userId == 'undefined'
+    if (!authUser.userId || authUser.userId === 'undefined') {
       console.log('no userId! need to signIn!');
       // AuthApp.openModalAuth();
       authUser.openModalAuth();

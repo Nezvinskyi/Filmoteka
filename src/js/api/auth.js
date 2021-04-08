@@ -1,5 +1,6 @@
 import { onOpenModal } from '../modal';
 import markupAuth from '../../html/auth-in-modal.html';
+import { onError, onInfo } from '../components/notifications';
 // ---------------------------------------
 import firebase from 'firebase/app';
 
@@ -166,7 +167,7 @@ class AuthUser {
       },
     })
       .then(response => response.json())
-      .then(console.log);
+      .then(data => onError(data.error.message));
     // const dbUserData = response.json();
 
     this.signIn(email, password);
