@@ -31,9 +31,22 @@ class AuthUser {
       .then(data => (err = data.error));
 
     if (err) {
-      console.log('err >>> ', err);
-      onError(err.message);
+      // console.log('err >>> ', err.message);
+      // console.log(err.message);
+      if (err.message === 'MISSING_PASSWORD') {
+        onError('ENTER PASSWORD');
+      }
+      if (err.message === 'INVALID_EMAIL') {
+        onError('WRONG EMAIL');
+      }
+      if (
+        err.message ===
+        'WEAK_PASSWORD : Password should be at least 6 characters'
+      ) {
+        onError('PASSWORD MUST BE AT LEAST 6 CHARACTERS');
+      }
     } else {
+      onInfo('YOU ARE SUCCESSFULLY REGISTERED');
       this.signIn(email, password);
     }
   }
@@ -61,11 +74,25 @@ class AuthUser {
           localStorage.setItem('token', data.idToken);
           localStorage.setItem('userId', data.localId);
 
-          onInfo('You have successfully logged in');
+          onInfo('YOU ARE SUCCESSFULLY LOGGED INTO YOUR ACCOUNT');
           document.querySelector('#auth-form-input-email').value = '';
           document.querySelector('#auth-form-input-password').value = '';
         } else {
-          onError(data.error.message);
+          // console.log('err >>> ', data.error.message);
+          // console.log(data.error.message);
+          if (data.error.message === 'INVALID_EMAIL') {
+            onError('WRONG EMAIL');
+          }
+          if (data.error.message === 'EMAIL_NOT_FOUND') {
+            onError('YOU ARE NOT REGISTERED');
+          }
+          if (data.error.message === 'INVALID_PASSWORD') {
+            onError('ENTER CORRECT PASSWORD');
+          }
+
+          if (data.error.message === 'MISSING_PASSWORD') {
+            onError('ENTER PASSWORD');
+          }
         }
       });
   }
@@ -82,12 +109,14 @@ class AuthUser {
     );
 
     btnSignInRef.addEventListener('click', () => {
+      if (inputEmailRef.value === '' && inputPasswordRef.value === '') return;
       const email = inputEmailRef.value;
       const password = inputPasswordRef.value;
       this.signIn(email, password);
     });
 
     btnSignUpRef.addEventListener('click', () => {
+      if (inputEmailRef.value === '' && inputPasswordRef.value === '') return;
       const email = inputEmailRef.value;
       const password = inputPasswordRef.value;
       this.signUp(email, password);
