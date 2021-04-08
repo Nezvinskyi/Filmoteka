@@ -12,6 +12,7 @@ class DbInterface {
 
   addToWatched(data) {
     const url = `${DB_URL}/users/${authUser.userId}/watched.json?auth=${authUser.token}`;
+    console.warn('user:>>>>', authUser.userId);
 
     fetch(url, {
       method: 'POST',
@@ -38,6 +39,20 @@ class DbInterface {
       .then(console.log);
   }
 
+  removeFromWatched(id) {
+    const url = `${DB_URL}/users/${authUser.userId}/watched/${id}.json?auth=${authUser.token}`;
+    console.log('deleting.................', id);
+    console.log('userId:>>>>', authUser.userId);
+
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(console.log);
+  }
   async getAllWatchedData() {
     const url = `${DB_URL}/users/${authUser.userId}/watched.json?auth=${authUser.token}`;
     let watched = null;
@@ -132,7 +147,8 @@ class DbInterface {
 const dbUi = new DbInterface();
 setTimeout(() => {
   // dbUi.addToWatched(film);
-  dbUi.getAllWatchedData();
+  // dbUi.getAllWatchedData();
+  // dbUi.removeFromWatched('-MXkFK85ZJhQV2yR6_2x');
   // console.log(authUser.token);
 }, 1000);
 

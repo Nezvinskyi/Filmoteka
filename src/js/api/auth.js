@@ -137,7 +137,7 @@ export class AuthApp {
   }
 }
 
-AuthApp.watchAuth();
+// AuthApp.watchAuth();
 
 //==================================
 import settings from './settings';
@@ -167,6 +167,7 @@ class AuthUser {
     });
     const dbUserData = response.json();
     console.log('data:>>', dbUserData);
+    this.signIn(email, password);
   }
 
   //вход
@@ -193,14 +194,37 @@ class AuthUser {
         console.log('Медведь пришел. ID:', this.userId);
       });
   }
-}
 
+  //открытие модалки
+  openModalAuth() {
+    onOpenModal(markupAuth);
+
+    const btnSignInRef = document.querySelector('.auth-modal-btn-signin');
+    const btnSignUpRef = document.querySelector('.auth-modal-btn-signup');
+    const inputEmailRef = document.querySelector('#auth-form-input-email');
+    const inputPasswordRef = document.querySelector(
+      '#auth-form-input-password',
+    );
+
+    btnSignInRef.addEventListener('click', () => {
+      const email = inputEmailRef.value;
+      const password = inputPasswordRef.value;
+      this.signIn(email, password);
+    });
+
+    btnSignUpRef.addEventListener('click', () => {
+      const email = inputEmailRef.value;
+      const password = inputPasswordRef.value;
+      this.signUp(email, password);
+    });
+  }
+}
 const authUser = new AuthUser();
 export default authUser;
 
 //взять из формы емейл и пароь и вызвать:
 // authUser.signUp('mail@mail.od', '123456');
-authUser.signIn('mail@mail.od', '123456');
+// authUser.signIn('mail@mail.od', '123456');
 
 // при Добавить / библтиотека
 // if (authUser.token === "") {

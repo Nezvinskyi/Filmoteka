@@ -12,6 +12,7 @@ import {
 } from './components/pagination';
 import paginationBtnsTpl from '../templates/pagination.hbs';
 import dbUi from './api/db';
+import authUser from './api/auth';
 
 const refs = getRefs();
 
@@ -62,9 +63,12 @@ function onNavClick(event) {
   }
   if (event.target.dataset.action === 'library') {
     // !!! если не авторизовано, то модалка регистрации/входа
-    if (!AuthApp.userId) {
-      AuthApp.openModalAuth();
+    if (!authUser.userId) {
+      console.log('no userId! need to signIn!');
+      // AuthApp.openModalAuth();
+      authUser.openModalAuth();
     } else {
+      console.log(`User ${authUser.userId} is signed in`);
       refs.homeNav.classList.remove('current-page');
       refs.libNav.classList.add('current-page');
       refs.header.classList.add('library-header');
