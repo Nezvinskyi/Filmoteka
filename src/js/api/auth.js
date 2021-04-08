@@ -1,9 +1,13 @@
-import { onOpenModal } from '../modal';
+/* import { onOpenModal } from '../modal'; */
 import markupAuth from '../../html/auth-in-modal.html';
 import { onError, onInfo } from '../components/notifications';
 import settings from './settings';
+import getRefs from '../../js/get-refs';
+import * as basicLightbox from 'basiclightbox';
+import 'basicLightbox/dist/basicLightbox.min.css';
 
 const { DB_AUTH_URL, DB_API } = settings;
+const refs = getRefs();
 
 class AuthUser {
   constructor() {
@@ -72,8 +76,8 @@ class AuthUser {
 
   //открытие модалки
   openModalAuth() {
-    onOpenModal(markupAuth);
-
+    onOpenAuth(markupAuth);
+  
     const btnSignInRef = document.querySelector('.auth-modal-btn-signin');
     const btnSignUpRef = document.querySelector('.auth-modal-btn-signup');
     const inputEmailRef = document.querySelector('#auth-form-input-email');
@@ -93,6 +97,45 @@ class AuthUser {
       this.signUp(email, password);
     });
   }
+  
 }
+
 const authUser = new AuthUser();
+
+function onOpenAuth(callback) {
+  
+  const instance = basicLightbox.create(callback, {
+    onClose: instance => {
+      refs.bodyRef.classList.remove('overflow-hidden');
+    },
+  });
+  refs.bodyRef.classList.add('overflow-hidden');
+  
+  instance.show();
+  window.addEventListener('keydown', escCloseModalAuth);
+
+  const closeModalBtnAuth = document.querySelector('.auth-modal-btn-close');
+  const btnSignInRef = document.querySelector('.auth-modal-btn-signin');
+  const btnSignUpRef = document.querySelector('.auth-modal-btn-signup');
+
+  const closeModalAuth = () => {
+    instance.close();
+    window.removeEventListener('keydown', escCloseModalAuth);
+  };
+
+  function escCloseModalAuth(event) {
+    if (event.code === 'Escape') {
+      closeModalAuth();
+    }
+  }
+
+  closeModalBtnAuth.addEventListener('click', closeModalAuth);
+  // логика закрытия по кнопкам- sign up- и - register-  не могу достучаться к authUser.userId
+  if (!authUser.userId) { return }
+  else { btnSignInRef.addEventListener('click', closeModalAuth) };
+
+  if (!authUser.userId) { return }
+  else { btnSignUpRef.addEventListener('click', closeModalAuth) };
+};
+
 export default authUser;

@@ -25,7 +25,8 @@ export function onOpenModal(callback) {
   };
 
   function escCloseModal(event) {
-    if (event.code === 'Escape') {
+    if (document.querySelector('.modal-reg')) {return }
+    else if (event.code === 'Escape') {
       closeModal();
     }
   }
