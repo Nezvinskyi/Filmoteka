@@ -5,6 +5,7 @@ import searchGenreDate from './gallery';
 import openVideo from './video';
 import * as basicLightbox from 'basiclightbox';
 import 'basicLightbox/dist/basicLightbox.min.css';
+// import { actualyLibraryWached } from './api/storage';
 
 export function onOpenModal(callback) {
   const instance = basicLightbox.create(callback, {
@@ -44,9 +45,6 @@ const refs = getRefs();
 export default function addModal(movie) {
   const markup = modalTemplate(movie);
   const movieId = movie.id;
-  console.warn(
-    'проверка на наличие в бд =>> применение стилей к кнопкам модалки ',
-  );
 
   onOpenModal(markup);
 
@@ -76,3 +74,5 @@ export default function addModal(movie) {
     modalCloseBtn.classList.remove('visually-hidden');
   }
 }
+
+//
