@@ -1,15 +1,11 @@
-import moviesApi from './render-card';
+import moviesApi from './api/moviesApi';
 import cardList from '../templates/film-list.hbs';
 import getRefs from '../js/get-refs';
 import { movieAdapter, movieAdapterModal } from './helpers/index';
 import { addEventListenerToGallery } from './modal-event-listener';
 import { hideLoader, showLoader } from './loader';
 import { onError, onFetchError, onInfo } from './components/notifications';
-import {
-  paginator,
-  getDataPagination,
-  pageCounter,
-} from './components/pagination';
+import { paginator, pageCounter } from './components/pagination';
 import paginationBtnsTpl from '../templates/pagination.hbs';
 import dbUi from './api/db';
 import authUser from './api/auth';
@@ -33,6 +29,7 @@ initGallery();
 async function initGallery() {
   pageCounter.page = 1;
   paginator.set('current', 1);
+
   try {
     const { results, total_results } = await moviesApi.getPopularMovies();
     renderData(results);
@@ -51,7 +48,6 @@ async function initGallery() {
 
 function onNavClick(event) {
   if (event.target.dataset.action === 'home' || event.target.closest('svg')) {
-    // console.log('clicked on:', event.target);
     initGallery();
     refs.searchForm.elements.query.value = '';
     showLoader();
@@ -62,20 +58,16 @@ function onNavClick(event) {
     refs.headerBtnWrapper.classList.add('visually-hidden');
   }
   if (event.target.dataset.action === 'library') {
-    // !!! если не авторизовано, то модалка регистрации/входа
-
     if (!authUser.userId || authUser.userId === 'undefined') {
-      console.log('no userId! need to signIn!');
       authUser.openModalAuth();
     } else {
-      console.log(`User ${authUser.userId} is signed in`);
       refs.homeNav.classList.remove('current-page');
       refs.libNav.classList.add('current-page');
       refs.header.classList.add('library-header');
       refs.searchForm.classList.add('visually-hidden');
       refs.headerBtnWrapper.classList.remove('visually-hidden');
       refs.pagination.classList.add('visually-hidden');
-      const initLibraryMarkup = `<span class="library-inittext" style="text-align: center; display: block; margin-top: 25px">There’s nothing here yet :( You should add something first</span>`;
+      const initLibraryMarkup = `<span class="library-inittext" style="text-align: center; display: block; margin-top: 25px">Your library is empty</span>`;
       moviesApi.getRefs().gallery.innerHTML = initLibraryMarkup;
 
       getLibrary();
@@ -106,7 +98,7 @@ async function onSearch(event) {
       refs.searchForm.reset();
       hideLoader();
       return onError(
-        'Search result not successful. Please, enter correct movie name and try again',
+        'Search was not successful. Please, enter another movie name and try again',
       );
     } else onInfo(`found ${total_results} movies`);
     renderData(results);
@@ -117,12 +109,10 @@ async function onSearch(event) {
     onFetchError('Ooops!Something went wrong :(');
   }
   hideLoader();
-  //!!clearInput!!
 }
 
 function renderData(results) {
   refs.pagination.classList.remove('visually-hidden');
-  // galleryRef.innerHTML = '';
   const movieDataList = results.map(item => {
     return movieAdapter(item);
   });
@@ -138,7 +128,6 @@ function setupPaginationBtns(total_results) {
   paginationRef.innerHTML = markup;
   paginationRef.addEventListener('click', onPaginationClick);
 
-  // скрыть крайние на краях диапазона
   const firstBtnRef = document.querySelector('[data-nav="first"]');
   const lastBtnRef = document.querySelector('[data-nav="last"]');
   const btnsNumRefs = document.querySelectorAll('[data-num]');
@@ -324,7 +313,6 @@ function getLibrary() {
         //отрисовка из БД
         dbUi.getAllWatchedData().then(data => {
           renderFromLocalStorage(data);
-          console.log('dbUi.watched :>> ', dbUi.watched);
         });
         return;
       } else {
@@ -355,10 +343,7 @@ function getLibrary() {
 }
 
 function renderFromLocalStorage(arrayOfStrings) {
-  // console.log(arrayOfStrings);
   const movieDataList = arrayOfStrings.map(item => {
-    // let data = movieAdapterModal(JSON.parse(item));
-    // console.log(item);
     let data = movieAdapterModal(item);
     return data;
   });
@@ -371,6 +356,3 @@ function emptyLibraryHandler() {
   const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing in <span class="library-choosetext">"My library"</span>, yet :( You should add something first</span>`;
   containerFilmRef.innerHTML = initLibraryMarkup;
 }
-
-
-

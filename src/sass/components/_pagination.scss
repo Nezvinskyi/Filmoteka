@@ -32,6 +32,9 @@
     display: none;
   }
 }
+.ellipsis {
+  cursor: default;
+}
 
 .page-btn:not(.ellipsis):hover,
 .active {

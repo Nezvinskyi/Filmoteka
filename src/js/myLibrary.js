@@ -63,11 +63,9 @@ function queueEmptyHandler() {
 
 function renderData(data) {
   if (data == null) {
-    console.log('no data');
     emptyLibraryHandler();
     return;
   }
-  console.log(data);
   const movieDataList = data.map(item => {
     // let data = movieAdapterModal(JSON.parse(item));
     // console.log(item);

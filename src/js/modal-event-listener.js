@@ -1,4 +1,4 @@
-import moviesApi from './render-card';
+import moviesApi from './api/moviesApi';
 import addModal from './modal';
 import { movieAdapterModal } from './helpers/index';
 import { onClickToWatchedHandler, onClickToQueueHandler } from './api/storage';

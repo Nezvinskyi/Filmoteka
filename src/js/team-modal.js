@@ -1,23 +1,18 @@
 import * as basicLightbox from 'basiclightbox';
 import 'basicLightbox/dist/basicLightbox.min.css';
-
 import getRefs from '../js/get-refs';
-
-import teamModalTpl from '../templates/team-modal.hbs';
 import markup from '../html/team-modal.html';
 
-// const markup = teamModalTpl(img);
 const refs = getRefs();
+const teamModalRef = document.querySelector('.modal-team-js');
 
-const teamModal = document.querySelector('.modal-team-js');
-
-teamModal.addEventListener('click', openModal);
+teamModalRef.addEventListener('click', openModal);
 
 const modal = basicLightbox.create(markup, {
-    onClose: instance => {
-      refs.bodyRef.classList.remove('overflow-hidden');
-    },
-  });
+  onClose: instance => {
+    refs.bodyRef.classList.remove('overflow-hidden');
+  },
+});
 
 function openModal(event) {
   event.preventDefault();
@@ -35,6 +30,7 @@ function openModal(event) {
   }
   const btnCloseRef = document.querySelector('.modal-btn-close');
   btnCloseRef.addEventListener('click', closeModalbyBtn);
+
   function closeModalbyBtn() {
     modal.close();
 

@@ -1,10 +1,12 @@
 // для генерации правильного пути к картинке, даты и жанров
-import imgPoster from '../api/settings';
-import imgNoPoster from '../api/settings';
-import moviesApi from '../render-card';
+// import imgPoster from '../api/settings';
+// import imgNoPoster from '../api/settings';
+// import moviesApi from '../render-card';
+import settings from '../api/settings';
+import moviesApi from '../api/moviesApi';
 
-const { POSTER_URL } = imgPoster;
-const { NOPOSTER_URL } = imgNoPoster;
+const { POSTER_URL, NOPOSTER_URL } = settings;
+// const { NOPOSTER_URL } = imgNoPoster;
 
 export const generatePosterPath = imageName => {
   if (imageName === null) {
@@ -20,8 +22,7 @@ const convertYear = date => {
 };
 
 function getVideoKey(key) {
-  let urlVideo = `http://www.youtube.com/embed/${key}?autoplay=1&origin`;
-
+  const urlVideo = `http://www.youtube.com/embed/${key}?autoplay=1&origin`;
   return urlVideo;
 }
 
@@ -89,7 +90,7 @@ export const movieAdapter = ({
   genreIdSecond: genre_ids[1],
   genreIdThird: genre_ids[2],
 
-  noPoster: generatePoster(),
+  noPoster: NOPOSTER_URL,
 });
 
 export const movieAdapterVideo = ({ key }) => ({
