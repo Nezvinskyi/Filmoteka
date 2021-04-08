@@ -146,8 +146,8 @@ const { DB_AUTH_URL, DB_API } = settings;
 
 class AuthUser {
   constructor() {
-    this.token = '';
-    this.userId = '';
+    this.userId = localStorage.getItem('userId');
+    this.token = localStorage.getItem('token');
   }
 
   //регистрация
@@ -164,9 +164,11 @@ class AuthUser {
       headers: {
         'Content-type': 'application/json',
       },
-    });
-    const dbUserData = response.json();
-    console.log('data:>>', dbUserData);
+    })
+      .then(response => response.json())
+      .then(console.log);
+    // const dbUserData = response.json();
+
     this.signIn(email, password);
   }
 
@@ -191,6 +193,9 @@ class AuthUser {
         this.token = data.idToken;
         this.userId = data.localId;
         // console.log('token', data.idToken);
+        localStorage.setItem('token', data.idToken);
+        localStorage.setItem('userId', data.localId);
+
         console.log('Медведь пришел. ID:', this.userId);
       });
   }

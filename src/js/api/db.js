@@ -10,9 +10,27 @@ class DbInterface {
     this.watched = '';
   }
 
-  addToWatched(data) {
+  async dataHandler(movie) {
+    await this.itemExists(movie);
+    // сonsole.log(this.itemExists(movie));
+    // if (this.itemExists(movie)) {
+    //   console.log('Хендлер вызывает add');
+    //   this.addToWatched(movie);
+    // } else {
+    //   console.log('Хендлер вызывает remove');
+    // }
+
+    // this.addToWatched(movie);
+  }
+
+  async addToWatched(data) {
     const url = `${DB_URL}/users/${authUser.userId}/watched.json?auth=${authUser.token}`;
-    console.warn('user:>>>>', authUser.userId);
+
+    // await this.getAllWatchedData();
+
+    // this.getDbId(data.id);
+    // console.log('movieeeeeId :>> ', data.id);
+    // console.log(this.watched);
 
     fetch(url, {
       method: 'POST',
@@ -23,6 +41,29 @@ class DbInterface {
     })
       .then(response => response.json())
       .then(console.log);
+    // .then(console.log(this.watched));
+  }
+
+  async itemExists(movie) {
+    await this.getAllWatchedData();
+    const savedWatchedData = Object.entries(this.watched);
+    console.log(savedWatchedData);
+
+    if (
+      this.watched === '' ||
+      !savedWatchedData.find(([id, obj]) => obj.id === movie.id)
+    ) {
+      console.log('нет в базе - ДОБАВИТЬ!');
+      this.addToWatched(movie);
+      return false;
+    } else {
+      const targetId = savedWatchedData.find(
+        ([id, obj]) => obj.id === movie.id,
+      )[0];
+      console.log('есть в базе, УДАЛИТЬ! айди: ', targetId);
+      this.removeFromWatched(targetId);
+      return targetId;
+    }
   }
 
   addToQueue(data) {
@@ -53,9 +94,10 @@ class DbInterface {
       .then(response => response.json())
       .then(console.log);
   }
+
   async getAllWatchedData() {
     const url = `${DB_URL}/users/${authUser.userId}/watched.json?auth=${authUser.token}`;
-    let watched = null;
+
     const params = {
       method: 'GET',
       headers: {
@@ -69,7 +111,10 @@ class DbInterface {
 
     const array = Object.entries(allWatched);
 
-    this.watched = array;
+    this.watched = allWatched;
+
+    // console.log(allWatched);
+    // getDbId(399566);
 
     let newArr = [];
     array.forEach(item => newArr.push(item[1]));
@@ -117,22 +162,16 @@ class DbInterface {
     }
   }
 
-  getDbId(movieId) {
-    // const allWatched = JSON.parse(localStorage.getItem('watched_fb'));
-    // console.warn(allWatched);
-    // const newArr = [];
+  async getDbId(movieId) {
+    await this.getAllWatchedData();
 
-    // allWatched.forEach(item => {
-    //   if (movieId !== item.id) {
-    //     newArr.push(item);
-    //   }
-    // });
+    const savedWatchedData = Object.entries(this.watched);
+    const targetId = savedWatchedData.find(
+      ([id, obj]) => obj.id === movieId,
+    )[0];
 
-    // localStorage.setItem('watched_fb', JSON.stringify(newArr));
+    console.log('айди из базы', targetId);
 
-    // const watchedIds = Object.entries(movie);
-    const targetId = this.watched.find(([id, obj]) => obj.id === movieId)[0];
-    console.log('dsdsds', targetId);
     return targetId;
   }
 

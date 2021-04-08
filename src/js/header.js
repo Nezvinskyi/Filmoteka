@@ -60,7 +60,7 @@ refs = getRefs();
 //     const initLibraryMarkup = `<span class="library-inittext" style="text-align: center; display: block; margin-top: 25px">There’s nothing here, yet :( You should add something first</span>`;
 //     moviesApi.getRefs().gallery.innerHTML = initLibraryMarkup;
 
-//     getWatched();
+//     getLibrary();
 //   }
 // }
 

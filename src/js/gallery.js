@@ -78,7 +78,7 @@ function onNavClick(event) {
       const initLibraryMarkup = `<span class="library-inittext" style="text-align: center; display: block; margin-top: 25px">There’s nothing here, yet :( You should add something first</span>`;
       moviesApi.getRefs().gallery.innerHTML = initLibraryMarkup;
 
-      getWatched();
+      getLibrary();
     }
   }
 }
@@ -281,7 +281,9 @@ export default function searchGenreDate(e) {
 }
 
 // localStorage check and first render from localStorage
-function getWatched() {
+function getLibrary() {
+  //если пустой - ошибка!!!
+
   const { btnWatched, btnQueue } = getRefs();
   let keys = Object.keys(localStorage);
   let arr = [];
@@ -318,7 +320,12 @@ function getWatched() {
         btnWatched.classList.add('btn-active-page');
         btnQueue.classList.remove('btn-active-page');
         // renderFromLocalStorage(arrayOfStrings5);
-        dbUi.getAllWatchedData().then(data => renderFromLocalStorage(data));
+
+        //отрисовка из БД
+        dbUi.getAllWatchedData().then(data => {
+          renderFromLocalStorage(data);
+          console.log('dbUi.watched :>> ', dbUi.watched);
+        });
         return;
       } else {
         btnWatched.classList.add('btn-active-page');
@@ -337,6 +344,8 @@ function getWatched() {
       btnQueue.classList.add('btn-active-page');
       btnWatched.classList.remove('btn-active-page');
       // renderFromLocalStorage(arrayOfStrings5);
+
+      //отрисовка QUEUE из БД
       dbUi.getAllQueueData().then(data => renderFromLocalStorage(data));
     }
   } else {

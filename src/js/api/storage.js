@@ -36,8 +36,8 @@ function checkLocalStorage() {
 // Wached ====================================================
 function saveToWatched(movie) {
   // добавлять в firebase
-  // dbUi.getDbId(movie.id);
-  dbUi.addToWatched(movie);
+  console.warn('movieID:>>>>>>', movie.id);
+  dbUi.dataHandler(movie);
 
   let storage = JSON.parse(localStorage.getItem('watched'));
   const {
