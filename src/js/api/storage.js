@@ -5,11 +5,9 @@ export function onClickToWatchedHandler(movie) {
   const btnAddToWatchedRef = document.querySelector('.btn-js-addtowatched');
   btnAddToWatchedRef.addEventListener('click', clickBtn);
   function clickBtn() {
-
     if (!authUser.userId || authUser.userId === 'undefined') {
       authUser.openModalAuth();
     } else {
-      checkLocalStorage();
       saveToWatched(movie);
     }
   }
@@ -20,7 +18,6 @@ export function onClickToQueueHandler(movie) {
   const btnAddToQueueRef = document.querySelector('.btn-js-addtoqueue');
   btnAddToQueueRef.addEventListener('click', clickBtn);
   function clickBtn() {
-
     if (!authUser.userId || authUser.userId === 'undefined') {
       authUser.openModalAuth();
     } else {
