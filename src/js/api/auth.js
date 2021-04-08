@@ -36,6 +36,9 @@ class AuthUser {
       if (err.message === 'MISSING_PASSWORD') {
         onError('ENTER PASSWORD');
       }
+      if (err.message === 'EMAIL_EXISTS') {
+        onError('A USER WITH SUCH EMAIL ALREADY EXISTS');
+      }
       if (err.message === 'INVALID_EMAIL') {
         onError('WRONG EMAIL');
       }
