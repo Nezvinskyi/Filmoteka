@@ -153,13 +153,14 @@ class AuthUser {
 
   //регистрация
   async signUp(email, password) {
+    let err = '';
     const data = {
       email: email,
       password: password,
       returnSecureToken: true,
     };
     const url = `${DB_AUTH_URL}signUp?key=${DB_API}`;
-    const response = await fetch(url, {
+    await fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -167,10 +168,15 @@ class AuthUser {
       },
     })
       .then(response => response.json())
-      .then(data => onError(data.error.message));
+      .then(data => (err = data.error));
     // const dbUserData = response.json();
 
-    this.signIn(email, password);
+    if (err) {
+      console.log('err >>> ', err);
+      onError(err.message);
+    } else {
+      this.signIn(email, password);
+    }
   }
 
   //вход
@@ -190,14 +196,19 @@ class AuthUser {
     })
       .then(response => response.json())
       .then(data => {
-        // console.log(data);
-        this.token = data.idToken;
-        this.userId = data.localId;
-        // console.log('token', data.idToken);
-        localStorage.setItem('token', data.idToken);
-        localStorage.setItem('userId', data.localId);
-
-        console.log('Медведь пришел. ID:', this.userId);
+        if (data.idToken) {
+          this.token = data.idToken;
+          this.userId = data.localId;
+          // console.log('token', data.idToken);
+          localStorage.setItem('token', data.idToken);
+          localStorage.setItem('userId', data.localId);
+          onInfo('YOU LOGIN TO YOUR ACCOUNT');
+          document.querySelector('#auth-form-input-email').value = '';
+          document.querySelector('#auth-form-input-password').value = '';
+          console.log('Медведь пришел. ID:', this.userId);
+        } else {
+          onError(data.error.message);
+        }
       });
   }
 

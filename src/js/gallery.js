@@ -63,10 +63,9 @@ function onNavClick(event) {
   }
   if (event.target.dataset.action === 'library') {
     // !!! если не авторизовано, то модалка регистрации/входа
-    // && authUser.userId == 'undefined'
+
     if (!authUser.userId || authUser.userId === 'undefined') {
       console.log('no userId! need to signIn!');
-      // AuthApp.openModalAuth();
       authUser.openModalAuth();
     } else {
       console.log(`User ${authUser.userId} is signed in`);
@@ -374,6 +373,6 @@ function showEmptyLibrary() {
 }
 //
 
-import { AuthApp } from './api/auth';
+// import { AuthApp } from './api/auth';
 // console.log(AuthApp);
 // console.log('Андрей, твоя точка входа - функция onNavClick.  строка 63');
