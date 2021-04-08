@@ -3,32 +3,37 @@ import { hideLoader, showLoader } from './loader';
 import { movieAdapterModal } from './helpers/index';
 import getRefs from './get-refs';
 const { btnWatched, btnQueue } = getRefs();
+import dbUi from './api/db';
 
 function getWatched() {
-  let arrayOfStrings = JSON.parse(localStorage.getItem('watched'));
+  // let arrayOfStrings = JSON.parse(localStorage.getItem('watched'));
 
-  if (arrayOfStrings === null || arrayOfStrings.length === 0) {
-    hideLoader();
-    watchedEmptyHandler();
-    return;
-  }
+  // if (arrayOfStrings === null || arrayOfStrings.length === 0) {
+  //   hideLoader();
+  //   watchedEmptyHandler();
+  //   return;
+  // }
 
-  renderFromLocalStorage(arrayOfStrings);
+  // renderFromLocalStorage(arrayOfStrings);
+  dbUi.getAllWatchedData().then(data => renderFromLocalStorage(data));
+
   btnWatched.classList.add('btn-active-page');
   btnQueue.classList.remove('btn-active-page');
 }
 
 function getQueue() {
   showLoader();
-  let arrayOfStrings = JSON.parse(localStorage.getItem('queue'));
+  // let arrayOfStrings = JSON.parse(localStorage.getItem('queue'));
 
-  if (arrayOfStrings === null || arrayOfStrings.length === 0) {
-    hideLoader();
-    queueEmptyHandler();
-    return;
-  }
+  // if (arrayOfStrings === null || arrayOfStrings.length === 0) {
+  //   hideLoader();
+  //   queueEmptyHandler();
+  //   return;
+  // }
 
-  renderFromLocalStorage(arrayOfStrings);
+  // renderFromLocalStorage(arrayOfStrings);
+  dbUi.getAllQueueData().then(data => renderFromLocalStorage(data));
+
   hideLoader();
   btnQueue.classList.add('btn-active-page');
   btnWatched.classList.remove('btn-active-page');
@@ -50,12 +55,24 @@ function queueEmptyHandler() {
   btnWatched.classList.remove('btn-active-page');
 }
 
+// function renderFromLocalStorage(arrayOfStrings) {
+//   const movieDataList = arrayOfStrings.map(item => {
+//     let data = movieAdapterModal(JSON.parse(item));
+//     return data;
+//   });
+
+//   const containerFilmRef = document.querySelector('[data-cont="container"]');
+//   containerFilmRef.innerHTML = cardList(movieDataList);
+// }
+
 function renderFromLocalStorage(arrayOfStrings) {
+  // console.log(arrayOfStrings);
   const movieDataList = arrayOfStrings.map(item => {
-    let data = movieAdapterModal(JSON.parse(item));
+    // let data = movieAdapterModal(JSON.parse(item));
+    // console.log(item);
+    let data = movieAdapterModal(item);
     return data;
   });
-
   const containerFilmRef = document.querySelector('[data-cont="container"]');
   containerFilmRef.innerHTML = cardList(movieDataList);
 }
