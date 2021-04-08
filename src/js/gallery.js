@@ -371,8 +371,6 @@ function showEmptyLibrary() {
   const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing in <span class="library-choosetext">"My library"</span>, yet :( You should add something first</span>`;
   containerFilmRef.innerHTML = initLibraryMarkup;
 }
-//
 
-// import { AuthApp } from './api/auth';
-// console.log(AuthApp);
-// console.log('Андрей, твоя точка входа - функция onNavClick.  строка 63');
+
+
