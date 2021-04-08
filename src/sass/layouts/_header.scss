@@ -265,10 +265,37 @@
     }
   }
 }
-// notification icons
-// .material-icons {
-//   color: $secondary-color !important;
-// }
+
+// кнопка входа/выхода
+.authorisation-btn{
+  position: absolute;
+  top: 15px;
+  right: 15px; 
+
+  border: 0px solid ;
+  border-radius: 50%;
+  background-color: transparent;
+  outline-style:none;
+  cursor:pointer;
+  @extend %transition;
+}
+
+.authorisation-icon{
+  color: $secondary-color;
+  @extend %transition;
+}
+.authorisation-icon:hover{
+  color: $accent-color;
+  @extend %transition;
+}
+
+.authorisation-btn:hover,
+.authorisation-btn:focus{
+    transform: scale(1.2);
+    @extend %transition;
+}
+
+
 
 // стили для скролла вверх
 
@@ -317,3 +344,5 @@
 .library-choosetext {
   color: green;
 }
+
+
