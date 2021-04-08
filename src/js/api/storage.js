@@ -19,6 +19,7 @@ export function onClickToQueueHandler(movie) {
   const btnAddToQueueRef = document.querySelector('.btn-js-addtoqueue');
   btnAddToQueueRef.addEventListener('click', clickBtn);
   function clickBtn() {
+    console.log('QUEUE!');
     saveToQueue(movie);
   }
   actualyLibraryQueue(movie);
@@ -35,8 +36,6 @@ function checkLocalStorage() {
 
 // Wached ====================================================
 function saveToWatched(movie) {
-  // добавлять в firebase
-
   dbUi.dataWatchedHandler(movie);
 
   let storage = JSON.parse(localStorage.getItem('watched'));

@@ -1,11 +1,8 @@
 import modalTemplate from '../templates/modal.hbs';
 import getRefs from '../js/get-refs';
-
-import moviesApi from './render-card';
+import moviesApi from './api/moviesApi';
 import searchGenreDate from './gallery';
-
 import openVideo from './video';
-
 import * as basicLightbox from 'basiclightbox';
 import 'basicLightbox/dist/basicLightbox.min.css';
 
@@ -24,9 +21,6 @@ export function onOpenModal(callback) {
 
   const closeModal = () => {
     instance.close();
-    // <<<<<<< btn_Name_Yana
-    // refs.bodyRef.classList.remove('overflow-hidden');
-
     window.removeEventListener('keydown', escCloseModal);
   };
 

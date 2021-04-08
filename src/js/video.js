@@ -1,4 +1,4 @@
-import moviesApi from './render-card';
+import moviesApi from './api/moviesApi';
 import video from '../templates/video.hbs';
 import { movieAdapterVideo } from './helpers/index';
 

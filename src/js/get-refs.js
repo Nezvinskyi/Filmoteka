@@ -14,7 +14,5 @@ export default function getRefs() {
     scrollUpEl: document.getElementById('scrollToTop'),
     pagination: document.querySelector('.pagination-js'),
     teamModalClose: document.querySelector('.modal-team-close-button'),
-
-    // footer: document.querySelector('.footer'),
   };
 }

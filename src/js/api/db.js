@@ -3,7 +3,7 @@ import settings from './settings';
 
 const { DB_URL } = settings;
 
-import film from '../film.json';
+// import film from '../film.json';
 
 class DbInterface {
   constructor() {
@@ -31,7 +31,6 @@ class DbInterface {
 
     let newArr = [];
     array.forEach(item => newArr.push(item[1]));
-    console.log('обновляю localStorage');
     localStorage.setItem('watched_fb', JSON.stringify(newArr));
     return newArr;
   }
@@ -39,20 +38,17 @@ class DbInterface {
   async dataWatchedHandler(movie) {
     await this.getAllWatchedData();
     const savedWatchedData = Object.entries(this.watched);
-    console.log(savedWatchedData);
 
     if (
       this.watched === '' ||
       !savedWatchedData.find(([id, obj]) => obj.id === movie.id)
     ) {
-      console.log('нет в базе - ДОБАВИТЬ!');
       this.addToWatched(movie);
       return false;
     } else {
       const targetId = savedWatchedData.find(
         ([id, obj]) => obj.id === movie.id,
       )[0];
-      console.log('есть в базе, УДАЛИТЬ! айди: ', targetId);
       this.removeFromWatched(targetId);
       return targetId;
     }
@@ -69,16 +65,11 @@ class DbInterface {
       },
     })
       .then(response => response.json())
-      .then(console.log)
-      .then(console.log(this.watched))
-      .then(console.log('добавлено в watched'))
       .then(() => this.getAllWatchedData());
   }
 
   removeFromWatched(id) {
     const url = `${DB_URL}/users/${authUser.userId}/watched/${id}.json?auth=${authUser.token}`;
-    console.log('deleting.................', id);
-    console.log('userId:>>>>', authUser.userId);
 
     fetch(url, {
       method: 'DELETE',
@@ -87,7 +78,6 @@ class DbInterface {
       },
     })
       .then(response => response.json())
-      .then(console.log)
       .then(() => this.getAllWatchedData());
   }
 
@@ -106,13 +96,11 @@ class DbInterface {
     }
 
     const array = Object.entries(allQueue);
-    console.log(allQueue);
 
     this.queue = allQueue;
 
     let newArr = [];
     array.forEach(item => newArr.push(item[1]));
-    console.log('обновляю localStorage queue');
     localStorage.setItem('queue_fb', JSON.stringify(newArr));
     return newArr;
   }
@@ -120,20 +108,17 @@ class DbInterface {
   async dataQueueHandler(movie) {
     await this.getAllQueueData();
     const savedQueueData = Object.entries(this.queue);
-    console.log(savedQueueData);
 
     if (
       this.queue === '' ||
       !savedQueueData.find(([id, obj]) => obj.id === movie.id)
     ) {
-      console.log('нет в базе - ДОБАВИТЬ!');
       this.addToQueue(movie);
       return false;
     } else {
       const targetId = savedQueueData.find(
         ([id, obj]) => obj.id === movie.id,
       )[0];
-      console.log('есть в базе, УДАЛИТЬ! айди: ', targetId);
       this.removeFromQueue(targetId);
       return targetId;
     }
@@ -150,14 +135,11 @@ class DbInterface {
       },
     })
       .then(response => response.json())
-      .then(console.log)
-      .then(console.log('добавлено в queue'))
       .then(() => this.getAllQueueData());
   }
 
   removeFromQueue(id) {
     const url = `${DB_URL}/users/${authUser.userId}/queue/${id}.json?auth=${authUser.token}`;
-    console.log('deleting.................', id);
 
     fetch(url, {
       method: 'DELETE',
@@ -166,15 +148,8 @@ class DbInterface {
       },
     })
       .then(response => response.json())
-      .then(console.log)
-      .then(console.log(this.queue))
-      .then(console.log('удалено из queue'))
       .then(() => this.getAllQueueData());
   }
-
-  // render(data) {
-  //   console.log(data);
-  // }
 
   async fetch(url, params) {
     try {
@@ -185,43 +160,6 @@ class DbInterface {
       console.log('error', error);
     }
   }
-
-  // async getDbId(movieId) {
-  //   await this.getAllWatchedData();
-
-  //   const savedWatchedData = Object.entries(this.watched);
-  //   const targetId = savedWatchedData.find(
-  //     ([id, obj]) => obj.id === movieId,
-  //   )[0];
-
-  //   console.log('айди из базы', targetId);
-
-  //   return targetId;
-  // }
-
-  // getFromStorage() {
-  //   const parsedString = localStorage.getItem('watched-123');
-  // console.log(JSON.parse(parsedString));
-  // console.log(parsedString);
-  // const a = Object.entries(parsedString);
-  // console.log(a);
-  // }
 }
 const dbUi = new DbInterface();
-setTimeout(() => {
-  // dbUi.addToWatched(film);
-  // dbUi.getAllWatchedData();
-  // dbUi.removeFromWatched('-MXkFK85ZJhQV2yR6_2x');
-  // console.log(authUser.token);
-}, 1000);
-
-// dbUi.getFromStorage();
-
 export default dbUi;
-//todo
-// при нажатии на кнопку add to watched:
-// 0. проверка authUser.Id re
-// 1. проверка наличия в БД
-// 2. если есть - запуск dbUi.addToWatched(film)
-// 3. если нет - запуск "delete from DB"
-// 4. getAllWatchedData() - перезаписать
