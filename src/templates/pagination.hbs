@@ -1,39 +1,15 @@
-{{!-- <div class="pagination-container container pagination-js"> --}}
-	<div class="page-btn_list">
-		<button class="arrow-btn page-btn" data-nav='prev'>
-			<i class="material-icons arr" style="">arrow_back</i>
-			{{!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16"
-				height="16" viewBox="0 0 32 32">
-				<title>arrow-left</title>
-				<path fill="none" stroke-linejoin="round" stroke-linecap="round"
-					stroke-miterlimit="4" stroke-width="2.6667" stroke="#000"
-					d="M25.333 16h-18.667"></path>
-				<path fill="none" stroke-linejoin="round" stroke-linecap="round"
-					stroke-miterlimit="4" stroke-width="2.6667" stroke="#000"
-					d="M16 25.334l-9.333-9.333 9.333-9.333"></path>
-			</svg> --}}
-		</button>
-		<button class="page-btn hidden visually-hidden" data-nav='first'>1</button>
-		<button class="page-btn ellipsis hidden visually-hidden">...</button>
-		{{#each range}}
-		<button class="page-btn" data-num='{{this}}'>{{this}}</button>
-		{{/each}}
-		<button class="page-btn ellipsis hidden">...</button>
-		<button class="page-btn hidden" data-nav='last'>{{last}}</button>
-		<button class="arrow-btn page-btn" data-nav='next'>
-			<i class="material-icons arr" style="">arrow_forward</i>
-			{{!-- <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="16"
-				height="16" viewBox="0 0 32 32">
-				<title>arrow-left-1</title>
-				<path fill="none" stroke-linejoin="round" stroke-linecap="round"
-					stroke-miterlimit="4" stroke-width="2.6667" stroke="#000"
-					d="M6.667 16h18.667"></path>
-				<path fill="none" stroke-linejoin="round" stroke-linecap="round"
-					stroke-miterlimit="4" stroke-width="2.6667" stroke="#000"
-					d="M16 25.334l9.333-9.333-9.333-9.333"></path>
-			</svg> --}}
-
-		</button>
-	</div>
-	{{!--
-</div> --}}
+<div class="page-btn_list">
+	<button class="arrow-btn page-btn" data-nav='prev'>
+		<i class="material-icons arr" data-nav='prev' style="">arrow_back</i>
+	</button>
+	<button class="page-btn hidden visually-hidden" data-nav='first'>1</button>
+	<button class="page-btn ellipsis hidden visually-hidden">...</button>
+	{{#each range}}
+	<button class="page-btn" data-num='{{this}}'>{{this}}</button>
+	{{/each}}
+	<button class="page-btn ellipsis hidden">...</button>
+	<button class="page-btn hidden" data-nav='last'>{{last}}</button>
+	<button class="arrow-btn page-btn" data-nav='next'>
+		<i class="material-icons arr" data-nav='next' style="">arrow_forward</i>
+	</button>
+</div>
