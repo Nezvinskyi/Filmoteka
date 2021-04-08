@@ -11,6 +11,20 @@ class DbInterface {
   }
 
   addToWatched(data) {
+    const url = `${DB_URL}/users/${authUser.userId}/watched.json?auth=${authUser.token}`;
+
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(console.log);
+  }
+
+  addToQueue(data) {
     const url = `${DB_URL}/users/${authUser.userId}/queue.json?auth=${authUser.token}`;
 
     fetch(url, {
@@ -24,8 +38,6 @@ class DbInterface {
       .then(console.log);
   }
 
-  addToQueue(data) {}
-
   async getAllWatchedData() {
     const url = `${DB_URL}/users/${authUser.userId}/watched.json?auth=${authUser.token}`;
     let watched = null;
@@ -36,8 +48,48 @@ class DbInterface {
       },
     };
     const allWatched = await this.fetch(url, params);
+    if (allWatched === null) {
+      return;
+    }
 
-    return allWatched;
+    const array = Object.entries(allWatched);
+
+    this.watched = array;
+
+    let newArr = [];
+    array.forEach(item => newArr.push(item[1]));
+
+    localStorage.setItem('watched_fb', JSON.stringify(newArr));
+    return newArr;
+  }
+
+  async getAllQueueData() {
+    const url = `${DB_URL}/users/${authUser.userId}/queue.json?auth=${authUser.token}`;
+    let watched = null;
+    const params = {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    };
+    const allQueue = await this.fetch(url, params);
+    if (allQueue === null) {
+      return;
+    }
+
+    const array = Object.entries(allQueue);
+
+    this.watched = array;
+
+    let newArr = [];
+    array.forEach(item => newArr.push(item[1]));
+
+    localStorage.setItem('queue_fb', JSON.stringify(newArr));
+    return newArr;
+  }
+
+  render(data) {
+    console.log(data);
   }
 
   async fetch(url, params) {
@@ -51,8 +103,21 @@ class DbInterface {
   }
 
   getDbId(movieId) {
-    const watchedIds = Object.entries(data);
-    const targetId = watchedIds.find(([id, obj]) => obj.id === movieId)[0];
+    // const allWatched = JSON.parse(localStorage.getItem('watched_fb'));
+    // console.warn(allWatched);
+    // const newArr = [];
+
+    // allWatched.forEach(item => {
+    //   if (movieId !== item.id) {
+    //     newArr.push(item);
+    //   }
+    // });
+
+    // localStorage.setItem('watched_fb', JSON.stringify(newArr));
+
+    // const watchedIds = Object.entries(movie);
+    const targetId = this.watched.find(([id, obj]) => obj.id === movieId)[0];
+    console.log('dsdsds', targetId);
     return targetId;
   }
 
@@ -62,12 +127,6 @@ class DbInterface {
     // console.log(parsedString);
     // const a = Object.entries(parsedString);
     // console.log(a);
-  }
-
-  getDbId(data, movieId) {
-    const watchedIds = Object.entries(data.watched);
-    const targetId = watchedIds.find(([id, obj]) => obj.id === movieId)[0];
-    return targetId;
   }
 }
 const dbUi = new DbInterface();
