@@ -1,6 +1,7 @@
 import { onError, onFetchError, onInfo } from '../components/notifications';
 import getRefs from '../get-refs';
 import dbUi from './db';
+import authUser from '../api/auth';
 
 const refs = getRefs();
 checkLocalStorage();
@@ -9,8 +10,12 @@ export function onClickToWatchedHandler(movie) {
   const btnAddToWatchedRef = document.querySelector('.btn-js-addtowatched');
   btnAddToWatchedRef.addEventListener('click', clickBtn);
   function clickBtn() {
-    checkLocalStorage();
-    saveToWatched(movie);
+    if (!authUser.userId || authUser.userId === 'undefined') {
+      authUser.openModalAuth();
+    } else {
+      checkLocalStorage();
+      saveToWatched(movie);
+    }
   }
   actualyLibraryWached(movie);
 }
@@ -19,8 +24,12 @@ export function onClickToQueueHandler(movie) {
   const btnAddToQueueRef = document.querySelector('.btn-js-addtoqueue');
   btnAddToQueueRef.addEventListener('click', clickBtn);
   function clickBtn() {
-    console.log('QUEUE!');
-    saveToQueue(movie);
+    if (!authUser.userId || authUser.userId === 'undefined') {
+      authUser.openModalAuth();
+    } else {
+      console.log('QUEUE!');
+      saveToQueue(movie);
+    }
   }
   actualyLibraryQueue(movie);
 }
@@ -34,7 +43,7 @@ function checkLocalStorage() {
   }
 }
 
-// Wached ====================================================
+// Watched ====================================================
 function saveToWatched(movie) {
   dbUi.dataWatchedHandler(movie);
 
