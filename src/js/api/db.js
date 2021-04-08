@@ -8,80 +8,7 @@ import film from '../film.json';
 class DbInterface {
   constructor() {
     this.watched = '';
-  }
-
-  async dataHandler(movie) {
-    await this.itemExistsInWatched(movie);
-  }
-
-  async addToWatched(data) {
-    const url = `${DB_URL}/users/${authUser.userId}/watched.json?auth=${authUser.token}`;
-
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-type': 'application/json',
-      },
-    })
-      .then(response => response.json())
-      .then(console.log)
-      .then(console.log(this.watched))
-      .then(console.log('добавлено в watched'))
-      .then(() => this.getAllWatchedData());
-  }
-
-  async itemExistsInWatched(movie) {
-    await this.getAllWatchedData();
-    const savedWatchedData = Object.entries(this.watched);
-    console.log(savedWatchedData);
-
-    if (
-      this.watched === '' ||
-      !savedWatchedData.find(([id, obj]) => obj.id === movie.id)
-    ) {
-      console.log('нет в базе - ДОБАВИТЬ!');
-      this.addToWatched(movie);
-      return false;
-    } else {
-      const targetId = savedWatchedData.find(
-        ([id, obj]) => obj.id === movie.id,
-      )[0];
-      console.log('есть в базе, УДАЛИТЬ! айди: ', targetId);
-      this.removeFromWatched(targetId);
-      return targetId;
-    }
-  }
-
-  addToQueue(data) {
-    const url = `${DB_URL}/users/${authUser.userId}/queue.json?auth=${authUser.token}`;
-
-    fetch(url, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-type': 'application/json',
-      },
-    })
-      .then(response => response.json())
-      .then(console.log);
-  }
-
-  removeFromWatched(id) {
-    const url = `${DB_URL}/users/${authUser.userId}/watched/${id}.json?auth=${authUser.token}`;
-    console.log('deleting.................', id);
-    console.log('userId:>>>>', authUser.userId);
-
-    fetch(url, {
-      method: 'DELETE',
-      headers: {
-        'Content-type': 'application/json',
-      },
-    })
-      .then(response => response.json())
-      .then(console.log)
-      .then(() => this.getAllWatchedData());
-    // .then(this.getAllWatchedData);
+    this.queue = '';
   }
 
   async getAllWatchedData() {
@@ -109,9 +36,65 @@ class DbInterface {
     return newArr;
   }
 
+  async dataWatchedHandler(movie) {
+    await this.getAllWatchedData();
+    const savedWatchedData = Object.entries(this.watched);
+    console.log(savedWatchedData);
+
+    if (
+      this.watched === '' ||
+      !savedWatchedData.find(([id, obj]) => obj.id === movie.id)
+    ) {
+      console.log('нет в базе - ДОБАВИТЬ!');
+      this.addToWatched(movie);
+      return false;
+    } else {
+      const targetId = savedWatchedData.find(
+        ([id, obj]) => obj.id === movie.id,
+      )[0];
+      console.log('есть в базе, УДАЛИТЬ! айди: ', targetId);
+      this.removeFromWatched(targetId);
+      return targetId;
+    }
+  }
+
+  async addToWatched(data) {
+    const url = `${DB_URL}/users/${authUser.userId}/watched.json?auth=${authUser.token}`;
+
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(console.log)
+      .then(console.log(this.watched))
+      .then(console.log('добавлено в watched'))
+      .then(() => this.getAllWatchedData());
+  }
+
+  removeFromWatched(id) {
+    const url = `${DB_URL}/users/${authUser.userId}/watched/${id}.json?auth=${authUser.token}`;
+    console.log('deleting.................', id);
+    console.log('userId:>>>>', authUser.userId);
+
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(console.log)
+      .then(() => this.getAllWatchedData());
+    // .then(this.getAllWatchedData);
+  }
+
   async getAllQueueData() {
     const url = `${DB_URL}/users/${authUser.userId}/queue.json?auth=${authUser.token}`;
-    let watched = null;
+
     const params = {
       method: 'GET',
       headers: {
@@ -125,13 +108,68 @@ class DbInterface {
 
     const array = Object.entries(allQueue);
 
-    this.watched = array;
+    this.queue = allQueue;
 
     let newArr = [];
     array.forEach(item => newArr.push(item[1]));
-
+    console.log('обновляю localStorage');
     localStorage.setItem('queue_fb', JSON.stringify(newArr));
     return newArr;
+  }
+
+  async dataQueueHandler(movie) {
+    await this.getAllQueueData();
+    const savedQueueData = Object.entries(this.queue);
+    console.log(savedQueueData);
+
+    if (
+      this.queue === '' ||
+      !savedQueueData.find(([id, obj]) => obj.id === movie.id)
+    ) {
+      console.log('нет в базе - ДОБАВИТЬ!');
+      this.addToQueue(movie);
+      return false;
+    } else {
+      const targetId = savedQueueData.find(
+        ([id, obj]) => obj.id === movie.id,
+      )[0];
+      console.log('есть в базе, УДАЛИТЬ! айди: ', targetId);
+      this.removeFromQueue(targetId);
+      return targetId;
+    }
+  }
+
+  async addToQueue(data) {
+    const url = `${DB_URL}/users/${authUser.userId}/queue.json?auth=${authUser.token}`;
+
+    fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(console.log)
+      .then(console.log('добавлено в watched'))
+      .then(() => this.getAllWatchedData());
+  }
+
+  removeFromQueue(id) {
+    const url = `${DB_URL}/users/${authUser.userId}/queue/${id}.json?auth=${authUser.token}`;
+    console.log('deleting.................', id);
+
+    fetch(url, {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+      .then(response => response.json())
+      .then(console.log)
+      .then(console.log(this.queue))
+      .then(console.log('удалено из queue'))
+      .then(() => this.getAllQueueData());
   }
 
   render(data) {

@@ -15,7 +15,11 @@ function getWatched() {
   // }
 
   // renderFromLocalStorage(arrayOfStrings);
-  dbUi.getAllWatchedData().then(data => renderFromLocalStorage(data));
+  dbUi.getAllWatchedData().then(data => {
+    if (data) {
+      renderFromLocalStorage(data);
+    }
+  });
 
   btnWatched.classList.add('btn-active-page');
   btnQueue.classList.remove('btn-active-page');
@@ -23,16 +27,12 @@ function getWatched() {
 
 function getQueue() {
   showLoader();
-  // let arrayOfStrings = JSON.parse(localStorage.getItem('queue'));
 
-  // if (arrayOfStrings === null || arrayOfStrings.length === 0) {
-  //   hideLoader();
-  //   queueEmptyHandler();
-  //   return;
-  // }
-
-  // renderFromLocalStorage(arrayOfStrings);
-  dbUi.getAllQueueData().then(data => renderFromLocalStorage(data));
+  dbUi.getAllQueueData().then(data => {
+    if (data) {
+      renderFromLocalStorage(data);
+    }
+  });
 
   hideLoader();
   btnQueue.classList.add('btn-active-page');

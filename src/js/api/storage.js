@@ -36,8 +36,8 @@ function checkLocalStorage() {
 // Wached ====================================================
 function saveToWatched(movie) {
   // добавлять в firebase
-  console.warn('movieID:>>>>>>', movie.id);
-  dbUi.dataHandler(movie);
+
+  dbUi.dataWatchedHandler(movie);
 
   let storage = JSON.parse(localStorage.getItem('watched'));
   const {
@@ -119,7 +119,7 @@ function actualyLibraryWached(movie) {
 // Queue ====================================================
 
 function saveToQueue(movie) {
-  dbUi.addToQueue(movie);
+  dbUi.dataQueueHandler(movie);
 
   let storage = JSON.parse(localStorage.getItem('queue'));
   const {
