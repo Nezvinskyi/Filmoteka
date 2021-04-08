@@ -66,7 +66,10 @@ class AuthUser {
         'Content-type': 'application/json',
       },
     })
-      .then(response => response.json())
+      .then(response => {
+        if (response.ok) console.log('закрываю модалку');
+        return response.json();
+      })
       .then(data => {
         if (data.idToken) {
           this.token = data.idToken;
@@ -74,7 +77,7 @@ class AuthUser {
           localStorage.setItem('token', data.idToken);
           localStorage.setItem('userId', data.localId);
 
-          onInfo('YOU ARE SUCCESSFULLY LOGGED INTO YOUR ACCOUNT');
+          onInfo('YOU HAVE SUCCESSFULLY LOGGED IN');
           document.querySelector('#auth-form-input-email').value = '';
           document.querySelector('#auth-form-input-password').value = '';
         } else {
@@ -94,7 +97,8 @@ class AuthUser {
             onError('ENTER PASSWORD');
           }
         }
-      });
+      })
+      .catch(error => console.log('rreer', error));
   }
 
   //открытие модалки
