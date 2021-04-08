@@ -1,48 +1,46 @@
-<div class="modal">
-  <div class="auth-wrapper">
-    <button
-      class="auth-modal-btn-close modal-btn-close"
-      type="reset"
-      data-modal-close
-    >
-      X
+<div class="modal-reg">
+  <div class="modal-reg-btn-close_container">
+    <button class="auth-modal-btn-close modal-btn-close" type="reset" data-modal-close>
+      <svg
+        class="close-svg"
+        width="100%"
+        height="100%"
+        viewBox="0 0 30 30"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path d="M8 8L22 22" stroke="black" stroke-width="2" />
+        <path d="M8 22L22 8" stroke="black" stroke-width="2" />
+      </svg>
     </button>
-    <form class="auth-form">
-      <h1 class="auth-form-text">Filmoteca</h1>
-
-      <label class="auth-form-label">
-        Email
-        <input
-          id="auth-form-input-email"
-          class="auth-form-input"
-          type="email"
-          name="email"
-          autocomplete="off"
-          required
-          placeholder="name@name.com"
-        />
-      </label>
-      <label class="auth-form-label">
-        password
-        <input
-          id="auth-form-input-password"
-          class="auth-form-input"
-          type="password"
-          name="password"
-          autocomplete="off"
-          required
-          placeholder="minimum 6 characters"
-        />
-      </label>
-
-      <div class="auth-btn-wrapper">
-        <button class="auth-btn auth-modal-btn-signin" type="button">
-          sign in
-        </button>
-        <button class="auth-btn auth-modal-btn-signup" type="button">
-          sign up
-        </button>
+  </div>
+  <div class="container-reg-modal">
+    <div class="card">
+      <div class="input-wrapper">
+        <form class="card-form auth-form">
+          <div class="reg-logo-wrapper">
+            <img class="reg-img" src="../images/film.png" alt="site logo">
+            <h3 class="reg-title-logo">Filmoteka</h2>
+          </div>
+          <h2 class="reg-title-main">Sign in or Register</h2>
+          <div class="input">
+            <input type="email" class="input-field auth-form-input" id="auth-form-input-email" name="email" autocomplete="off" required />
+            <label class="input-label">Email</label>
+          </div>
+          <div class="input">
+            <input type="password" class="input-field" id="auth-form-input-password" name="password" autocomplete="off" required />
+            <label class="input-label">Password (min 6 characters) </label>
+          </div>
+          <div class="auth-btn-wrapper">
+            <button class="auth-btn auth-modal-btn-signin btn" type="button">
+              Sign in
+            </button>
+            <button class="auth-btn auth-modal-btn-signup btn" type="button">
+              Register
+            </button>
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </div>
 </div>
