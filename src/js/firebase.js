@@ -32,8 +32,8 @@ function saveIdsToQueueLocStor(idx) {
 
 let watchedIdx = getIdsfromWatched(db);
 let queuedIdx = getIdsfromQueue(db);
-saveIdsToWatchedLocStor(watchedIdx);
-saveIdsToQueueLocStor(queuedIdx);
+// saveIdsToWatchedLocStor(watchedIdx);
+// saveIdsToQueueLocStor(queuedIdx);
 
 //возвращает id записи в базе по id фильма
 function getDbId(data, movieId) {

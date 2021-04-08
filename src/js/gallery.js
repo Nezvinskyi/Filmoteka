@@ -11,6 +11,7 @@ import {
   pageCounter,
 } from './components/pagination';
 import paginationBtnsTpl from '../templates/pagination.hbs';
+import dbUi from './api/db';
 
 const refs = getRefs();
 
@@ -305,14 +306,15 @@ function getWatched() {
         let arrayOfStrings5 = JSON.parse(localStorage.getItem('queue'));
         btnQueue.classList.add('btn-active-page');
         btnWatched.classList.remove('btn-active-page');
-        renderFromLocalStorage(arrayOfStrings5);
+        // renderFromLocalStorage(arrayOfStrings5);
       }
     } else {
       let arrayOfStrings5 = JSON.parse(localStorage.getItem('watched'));
       if (arrayOfStrings5.length > 0) {
         btnWatched.classList.add('btn-active-page');
         btnQueue.classList.remove('btn-active-page');
-        renderFromLocalStorage(arrayOfStrings5);
+        // renderFromLocalStorage(arrayOfStrings5);
+        dbUi.getAllWatchedData().then(data => renderFromLocalStorage(data));
         return;
       } else {
         btnWatched.classList.add('btn-active-page');
@@ -330,7 +332,8 @@ function getWatched() {
       let arrayOfStrings5 = JSON.parse(localStorage.getItem('queue'));
       btnQueue.classList.add('btn-active-page');
       btnWatched.classList.remove('btn-active-page');
-      renderFromLocalStorage(arrayOfStrings5);
+      // renderFromLocalStorage(arrayOfStrings5);
+      dbUi.getAllQueueData().then(data => renderFromLocalStorage(data));
     }
   } else {
     btnQueue.classList.remove('btn-active-page');
@@ -339,8 +342,11 @@ function getWatched() {
 }
 
 function renderFromLocalStorage(arrayOfStrings) {
+  // console.log(arrayOfStrings);
   const movieDataList = arrayOfStrings.map(item => {
-    let data = movieAdapterModal(JSON.parse(item));
+    // let data = movieAdapterModal(JSON.parse(item));
+    // console.log(item);
+    let data = movieAdapterModal(item);
     return data;
   });
   const containerFilmRef = document.querySelector('[data-cont="container"]');
