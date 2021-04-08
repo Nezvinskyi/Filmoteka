@@ -1,5 +1,6 @@
 import { onOpenModal } from '../modal';
 import markupAuth from '../../html/auth-in-modal.html';
+import { onError, onInfo } from '../components/notifications';
 // ---------------------------------------
 import firebase from 'firebase/app';
 
@@ -20,124 +21,122 @@ firebase.initializeApp(firebaseConfig);
 
 // -----------------------------------------
 
-export class AuthApp {
-  static userId = null;
+// export class AuthApp {
+//   static userId = null;
 
-  static createAuth(email, password) {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(userCredential => {
-        // Signed in
-        const user = userCredential.user;
-        document.querySelector('#auth-form-input-email').value = '';
-        document.querySelector('#auth-form-input-password').value = '';
-        console.log('Поздравляем! Ваш акаунт создан!');
-        console.log('Новый user >>>', user);
-        alert('Ваш акаунт создан');
-        // ...
-      })
-      .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log('errorCode >>>>', errorCode);
-        console.log('errorMessage >>>>', errorMessage);
-        alert(`${errorCode}
-        ${errorMessage}`);
-        // ..
-      });
-  }
+//   static createAuth(email, password) {
+//     firebase
+//       .auth()
+//       .createUserWithEmailAndPassword(email, password)
+//       .then(userCredential => {
+//         // Signed in
+//         const user = userCredential.user;
+//         document.querySelector('#auth-form-input-email').value = '';
+//         document.querySelector('#auth-form-input-password').value = '';
+//         console.log('Поздравляем! Ваш акаунт создан!');
+//         console.log('Новый user >>>', user);
+//         alert('Ваш акаунт создан');
+//         // ...
+//       })
+//       .catch(error => {
+//         const errorCode = error.code;
+//         const errorMessage = error.message;
+//         console.log('errorCode >>>>', errorCode);
+//         console.log('errorMessage >>>>', errorMessage);
+//         alert(`${errorCode}
+//         ${errorMessage}`);
+//         // ..
+//       });
+//   }
 
-  static signInAuth(email, password) {
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(userCredential => {
-        // Signed in
-        const user = userCredential.user;
-        document.querySelector('#auth-form-input-email').value = '';
-        document.querySelector('#auth-form-input-password').value = '';
-        console.log('Вы вошли в свой акаунт');
-        console.log('Ваш user >>>', user);
-        // ...
-      })
-      .catch(error => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log('errorCode >>>>', errorCode);
-        console.log('errorMessage >>>>', errorMessage);
-        alert(`${errorCode}
-        ${errorMessage}`);
-      });
-  }
+//   static signInAuth(email, password) {
+//     firebase
+//       .auth()
+//       .signInWithEmailAndPassword(email, password)
+//       .then(userCredential => {
+//         // Signed in
+//         const user = userCredential.user;
+//         document.querySelector('#auth-form-input-email').value = '';
+//         document.querySelector('#auth-form-input-password').value = '';
+//         console.log('Вы вошли в свой акаунт');
+//         console.log('Ваш user >>>', user);
+//         // ...
+//       })
+//       .catch(error => {
+//         const errorCode = error.code;
+//         const errorMessage = error.message;
+//         console.log('errorCode >>>>', errorCode);
+//         console.log('errorMessage >>>>', errorMessage);
+//         alert(`${errorCode}
+//         ${errorMessage}`);
+//       });
+//   }
 
-  static watchAuth() {
-    firebase.auth().onAuthStateChanged(user => {
-      console.log('Проверка user >>>', user);
-      if (user) {
-        console.log('Вошел');
-        this.userId = user.uid;
-        console.log('userId ', this.userId);
+//   static watchAuth() {
+//     firebase.auth().onAuthStateChanged(user => {
+//       console.log('Проверка user >>>', user);
+//       if (user) {
+//         console.log('Вошел');
+//         this.userId = user.uid;
+//         console.log('userId ', this.userId);
 
-        // получаем данные о библиотеке для загрузки в локал сторедж(id фильма)
-      } else {
-        console.log('Не вошел');
-        this.userId = null;
-        console.log('userId ', this.userId);
-      }
-    });
-  }
+//         // получаем данные о библиотеке для загрузки в локал сторедж(id фильма)
+//       } else {
+//         console.log('Не вошел');
+//         this.userId = null;
+//         console.log('userId ', this.userId);
+//       }
+//     });
+//   }
 
-  static signOutAuth() {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => {
-        // Sign-out successful.
-      })
-      .catch(error => {
-        // An error happened.
-      });
-  }
+//   static signOutAuth() {
+//     firebase
+//       .auth()
+//       .signOut()
+//       .then(() => {
+//         // Sign-out successful.
+//       })
+//       .catch(error => {
+//         // An error happened.
+//       });
+//   }
 
-  static deleteAuth() {
-    const user = firebase.auth().currentUser;
+//   static deleteAuth() {
+//     const user = firebase.auth().currentUser;
 
-    user
-      .delete()
-      .then(function () {
-        // User deleted.
-      })
-      .catch(function (error) {
-        // An error happened.
-      });
-  }
+//     user
+//       .delete()
+//       .then(function () {
+//         // User deleted.
+//       })
+//       .catch(function (error) {
+//         // An error happened.
+//       });
+//   }
 
-  static openModalAuth() {
-    onOpenModal(markupAuth);
+//   static openModalAuth() {
+//     onOpenModal(markupAuth);
 
-    const btnSignInRef = document.querySelector('.auth-modal-btn-signin');
-    const btnSignUpRef = document.querySelector('.auth-modal-btn-signup');
-    const inputEmailRef = document.querySelector('#auth-form-input-email');
-    const inputPasswordRef = document.querySelector(
-      '#auth-form-input-password',
-    );
+//     const btnSignInRef = document.querySelector('.auth-modal-btn-signin');
+//     const btnSignUpRef = document.querySelector('.auth-modal-btn-signup');
+//     const inputEmailRef = document.querySelector('#auth-form-input-email');
+//     const inputPasswordRef = document.querySelector(
+//       '#auth-form-input-password',
+//     );
 
-    btnSignInRef.addEventListener('click', () => {
-      const email = inputEmailRef.value;
-      const password = inputPasswordRef.value;
-      this.signInAuth(email, password);
-    });
+//     btnSignInRef.addEventListener('click', () => {
+//       const email = inputEmailRef.value;
+//       const password = inputPasswordRef.value;
+//       this.signInAuth(email, password);
+//     });
 
-    btnSignUpRef.addEventListener('click', () => {
-      const email = inputEmailRef.value;
-      const password = inputPasswordRef.value;
-      this.createAuth(email, password);
-    });
-  }
-}
-
-// AuthApp.watchAuth();
+//     btnSignUpRef.addEventListener('click', () => {
+//       const email = inputEmailRef.value;
+//       const password = inputPasswordRef.value;
+//       this.createAuth(email, password);
+//     });
+//   }
+// }
 
 //==================================
 import settings from './settings';
@@ -152,13 +151,14 @@ class AuthUser {
 
   //регистрация
   async signUp(email, password) {
+    let err = '';
     const data = {
       email: email,
       password: password,
       returnSecureToken: true,
     };
     const url = `${DB_AUTH_URL}signUp?key=${DB_API}`;
-    const response = await fetch(url, {
+    await fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -166,10 +166,15 @@ class AuthUser {
       },
     })
       .then(response => response.json())
-      .then(console.log);
+      .then(data => (err = data.error));
     // const dbUserData = response.json();
 
-    this.signIn(email, password);
+    if (err) {
+      console.log('err >>> ', err);
+      onError(err.message);
+    } else {
+      this.signIn(email, password);
+    }
   }
 
   //вход
@@ -189,14 +194,19 @@ class AuthUser {
     })
       .then(response => response.json())
       .then(data => {
-        // console.log(data);
-        this.token = data.idToken;
-        this.userId = data.localId;
-        // console.log('token', data.idToken);
-        localStorage.setItem('token', data.idToken);
-        localStorage.setItem('userId', data.localId);
-
-        console.log('Медведь пришел. ID:', this.userId);
+        if (data.idToken) {
+          this.token = data.idToken;
+          this.userId = data.localId;
+          // console.log('token', data.idToken);
+          localStorage.setItem('token', data.idToken);
+          localStorage.setItem('userId', data.localId);
+          onInfo('YOU LOGIN TO YOUR ACCOUNT');
+          document.querySelector('#auth-form-input-email').value = '';
+          document.querySelector('#auth-form-input-password').value = '';
+          console.log('Медведь пришел. ID:', this.userId);
+        } else {
+          onError(data.error.message);
+        }
       });
   }
 

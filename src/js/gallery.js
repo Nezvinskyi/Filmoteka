@@ -63,9 +63,9 @@ function onNavClick(event) {
   }
   if (event.target.dataset.action === 'library') {
     // !!! если не авторизовано, то модалка регистрации/входа
-    if (!authUser.userId) {
+
+    if (!authUser.userId || authUser.userId === 'undefined') {
       console.log('no userId! need to signIn!');
-      // AuthApp.openModalAuth();
       authUser.openModalAuth();
     } else {
       console.log(`User ${authUser.userId} is signed in`);
@@ -371,8 +371,6 @@ function emptyLibraryHandler() {
   const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing in <span class="library-choosetext">"My library"</span>, yet :( You should add something first</span>`;
   containerFilmRef.innerHTML = initLibraryMarkup;
 }
-//
 
-import { AuthApp } from './api/auth';
-// console.log(AuthApp);
-// console.log('Андрей, твоя точка входа - функция onNavClick.  строка 63');
+
+
