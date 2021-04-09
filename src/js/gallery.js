@@ -26,7 +26,7 @@ firebase.initializeApp(firebaseConfig);
 const refs = getRefs();
 
 if (authUser.userId) {
-  console.log(refs.logInBtn);
+  // console.log(refs.logInBtn);
   refs.logInBtn.classList.add('visually-hidden');
   refs.logOutBtn.classList.remove('visually-hidden');
 } else {
@@ -317,7 +317,7 @@ export default function searchGenreDate(e) {
   }
 }
 
-// localStorage check and first render from localStorage
+// 2 version) myLibrary render from firebase
 
 function getLibrary() {
   //если пустой - ошибка!!!
@@ -361,8 +361,8 @@ function getLibrary() {
     if (localStorageKeys.includes('queue_fb')) {
       showLoader();
       dbUi.getAllQueueData().then(data => {
-        renderFirebaseData(data);
         hideLoader();
+        renderFirebaseData(data);
       });
 
       btnQueue.classList.add('btn-active-page');
