@@ -1,5 +1,8 @@
 import dbUi from './db';
 import authUser from '../api/auth';
+import getrefs from '../get-refs';
+
+const refs = getrefs();
 
 export function onClickToWatchedHandler(movie) {
   const btnAddToWatchedRef = document.querySelector('.btn-js-addtowatched');
@@ -8,6 +11,9 @@ export function onClickToWatchedHandler(movie) {
     if (!authUser.userId || authUser.userId === 'undefined') {
       authUser.openModalAuth();
     } else {
+      if (refs.libNav.classList.contains('current-page')) {
+        console.log('мы в библиотеке. перерисовываем!!!!');
+      }
       saveToWatched(movie);
     }
   }
@@ -21,7 +27,9 @@ export function onClickToQueueHandler(movie) {
     if (!authUser.userId || authUser.userId === 'undefined') {
       authUser.openModalAuth();
     } else {
-      console.log('QUEUE!');
+      if (refs.libNav.classList.contains('current-page')) {
+        console.log('мы в библиотеке. перерисовываем!!!!');
+      }
       saveToQueue(movie);
     }
   }
