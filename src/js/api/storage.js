@@ -12,8 +12,6 @@ export function onClickToWatchedHandler(movie) {
       authUser.openModalAuth();
     } else {
       if (refs.libNav.classList.contains('current-page')) {
-        console.log('dfsdfsdfsdfsd');
-        console.log('мы в библиотеке. перерисовываем!!!!');
         setTimeout(getWatched, 2000);
       }
       saveToWatched(movie);
@@ -30,7 +28,7 @@ export function onClickToQueueHandler(movie) {
       authUser.openModalAuth();
     } else {
       if (refs.libNav.classList.contains('current-page')) {
-        console.log('мы в библиотеке. перерисовываем!!!!');
+        setTimeout(getQueue, 2000);
       }
       saveToQueue(movie);
     }
