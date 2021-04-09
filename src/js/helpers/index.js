@@ -22,7 +22,7 @@ const convertYear = date => {
 };
 
 function getVideoKey(key) {
-  const urlVideo = `http://www.youtube.com/embed/${key}?autoplay=1&origin`;
+  const urlVideo = `https://www.youtube.com/embed/${key}?autoplay=1&origin`;
   return urlVideo;
 }
 
