@@ -6,6 +6,7 @@ import getRefs from './get-refs';
 const { btnWatched, btnQueue } = getRefs();
 
 function getWatched() {
+  showLoader();
   dbUi.getAllWatchedData().then(data => {
     if (data == null) {
       watchedEmptyHandler();
@@ -13,6 +14,7 @@ function getWatched() {
     }
 
     renderData(data);
+    hideLoader();
   });
 
   btnWatched.classList.add('btn-active-page');
@@ -20,6 +22,7 @@ function getWatched() {
 }
 
 function getQueue() {
+  showLoader();
   dbUi.getAllQueueData().then(data => {
     if (data == null) {
       queueEmptyHandler();
@@ -27,6 +30,7 @@ function getQueue() {
     }
 
     renderData(data);
+    hideLoader();
   });
 
   btnQueue.classList.add('btn-active-page');
