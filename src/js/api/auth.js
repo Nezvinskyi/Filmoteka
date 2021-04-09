@@ -70,8 +70,11 @@ class AuthUser {
       },
     })
       .then(response => {
-        if (response.ok) console.log('закрываю модалку');
-        return response.json();
+        if (response.ok) {
+          document.location.reload();
+          console.log('закрываю модалку');
+          return response.json();
+        }
       })
       .then(data => {
         if (data.idToken) {
