@@ -68,13 +68,17 @@
 // render from localStorage
 // =================================================================
 
+import dbUi from './api/db';
+
 import cardList from '../templates/film-list.hbs';
 import { hideLoader, showLoader } from './loader';
 import { movieAdapterModal } from './helpers/index';
 import getRefs from './get-refs';
 const { btnWatched, btnQueue } = getRefs();
 
-function getWatched() {
+// console.log(dbUi.getWatched());
+
+export function getWatched() {
   let arrayOfStrings = JSON.parse(localStorage.getItem('watched_fb'));
 
   if (arrayOfStrings === null || arrayOfStrings.length === 0) {
@@ -88,7 +92,7 @@ function getWatched() {
   btnQueue.classList.remove('btn-active-page');
 }
 
-function getQueue() {
+export function getQueue() {
   showLoader();
   let arrayOfStrings = JSON.parse(localStorage.getItem('queue_fb'));
 
