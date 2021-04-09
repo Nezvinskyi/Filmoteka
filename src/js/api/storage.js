@@ -54,8 +54,8 @@ export function deleteClassBtnWached() {
   modalBtnWached.classList.remove('btn-active-page');
   modalBtnWached.innerHTML = 'Add to wached';
 
-  const wachedLength = localStorage.getItem('watched_fb');
-  const parsedWaced = JSON.parse(wachedLength);
+  const wachedStorage = localStorage.getItem('watched_fb');
+  const parsedWaced = JSON.parse(wachedStorage);
   if (localStorage.getItem('watched_fb') !== null || parsedWaced.length !== 0) {
     if (parsedWaced.length <= 1) {
       localStorage.setItem('watched_fb', '[]');
@@ -75,10 +75,10 @@ export function deleteClassBtnQueue() {
   modalBtnQueue.classList.remove('btn-active-page');
   modalBtnQueue.innerHTML = 'Add to queue';
 
-  const wachedLength = localStorage.getItem('queue_fb');
-  const parsedWaced = JSON.parse(wachedLength);
-  if (localStorage.getItem('queue_fb') !== null || parsedWaced.length !== 0) {
-    if (parsedWaced.length <= 1) {
+  const queueStorage = localStorage.getItem('queue_fb');
+  const parsedQueue = JSON.parse(queueStorage);
+  if (localStorage.getItem('queue_fb') !== null || parsedQueue.length !== 0) {
+    if (parsedQueue.length <= 1) {
       localStorage.setItem('queue_fb', '[]');
       return;
     }
