@@ -12,7 +12,9 @@ export function onClickToWatchedHandler(movie) {
       authUser.openModalAuth();
     } else {
       if (refs.libNav.classList.contains('current-page')) {
+        console.log('dfsdfsdfsdfsd');
         console.log('мы в библиотеке. перерисовываем!!!!');
+        setTimeout(getWatched, 2000);
       }
       saveToWatched(movie);
     }
@@ -38,6 +40,8 @@ export function onClickToQueueHandler(movie) {
 
 function saveToWatched(movie) {
   dbUi.dataWatchedHandler(movie);
+  // a();
+  // setTimeout(getWatched, 2000);
 }
 function saveToQueue(movie) {
   dbUi.dataQueueHandler(movie);
@@ -116,3 +120,75 @@ function actualyLibraryWached(movie) {
     });
   }
 }
+
+// =================================================================
+// =================================================================
+// import { getWatched, getQueue } from '../myLibrary';
+import cardList from '../../templates/film-list.hbs';
+import { hideLoader, showLoader } from '../loader';
+import { movieAdapterModal } from '../helpers/index';
+// import getRefs from './get-refs';
+// const { btnWatched, btnQueue } = getRefs();
+
+// console.log(dbUi.getWatched());
+
+function getWatched() {
+  // console.log('okokok');
+  let arrayOfStrings = JSON.parse(localStorage.getItem('watched_fb'));
+
+  if (arrayOfStrings === null || arrayOfStrings.length === 0) {
+    hideLoader();
+    watchedEmptyHandler();
+    return;
+  }
+
+  renderFromLocalStorage(arrayOfStrings);
+  refs.btnWatched.classList.add('btn-active-page');
+  refs.btnQueue.classList.remove('btn-active-page');
+}
+
+function getQueue() {
+  showLoader();
+  let arrayOfStrings = JSON.parse(localStorage.getItem('queue_fb'));
+
+  if (arrayOfStrings === null || arrayOfStrings.length === 0) {
+    hideLoader();
+    queueEmptyHandler();
+    return;
+  }
+
+  renderFromLocalStorage(arrayOfStrings);
+  hideLoader();
+  refs.btnQueue.classList.add('btn-active-page');
+  refs.btnWatched.classList.remove('btn-active-page');
+}
+
+function watchedEmptyHandler() {
+  const containerFilmRef = document.querySelector('[data-cont="container"]');
+  const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing <span class="library-choosetext">in the WATCHED</span>, yet :( You should add something first</span>`;
+  containerFilmRef.innerHTML = initLibraryMarkup;
+  refs.btnWatched.classList.add('btn-active-page');
+  refs.btnQueue.classList.remove('btn-active-page');
+}
+
+function queueEmptyHandler() {
+  const containerFilmRef = document.querySelector('[data-cont="container"]');
+  const initLibraryMarkup = `<span class="library-inittext"style="text-align: center; display: block; margin-top: 25px">There’s nothing <span class="library-choosetext">in the QUEUE</span>, yet :( You should add something first</span>`;
+  containerFilmRef.innerHTML = initLibraryMarkup;
+  refs.btnQueue.classList.add('btn-active-page');
+  refs.btnWatched.classList.remove('btn-active-page');
+}
+
+function renderFromLocalStorage(arrayOfStrings) {
+  console.log('>>', arrayOfStrings);
+  const movieDataList = arrayOfStrings.map(item => {
+    let data = movieAdapterModal(item);
+    return data;
+  });
+
+  const containerFilmRef = document.querySelector('[data-cont="container"]');
+  containerFilmRef.innerHTML = cardList(movieDataList);
+}
+
+refs.btnWatched.addEventListener('click', getWatched);
+refs.btnQueue.addEventListener('click', getQueue);
