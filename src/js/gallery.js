@@ -9,8 +9,55 @@ import { paginator, pageCounter } from './components/pagination';
 import paginationBtnsTpl from '../templates/pagination.hbs';
 import dbUi from './api/db';
 import authUser from './api/auth';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+
+const firebaseConfig = {
+  apiKey: 'AIzaSyDn53btmBJPZDSPSp5tBFxkSuER-mlWeuM',
+  authDomain: 'filmoteka-blended2.firebaseapp.com',
+  projectId: 'filmoteka-blended2',
+  storageBucket: 'filmoteka-blended2.appspot.com',
+  messagingSenderId: '258840557786',
+  appId: '1:258840557786:web:03f63f1bd48af8ad814de3',
+};
+
+firebase.initializeApp(firebaseConfig);
 
 const refs = getRefs();
+
+if (authUser.userId) {
+  console.log(refs.logInBtn);
+  refs.logInBtn.classList.add('visually-hidden');
+  refs.logOutBtn.classList.remove('visually-hidden');
+} else {
+  refs.logInBtn.classList.remove('visually-hidden');
+  refs.logOutBtn.classList.add('visually-hidden');
+}
+
+refs.authorisationBtn.addEventListener('click', onLogInLogOut);
+
+function onLogInLogOut(event) {
+  if (event.target.dataset.action === 'log-in') {
+    if (!authUser.userId || authUser.userId === 'undefined') {
+      authUser.openModalAuth();
+    }
+  }
+
+  if (event.target.dataset.action === 'log-out') {
+    console.log(event.target.dataset.action);
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        localStorage.clear();
+        refs.logInBtn.classList.remove('visually-hidden');
+        refs.logOutBtn.classList.add('visually-hidden');
+        onInfo('You have signed out. See you, bye!');
+        document.location.reload();
+      })
+      .catch(onFetchError);
+  }
+}
 
 refs.searchForm.addEventListener('submit', onSearch);
 

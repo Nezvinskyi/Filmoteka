@@ -15,5 +15,7 @@ export default function getRefs() {
     pagination: document.querySelector('.pagination-js'),
     teamModalClose: document.querySelector('.modal-team-close-button'),
     authorisationBtn: document.querySelector('.authorisation-btn'),
+    logInBtn: document.querySelector('#log-in'),
+    logOutBtn: document.querySelector('#log-out'),
   };
 }
