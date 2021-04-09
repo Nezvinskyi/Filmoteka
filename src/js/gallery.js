@@ -218,18 +218,18 @@ async function initGenreGallery(e) {
   const genre = await e.target;
   moviesApi.searchGenre = genre.dataset.id;
 
-  showLoader();
-
   try {
+    showLoader();
     const { results, total_results } = await moviesApi.getSearchGenres();
     setupPaginationBtns(total_results);
     renderData(results);
     addEventListenerToGallery();
     moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
-    hideLoader();
   } catch (error) {
+    hideLoader();
     onFetchError('Ooops!Something went wrong :(');
   }
+  hideLoader();
 }
 
 async function initDateGallery(e) {
@@ -253,10 +253,11 @@ async function initDateGallery(e) {
     setupPaginationBtns(total_results);
 
     moviesApi.getRefs().divContainer.addEventListener('click', searchGenreDate);
-    hideLoader();
   } catch (error) {
+    hideLoader();
     onFetchError('Ooops!Something went wrong :(');
   }
+  hideLoader();
 }
 
 export default function searchGenreDate(e) {
@@ -313,8 +314,8 @@ function getLibrary() {
     if (localStorageKeys.includes('queue_fb')) {
       showLoader();
       dbUi.getAllQueueData().then(data => {
-        hideLoader();
         renderFirebaseData(data);
+        hideLoader();
       });
 
       btnQueue.classList.add('btn-active-page');
