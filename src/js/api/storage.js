@@ -48,13 +48,13 @@ function saveToQueue(movie) {
 export function addClassBtnWached() {
   const modalBtnWached = document.querySelector('.btn-js-addtowatched');
   modalBtnWached.classList.add('btn-active-page');
-  modalBtnWached.innerHTML = 'Delete from wached';
+  modalBtnWached.innerHTML = 'Delete from watched';
 }
 
 export function deleteClassBtnWached() {
   const modalBtnWached = document.querySelector('.btn-js-addtowatched');
   modalBtnWached.classList.remove('btn-active-page');
-  modalBtnWached.innerHTML = 'Add to wached';
+  modalBtnWached.innerHTML = 'Add to watched';
 
   const wachedStorage = localStorage.getItem('watched_fb');
   const parsedWaced = JSON.parse(wachedStorage);
@@ -112,7 +112,7 @@ function actualyLibraryWached(movie) {
       if (movie.id === element.id) {
         const modalBtnWached = document.querySelector('.btn-js-addtowatched');
         modalBtnWached.classList.add('btn-active-page');
-        modalBtnWached.innerHTML = 'Delete from wached';
+        modalBtnWached.innerHTML = 'Delete from watched';
         return;
       }
     });
