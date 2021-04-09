@@ -21,7 +21,6 @@ export function onClickToQueueHandler(movie) {
     if (!authUser.userId || authUser.userId === 'undefined') {
       authUser.openModalAuth();
     } else {
-      console.log('QUEUE!');
       saveToQueue(movie);
     }
   }
@@ -45,6 +44,15 @@ export function deleteClassBtnWached() {
   const modalBtnWached = document.querySelector('.btn-js-addtowatched');
   modalBtnWached.classList.remove('btn-active-page');
   modalBtnWached.innerHTML = 'Add to wached';
+
+  const wachedLength = localStorage.getItem('watched_fb');
+  const parsedWaced = JSON.parse(wachedLength);
+  if (localStorage.getItem('watched_fb') !== null || parsedWaced.length !== 0) {
+    if (parsedWaced.length <= 1) {
+      localStorage.setItem('watched_fb', '[]');
+      return;
+    }
+  }
 }
 
 export function addClassBtnQueue() {
@@ -57,6 +65,15 @@ export function deleteClassBtnQueue() {
   const modalBtnQueue = document.querySelector('.btn-js-addtoqueue');
   modalBtnQueue.classList.remove('btn-active-page');
   modalBtnQueue.innerHTML = 'Add to queue';
+
+  const wachedLength = localStorage.getItem('queue_fb');
+  const parsedWaced = JSON.parse(wachedLength);
+  if (localStorage.getItem('queue_fb') !== null || parsedWaced.length !== 0) {
+    if (parsedWaced.length <= 1) {
+      localStorage.setItem('queue_fb', '[]');
+      return;
+    }
+  }
 }
 
 function actualyLibraryQueue(movie) {
