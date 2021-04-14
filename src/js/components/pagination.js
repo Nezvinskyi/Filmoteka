@@ -10,7 +10,7 @@ export const paginator = new pagination.SearchPaginator({
 //перенести в паршиал html
 function setupPaginationContainer() {
   const markup =
-    '<div class="pagination-container container pagination-js"><p>testjkshgdbfkjabsd,fjbasdf</p></div>';
+    '<div class="pagination-container container pagination-js"></div>';
   document.querySelector('.footer').insertAdjacentHTML('beforebegin', markup);
 }
 setupPaginationContainer();
