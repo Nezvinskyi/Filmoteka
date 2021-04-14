@@ -31,8 +31,6 @@ class AuthUser {
       .then(data => (err = data.error));
 
     if (err) {
-      // console.log('err >>> ', err.message);
-      // console.log(err.message);
       if (err.message === 'MISSING_PASSWORD') {
         onError('ENTER PASSWORD');
       }
@@ -72,7 +70,6 @@ class AuthUser {
       .then(response => {
         if (response.ok) {
           document.location.reload();
-          console.log('закрываю модалку');
           return response.json();
         }
       })
@@ -87,8 +84,6 @@ class AuthUser {
           document.querySelector('#auth-form-input-email').value = '';
           document.querySelector('#auth-form-input-password').value = '';
         } else {
-          // console.log('err >>> ', data.error.message);
-          // console.log(data.error.message);
           if (data.error.message === 'INVALID_EMAIL') {
             onError('WRONG EMAIL');
           }
@@ -104,7 +99,7 @@ class AuthUser {
           }
         }
       })
-      .catch(error => console.log('rreer', error));
+      .catch(error => console.log('error', error));
   }
 
   //открытие модалки

@@ -76,8 +76,6 @@ import { movieAdapterModal } from './helpers/index';
 import getRefs from './get-refs';
 const { btnWatched, btnQueue } = getRefs();
 
-// console.log(dbUi.getWatched());
-
 export function getWatched() {
   let arrayOfStrings = JSON.parse(localStorage.getItem('watched_fb'));
 
@@ -125,7 +123,6 @@ function queueEmptyHandler() {
 }
 
 function renderFromLocalStorage(arrayOfStrings) {
-  console.log('>>', arrayOfStrings);
   const movieDataList = arrayOfStrings.map(item => {
     let data = movieAdapterModal(item);
     return data;

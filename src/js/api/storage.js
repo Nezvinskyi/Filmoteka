@@ -119,19 +119,11 @@ function actualyLibraryWached(movie) {
   }
 }
 
-// =================================================================
-// =================================================================
-// import { getWatched, getQueue } from '../myLibrary';
 import cardList from '../../templates/film-list.hbs';
 import { hideLoader, showLoader } from '../loader';
 import { movieAdapterModal } from '../helpers/index';
-// import getRefs from './get-refs';
-// const { btnWatched, btnQueue } = getRefs();
-
-// console.log(dbUi.getWatched());
 
 function getWatched() {
-  // console.log('okokok');
   let arrayOfStrings = JSON.parse(localStorage.getItem('watched_fb'));
 
   if (arrayOfStrings === null || arrayOfStrings.length === 0) {
@@ -178,7 +170,6 @@ function queueEmptyHandler() {
 }
 
 function renderFromLocalStorage(arrayOfStrings) {
-  console.log('>>', arrayOfStrings);
   const movieDataList = arrayOfStrings.map(item => {
     let data = movieAdapterModal(item);
     return data;

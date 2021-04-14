@@ -26,7 +26,6 @@ firebase.initializeApp(firebaseConfig);
 const refs = getRefs();
 
 if (authUser.userId) {
-  console.log(refs.logInBtn);
   refs.logInBtn.classList.add('visually-hidden');
   refs.logOutBtn.classList.remove('visually-hidden');
 } else {
@@ -44,7 +43,6 @@ function onLogInLogOut(event) {
   }
 
   if (event.target.dataset.action === 'log-out') {
-    console.log(event.target.dataset.action);
     firebase
       .auth()
       .signOut()
